@@ -1,0 +1,48 @@
+.nav-item {
+  @apply relative transition-colors duration-300 px-4 py-2;
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.nav-item::after {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  transition: width 0.3s ease;
+  background-color: #53d2a6; /* Underline color matching hover text color */
+  width: 0;
+  height: 2px;
+  content: "";
+}
+
+.nav-item:hover::after {
+  width: 100%; /* Expands underline from left to right on hover */
+}
+
+.dropdown-content {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem;
+}
+
+/* Navbar.css */
+.nav-item {
+  /* Your existing styles */
+  padding: 10px;
+}
+
+.nav-item a {
+  /* Default styles for anchor elements inside nav items */
+  text-decoration: none;
+}
+
+/* Additional styles based on conditions */
+.text-black {
+  color: black; /* Ensure this class is defined */
+}
+
+.text-white {
+  color: white; /* Ensure this class is defined */
+}
