@@ -6,6 +6,9 @@ import RootLayout from "@/components/layouts/RootLayout";
 // common pages
 import HomePage from "@/pages/(common)/HomePage";
 
+// admin pages
+import EmployeesPage from "@/pages/(admin)/EmployeesPage/index";
+
 // authentication pages
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
@@ -22,14 +25,22 @@ export const routes = [
             path: "/",
             element: <HomePage />,
           },
+          {
+            path: "employees",
+            element: <EmployeesPage />,
+          },
         ],
       },
       {
-        path: "/",
+        path: "authentication",
         element: <AuthenticationLayout />,
         children: [
           {
-            path: "/",
+            path: "sing-in",
+            element: <SigninPage />,
+          },
+          {
+            path: "sing-up",
             element: <SigninPage />,
           },
         ],

@@ -1,18 +1,18 @@
+import Footer from "@/components/partials/Footer";
+import Navbar from "@/components/partials/Navbar";
+import Sidebar from "@/components/partials/Sidebar";
 import { Outlet } from "react-router-dom";
-import Footer from "@/components/partials/Footer/Footer";
-import Navbar from "@/components/partials/Navbar/Navbar";
-import SideMenu from "@/components/partials/SideMenu";
 
 const MainLayout = () => {
   return (
     <>
       <Navbar />
       <div className="flex size-full">
-        <aside className="w-60 h-full">
-          <SideMenu />
+        <aside className="h-full w-60">
+          <Sidebar />
         </aside>
-        <div className="flex-1 size-full">
-        <Outlet />
+        <div className="size-full flex-1">
+          <Outlet />
         </div>
       </div>
       <Footer />

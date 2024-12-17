@@ -53,6 +53,7 @@ export default {
         dark: {
           DEFAULT: "#303030",
           foreground: "#d7d7d7",
+          foreground: "#1c232f",
         },
       },
     },
