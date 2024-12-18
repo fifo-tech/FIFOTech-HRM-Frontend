@@ -8,7 +8,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="flex items-center justify-between bg-neutral px-4 py-2 shadow">
+    <header className="flex h-16 items-center justify-between bg-info px-4 py-2 shadow">
       <div className="flex items-center">
         {/* Hamburger Menu */}
         <button className="mr-4 text-gray-600 hover:text-gray-800">
@@ -27,11 +27,11 @@ const Navbar = () => {
             onClick={toggleDropdown}
           >
             <img
-              src="src/assets/images/img.jpg"
+              src="src/assets/images/image.jpg"
               alt="Profile"
               className="mr-2 h-8 w-8 rounded-full"
             />
-            <span>John Doe</span>
+            <span>Hasan Mahmud</span>
             <i className="fa fa-angle-down ml-2"></i>
           </button>
           {isDropdownOpen && (

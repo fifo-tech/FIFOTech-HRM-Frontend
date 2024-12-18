@@ -1,8 +1,7 @@
 @import "tailwindcss/base";
 @import "./assets/styles/base/variables.css";
+@import "./assets/styles/base/elements.css";
 
 @import "tailwindcss/components";
-@import "./assets/styles/components/navigation.css";
 
 @import "tailwindcss/utilities";
-@import "./assets/styles/utilities/overlay.css";

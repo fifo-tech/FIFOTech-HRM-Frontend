@@ -7,25 +7,25 @@ const SidebarMenuItem = ({ title, icon, link, children }) => {
   const [isOpen, setIsOpen] = useState(false); // State to toggle children visibility
 
   return (
-    <li className="mb-2">
+    <li>
       {/* Parent Menu Item */}
       <div
-        className="flex cursor-pointer items-center justify-between rounded p-2 hover:bg-gray-700"
+        className="group flex cursor-pointer items-center justify-between px-6 py-4 hover:bg-gray-200"
         onClick={() => setIsOpen(!isOpen)} // Toggle open state for submenu
       >
         {/* Link for the parent menu item */}
         {link ? (
           <Link
             to={link}
-            className="flex w-full items-center hover:text-gray-300"
+            className="flex w-full items-center gap-4 group-hover:text-primary"
           >
-            {icon} {/* Render the passed icon */}
-            <span className="ml-2">{title}</span>
+            <span className="inline-block text-xl">{icon}</span>
+            <span className="group-hover:text-primary">{title}</span>
           </Link>
         ) : (
-          <div className="flex w-full items-center">
-            {icon}
-            <span className="ml-2">{title}</span>
+          <div className="flex w-full items-center gap-4 group-hover:text-primary">
+            <span className="inline-block text-xl">{icon}</span>
+            <span className="group-hover:text-primary">{title}</span>
           </div>
         )}
 
@@ -40,7 +40,7 @@ const SidebarMenuItem = ({ title, icon, link, children }) => {
 
       {/* Render Submenu Items */}
       {children && isOpen && (
-        <ul className="ml-4 mt-2 border-l border-gray-600">
+        <ul className="border-border ml-4 mt-2 border-l">
           {children.map((child, index) => (
             <li key={index} className="mb-1">
               {/* Recursive Rendering for Nested Children */}
@@ -54,7 +54,7 @@ const SidebarMenuItem = ({ title, icon, link, children }) => {
               ) : (
                 <Link
                   to={child.link}
-                  className="block rounded p-2 hover:bg-gray-700 hover:text-gray-300"
+                  className="hover:bg-dark-primary block rounded p-2 hover:text-primary"
                 >
                   {child.title}
                 </Link>

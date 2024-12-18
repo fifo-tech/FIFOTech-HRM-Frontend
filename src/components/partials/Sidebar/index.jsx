@@ -1,37 +1,32 @@
-import {
-  faEdit,
-  faHome,
-  faTable,
-  faTachometerAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faHome, faTable } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarMenuItem from "./SidebarMenuItem";
 
 const Sidebar = () => {
   return (
-    <aside className="m-4 rounded-lg bg-gray-800 text-white shadow-lg">
+    <aside className="m-6 bg-card shadow-lg">
       {/* Sidebar Header */}
-      <div className="flex items-center border-b border-gray-700 p-4">
-        <FontAwesomeIcon icon={faTachometerAlt} className="text-xl" />
-        <span className="ml-2 text-xl font-bold">Admin</span>
+      <div className="border-border flex items-center p-4">
+        {/* <FontAwesomeIcon icon={faTachometerAlt} className="text-xl" /> */}
+        <span className="ml-2 text-xl font-bold">Wetechhub-HRM</span>
       </div>
 
       {/* Menu */}
-      <nav className="flex-1 overflow-auto p-4">
+      <nav className="flex-1 overflow-auto py-4">
         <ul>
           <SidebarMenuItem
             title="Home"
             link="/"
-            icon={<FontAwesomeIcon icon={faHome} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faHome} />}
           />
           <SidebarMenuItem
             title="Employees"
             link="/employees"
-            icon={<FontAwesomeIcon icon={faEdit} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faEdit} />}
           />
           <SidebarMenuItem
             title="Core HR"
-            icon={<FontAwesomeIcon icon={faEdit} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faEdit} />}
             children={[
               { title: "Department", link: "#" },
               { title: "Designation", link: "#" },
@@ -42,7 +37,7 @@ const Sidebar = () => {
           />
           <SidebarMenuItem
             title="Attendance"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
             children={[
               { title: "Attendance", link: "#" },
               { title: "Monthly Report", link: "#" },
@@ -51,15 +46,15 @@ const Sidebar = () => {
           />
           <SidebarMenuItem
             title="Finance"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Payroll"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Inventory Control"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
             children={[
               { title: "Warehouses", link: "#" },
               {
@@ -87,7 +82,7 @@ const Sidebar = () => {
           />
           <SidebarMenuItem
             title="Sales Order"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
             children={[
               { title: "Manage Orders", link: "#" },
               { title: "Add New Order", link: "#" },
@@ -101,23 +96,23 @@ const Sidebar = () => {
           />
           <SidebarMenuItem
             title="Tasks"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Projects"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Manage Clients"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Leads"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Performance(PMS)"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
             children={[
               { title: "KPI(Indicator)", link: "#" },
               { title: "KPA(Appraisal)", link: "#" },
@@ -128,27 +123,27 @@ const Sidebar = () => {
           />
           <SidebarMenuItem
             title="Helpdesk"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Invoices"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Estimates"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Leave Request"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Training Sessions"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Disciplinary Cases"
-            icon={<FontAwesomeIcon icon={faTable} className="mr-2" />}
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
         </ul>
       </nav>
