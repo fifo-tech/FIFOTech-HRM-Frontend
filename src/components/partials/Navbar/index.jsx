@@ -16,7 +16,7 @@ const Navbar = () => {
         </button>
 
         {/* Brand Name */}
-        <h1 className="text-lg font-bold text-gray-800">MyBrand</h1>
+        <h1 className="text-lg font-bold text-gray-800">Wetechhub-HRM</h1>
       </div>
 
       <div className="flex items-center">

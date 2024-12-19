@@ -99,7 +99,7 @@ const EmployeesListSection = () => {
       {/* Card */}
       <div className="rounded-lg bg-white shadow-lg">
         {/* Card Header */}
-        <div className="flex items-center justify-between border-b bg-gray-100 p-4">
+        <div className="flex items-center justify-between border-b bg-white p-4">
           <div className="flex items-center space-x-2">
             <FontAwesomeIcon icon={faTable} className="text-gray-700" />
             <h2 className="text-xl font-semibold">Employee List</h2>
