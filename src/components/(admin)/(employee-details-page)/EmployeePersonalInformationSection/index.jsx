@@ -1,7 +1,7 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PersonalInformation = () => {
+const EmployeePersonalInformationSection = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-lg">
@@ -47,7 +47,7 @@ const PersonalInformation = () => {
               id="bio"
               rows="5"
               placeholder="Enter employee's bio here.."
-              className="mt-1 w-full rounded-lg border border-gray-300 p-3 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+              className="mt-1 w-full rounded-lg border p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
             ></textarea>
           </div>
 
@@ -87,4 +87,4 @@ const PersonalInformation = () => {
   );
 };
 
-export default PersonalInformation;
+export default EmployeePersonalInformationSection;

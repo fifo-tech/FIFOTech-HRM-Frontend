@@ -1,6 +1,6 @@
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const BasicInformation = () => {
+const EmployeeBasicInformationSection = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-50 p-6">
       <div className="mx-auto max-w-4xl rounded-lg bg-white p-8 shadow-lg">
@@ -139,4 +139,4 @@ const BasicInformation = () => {
   );
 };
 
-export default BasicInformation;
+export default EmployeeBasicInformationSection;

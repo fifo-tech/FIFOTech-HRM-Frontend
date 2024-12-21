@@ -2,7 +2,7 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-const ProfilePicture = () => {
+const EmployeeProfilePictureSection = () => {
   const [file, setFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -83,4 +83,4 @@ const ProfilePicture = () => {
   );
 };
 
-export default ProfilePicture;
+export default EmployeeProfilePictureSection;

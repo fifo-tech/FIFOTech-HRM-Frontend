@@ -2,7 +2,7 @@ import { faKey } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-const ChangePassword = () => {
+const EmployeeChangePasswordSection = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -121,4 +121,4 @@ const ChangePassword = () => {
   );
 };
 
-export default ChangePassword;
+export default EmployeeChangePasswordSection;

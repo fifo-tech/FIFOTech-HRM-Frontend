@@ -2,7 +2,7 @@ import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-const AccountInformation = () => {
+const EmployeeAccountInformationSection = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
 
@@ -88,4 +88,4 @@ const AccountInformation = () => {
   );
 };
 
-export default AccountInformation;
+export default EmployeeAccountInformationSection;

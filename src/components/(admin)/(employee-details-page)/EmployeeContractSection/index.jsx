@@ -1,6 +1,6 @@
 import { faFileContract } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const ContractPage = () => {
+const EmployeeContractSection = () => {
   return (
     <div className="grid min-h-screen bg-white p-6">
       {/* Title */}
@@ -16,7 +16,7 @@ const ContractPage = () => {
       </div>
 
       {/* Top Row Categories */}
-      <div className="mb-8 grid grid-cols-5 gap-4 bg-white">
+      <div className="mb-8 grid grid-cols-5 gap-2 bg-white">
         {[
           "Contract",
           "Allowances",
@@ -42,7 +42,7 @@ const ContractPage = () => {
           </label>
           <input
             type="date"
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             required
           />
         </div>
@@ -54,7 +54,7 @@ const ContractPage = () => {
           </label>
           <input
             type="text"
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             placeholder="Enter department"
             required
           />
@@ -67,7 +67,7 @@ const ContractPage = () => {
           </label>
           <input
             type="text"
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             placeholder="Enter designation"
             required
           />
@@ -80,7 +80,7 @@ const ContractPage = () => {
           </label>
           <input
             type="number"
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             placeholder="Enter basic salary"
             required
           />
@@ -91,7 +91,7 @@ const ContractPage = () => {
           <label className="block font-medium text-gray-700">Hourly Rate</label>
           <input
             type="number"
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             placeholder="Enter hourly rate"
           />
         </div>
@@ -102,7 +102,7 @@ const ContractPage = () => {
             Payslip Type<span className="text-red-500">*</span>
           </label>
           <select
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             required
           >
             <option value="">Select payslip type</option>
@@ -117,7 +117,7 @@ const ContractPage = () => {
             Office Shift<span className="text-red-500">*</span>
           </label>
           <select
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             required
           >
             <option value="">Select office shift</option>
@@ -133,7 +133,7 @@ const ContractPage = () => {
           </label>
           <input
             type="date"
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
           />
         </div>
 
@@ -144,7 +144,7 @@ const ContractPage = () => {
           </label>
           <textarea
             rows="3"
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             placeholder="Enter leave categories"
           />
         </div>
@@ -156,7 +156,7 @@ const ContractPage = () => {
           </label>
           <textarea
             rows="5"
-            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-400 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
             placeholder="Enter role description"
           />
         </div>
@@ -172,4 +172,4 @@ const ContractPage = () => {
   );
 };
 
-export default ContractPage;
+export default EmployeeContractSection;

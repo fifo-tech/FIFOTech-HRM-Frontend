@@ -1,10 +1,3 @@
-import EmployeeDetails from "@/components/(admin)/(employees-page)/EmployeeDetails";
-import AccountInformation from "@/components/(admin)/(employees-page)/EmployeeDetails/AccountInformation/AccountInformation";
-import BasicInformation from "@/components/(admin)/(employees-page)/EmployeeDetails/BasicInformation";
-import ChangePassword from "@/components/(admin)/(employees-page)/EmployeeDetails/ChangePassword";
-import Contract from "@/components/(admin)/(employees-page)/EmployeeDetails/Contract";
-import PersonalInformation from "@/components/(admin)/(employees-page)/EmployeeDetails/PersonalInformation";
-import ProfilePicture from "@/components/(admin)/(employees-page)/EmployeeDetails/ProfilePicture";
 import EmployeesCreateSection from "@/components/(admin)/(employees-page)/EmployeesCreateSection";
 import EmployeesListSection from "@/components/(admin)/(employees-page)/EmployeesListSection";
 import EmployeesPageHeaderSection from "@/components/(admin)/(employees-page)/EmployeesPageHeaderSection";
@@ -14,16 +7,33 @@ const EmployeePage = () => {
   return (
     <main>
       <EmployeesPageHeaderSection />
+      {/* <div className="border p-4">
+        <Tabs value="hello">
+          <TabsList className="gap-4">
+            <TabsTrigger
+              className="bg-secondary px-4 py-2"
+              activeClassName="bg-red-400"
+              value="hello"
+            >
+              Hello Trigger
+            </TabsTrigger>
+            <TabsTrigger
+              className="bg-secondary px-4 py-2"
+              activeClassName="bg-red-400"
+              value="bello"
+            >
+              Bello Trigger
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent>
+            <TabsItem value="hello">Hello Everyone</TabsItem>
+            <TabsItem value="bello">Bello Everyone</TabsItem>
+          </TabsContent>
+        </Tabs>
+      </div> */}
       <EmployeesCreateSection />
       <EmployeesListSection />
       <EmployeesRolesAndPrivileges />
-      <EmployeeDetails />
-      <Contract />
-      <BasicInformation />
-      <PersonalInformation />
-      <ProfilePicture />
-      <AccountInformation />
-      <ChangePassword />
     </main>
   );
 };

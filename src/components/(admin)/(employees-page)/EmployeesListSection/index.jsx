@@ -188,7 +188,7 @@ const EmployeesListSection = () => {
                         <FontAwesomeIcon icon={faPencilAlt} />
                       </a>
                       <a
-                        href={`/employees/${employee.id}`}
+                        href={`/employee-details/${employee.id}`}
                         className="rounded bg-primary p-2 text-white hover:bg-violet-800"
                         title="Show"
                       >
