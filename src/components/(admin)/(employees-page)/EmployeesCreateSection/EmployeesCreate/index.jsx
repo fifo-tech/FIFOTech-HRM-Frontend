@@ -1,3 +1,5 @@
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
 const EmployeesCreate = () => {
@@ -66,11 +68,20 @@ const EmployeesCreate = () => {
   };
 
   return (
-    <div className="container mx-auto my-8 max-w-4xl rounded-lg bg-white p-8 shadow-md">
+    <div className="container mx-4 my-8 max-w-4xl rounded-lg bg-white p-8 shadow-md">
       {/* Title */}
       <h6 className="mb-6 text-center text-xl font-semibold text-gray-700">
         Add New Employee
       </h6>
+      <div className="mb-4 flex justify-end">
+        <button
+          // onClick={toggleCreateForm} // Call the passed function to toggle the form visibility
+          className="flex items-center space-x-1 rounded bg-primary px-3 py-2 text-white hover:bg-blue-600"
+        >
+          <FontAwesomeIcon icon={faMinus} />
+          <span>Hide</span>
+        </button>
+      </div>
 
       {/* Success Message */}
       {successMessage && (

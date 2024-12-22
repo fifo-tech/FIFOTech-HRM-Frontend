@@ -23,8 +23,8 @@ const EmployeeProfilePictureSection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="mx-auto max-w-lg rounded-lg bg-white p-8 shadow-lg">
+    <div className="my-6 min-h-screen bg-gray-100">
+      <div className="mx-4 max-w-3xl rounded-lg bg-white p-8 shadow-lg">
         {/* Title */}
         <h6 className="mb-6 flex items-center text-xl text-gray-600">
           <FontAwesomeIcon

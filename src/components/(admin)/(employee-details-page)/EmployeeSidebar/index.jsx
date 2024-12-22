@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const EmployeeSidebar = ({ tabs, details }) => {
   return (
-    <div className="mx-4 py-6">
+    <div className="mx-4 my-6">
       <div className="bg-white shadow-lg">
         {/* Profile Details Section */}
         <div className="mb-4 border-b p-4 text-center">

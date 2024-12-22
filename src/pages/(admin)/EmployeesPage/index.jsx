@@ -2,8 +2,16 @@ import EmployeesCreateSection from "@/components/(admin)/(employees-page)/Employ
 import EmployeesListSection from "@/components/(admin)/(employees-page)/EmployeesListSection";
 import EmployeesPageHeaderSection from "@/components/(admin)/(employees-page)/EmployeesPageHeaderSection";
 import EmployeesRolesAndPrivileges from "@/components/(admin)/(employees-page)/EmployeesRolesAndPrivileges";
+import { useState } from "react";
 
 const EmployeePage = () => {
+  const [showCreateForm, setShowCreateForm] = useState(false);
+
+  // Toggle the visibility of the form
+  const toggleCreateForm = () => {
+    setShowCreateForm(!showCreateForm);
+  };
+
   return (
     <main>
       <EmployeesPageHeaderSection />
@@ -31,8 +39,15 @@ const EmployeePage = () => {
           </TabsContent>
         </Tabs>
       </div> */}
-      <EmployeesCreateSection />
-      <EmployeesListSection />
+
+      {/* Conditionally render the EmployeesCreateSection if showCreateForm is true */}
+      {showCreateForm && <EmployeesCreateSection />}
+
+      {/* Pass toggleCreateForm as a prop to the EmployeesListSection */}
+      <EmployeesListSection toggleCreateForm={toggleCreateForm} />
+
+      {/* <EmployeesCreateSection /> */}
+      {/* <EmployeesListSection /> */}
       <EmployeesRolesAndPrivileges />
     </main>
   );

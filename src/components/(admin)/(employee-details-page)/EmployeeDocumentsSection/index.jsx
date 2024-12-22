@@ -27,10 +27,10 @@ const EmployeeDocumentsSection = () => {
   );
 
   return (
-    <div className="mx-4 my-6 max-w-4xl rounded-lg bg-white p-6 shadow">
+    <div className="mx-4 my-6 max-w-3xl rounded-lg bg-white p-6 shadow">
       {/* Documents Section */}
       <div className="mb-6">
-        <h2 className="flex items-center text-xl font-semibold text-gray-800">
+        <h2 className="flex items-center text-3xl font-semibold text-gray-800">
           <FontAwesomeIcon icon={faFolder} className="mr-2 text-primary" />
           Documents
         </h2>

@@ -50,7 +50,7 @@ const EmployeeTimesheetAgendaSection = () => {
   );
 
   return (
-    <div className="mx-auto my-4 max-w-6xl rounded-lg bg-white p-6 shadow">
+    <div className="mx-4 my-6 max-w-3xl rounded-lg bg-white p-6 shadow">
       {/* Timesheet Agenda Section */}
       <div className="mb-6">
         <h2 className="flex items-center text-xl font-semibold text-gray-800">

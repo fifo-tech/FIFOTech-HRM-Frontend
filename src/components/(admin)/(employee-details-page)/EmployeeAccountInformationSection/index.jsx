@@ -16,8 +16,8 @@ const EmployeeAccountInformationSection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="mx-auto max-w-lg rounded-lg bg-white p-8 shadow-lg">
+    <div className="mx-4 my-6 min-h-screen bg-gray-100">
+      <div className="max-w-3xl rounded-lg bg-white p-8 shadow-lg">
         {/* Title */}
         <h1 className="mb-2 flex items-center text-xl text-gray-600">
           <FontAwesomeIcon

@@ -23,8 +23,8 @@ const EmployeeChangePasswordSection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="mx-auto max-w-lg rounded-lg bg-white p-8 shadow-lg">
+    <div className="my-6 min-h-screen bg-gray-100">
+      <div className="mx-4 max-w-3xl rounded-lg bg-white p-8 shadow-lg">
         {/* Alert */}
         <div className="mb-4 rounded-lg bg-yellow-100 p-4 text-yellow-800">
           <p className="text-sm font-semibold">Alert!</p>

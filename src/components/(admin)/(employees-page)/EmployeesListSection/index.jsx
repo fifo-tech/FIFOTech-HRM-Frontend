@@ -8,12 +8,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-const EmployeesListSection = () => {
+const EmployeesListSection = ({ toggleCreateForm }) => {
   const initialEmployees = [
     {
       id: 1,
       first_name: "Hassan",
       last_name: "Mahmud",
+      email: "mahmud@gmail.com",
       employee_code: "E001",
       department: "HR",
       designation: "Manager",
@@ -25,6 +26,7 @@ const EmployeesListSection = () => {
       id: 2,
       first_name: "Rakibul",
       last_name: "Hassan",
+      email: "hassan@gmail.com",
       employee_code: "E002",
       department: "IT",
       designation: "Developer",
@@ -36,6 +38,7 @@ const EmployeesListSection = () => {
       id: 3,
       first_name: "Arefin",
       last_name: "Piash",
+      email: "piash@gmail.com",
       employee_code: "E003",
       department: "Finance",
       designation: "Analyst",
@@ -43,7 +46,6 @@ const EmployeesListSection = () => {
       status: 0,
       image: "../../../../src/assets/images/image-2.jpg",
     },
-    // Add more employees for testing pagination
   ];
 
   const [employees, setEmployees] = useState(initialEmployees);
@@ -104,12 +106,23 @@ const EmployeesListSection = () => {
             <FontAwesomeIcon icon={faTable} className="text-gray-700" />
             <h2 className="text-xl font-semibold">Employee List</h2>
           </div>
-          <a href="/employees/create">
+
+          <div className="mb-4 flex justify-end">
+            <button
+              onClick={toggleCreateForm} // Call the passed function to toggle the form visibility
+              className="flex items-center space-x-1 rounded bg-primary px-3 py-2 text-white hover:bg-blue-600"
+            >
+              <FontAwesomeIcon icon={faPlus} />
+              <span>New Employee</span>
+            </button>
+          </div>
+
+          {/* <a href="/employees/create">
             <button className="flex items-center space-x-1 rounded bg-primary px-3 py-2 text-white hover:bg-blue-600">
               <FontAwesomeIcon icon={faPlus} />
               <span>New Employee</span>
             </button>
-          </a>
+          </a> */}
         </div>
 
         {/* Top Controls */}
@@ -146,24 +159,66 @@ const EmployeesListSection = () => {
           <table className="w-full table-auto border-collapse">
             <thead>
               <tr className="bg-gray-100 text-left">
-                <th className="border px-4 py-2">ID</th>
-                <th className="border px-4 py-2">First Name</th>
-                <th className="border px-4 py-2">Last Name</th>
+                <th className="border px-4 py-2">Name</th>
                 <th className="border px-4 py-2">Employee Code</th>
                 <th className="border px-4 py-2">Department</th>
                 <th className="border px-4 py-2">Designation</th>
                 <th className="border px-4 py-2">Role</th>
                 <th className="border px-4 py-2">Status</th>
-                <th className="border px-4 py-2">Image</th>
-                <th className="border px-4 py-2">Actions</th>
+                {/* <th className="border px-4 py-2">Image</th> */}
               </tr>
             </thead>
             <tbody>
               {currentEmployees.map((employee, index) => (
                 <tr key={employee.id} className="hover:bg-gray-50">
-                  <td className="border px-4 py-2">{startIndex + index}</td>
-                  <td className="border px-4 py-2">{employee.first_name}</td>
-                  <td className="border px-4 py-2">{employee.last_name}</td>
+                  <td className="h-[50px] border px-4 py-2">
+                    <div className="group relative flex items-center space-x-4">
+                      {/* Image */}
+                      <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
+                        <img
+                          src={`/storage/${employee.image}`}
+                          alt="Employee"
+                          className="h-12 w-12 rounded-full object-cover"
+                        />
+                      </div>
+
+                      {/* Name and Email */}
+                      <div className="flex flex-col truncate group-hover:hidden">
+                        <span className="truncate whitespace-nowrap font-medium">
+                          {employee.first_name + " " + employee.last_name}
+                        </span>
+                        <span className="truncate text-sm text-gray-500">
+                          {employee.email}
+                        </span>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
+                        <a
+                          href={`/employees/${employee.id}/edit`}
+                          className="rounded bg-blue-500 p-2 text-white hover:bg-blue-600"
+                          title="Edit"
+                        >
+                          <FontAwesomeIcon icon={faPencilAlt} />
+                        </a>
+                        <a
+                          href={`/employee-details/${employee.id}`}
+                          className="rounded bg-primary p-2 text-white hover:bg-violet-800"
+                          title="Show"
+                        >
+                          <FontAwesomeIcon icon={faEye} />
+                        </a>
+                        <button
+                          onClick={() => handleDelete(employee.id)}
+                          className="rounded bg-red-500 p-2 text-white hover:bg-red-600"
+                          title="Delete"
+                        >
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+
                   <td className="border px-4 py-2">{employee.employee_code}</td>
                   <td className="border px-4 py-2">{employee.department}</td>
                   <td className="border px-4 py-2">{employee.designation}</td>
@@ -171,38 +226,13 @@ const EmployeesListSection = () => {
                   <td className="border px-4 py-2">
                     {employee.status === 1 ? "Active" : "Inactive"}
                   </td>
-                  <td className="border px-4 py-2">
+                  {/* <td className="border px-4 py-2">
                     <img
                       src={`/storage/${employee.image}`}
                       alt="Employee"
                       className="h-12 w-12 rounded-full object-cover"
                     />
-                  </td>
-                  <td className="border px-4 py-2">
-                    <div className="flex space-x-2">
-                      <a
-                        href={`/employees/${employee.id}/edit`}
-                        className="rounded bg-blue-500 p-2 text-white hover:bg-blue-600"
-                        title="Edit"
-                      >
-                        <FontAwesomeIcon icon={faPencilAlt} />
-                      </a>
-                      <a
-                        href={`/employee-details/${employee.id}`}
-                        className="rounded bg-primary p-2 text-white hover:bg-violet-800"
-                        title="Show"
-                      >
-                        <FontAwesomeIcon icon={faEye} />
-                      </a>
-                      <button
-                        onClick={() => handleDelete(employee.id)}
-                        className="rounded bg-red-500 p-2 text-white hover:bg-red-600"
-                        title="Delete"
-                      >
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </button>
-                    </div>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>

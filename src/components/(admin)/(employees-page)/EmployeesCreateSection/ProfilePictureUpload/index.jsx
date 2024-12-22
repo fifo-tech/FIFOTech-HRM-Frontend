@@ -21,7 +21,7 @@ const ProfilePictureUpload = () => {
   };
 
   return (
-    <div className="mx-2 my-8 flex h-72 w-72 flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md">
+    <div className="mx-4 my-8 flex h-72 w-72 flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md">
       <h2 className="mb-4 text-xl font-bold">Profile Picture</h2>
       <div className="mb-4 h-32 w-32">
         {file ? (

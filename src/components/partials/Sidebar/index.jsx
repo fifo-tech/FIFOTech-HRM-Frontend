@@ -4,9 +4,9 @@ import SidebarMenuItem from "./SidebarMenuItem";
 
 const Sidebar = () => {
   return (
-    <aside className="m-6 bg-card shadow-lg">
+    <aside className="mx-4 my-6 ml-6 bg-card shadow-lg">
       {/* Sidebar Header */}
-      <div className="border-border flex items-center p-4">
+      <div className="flex items-center border-border p-4">
         {/* <FontAwesomeIcon icon={faTachometerAlt} className="text-xl" /> */}
         <span className="ml-2 text-xl font-bold">Wetechhub-HRM</span>
       </div>

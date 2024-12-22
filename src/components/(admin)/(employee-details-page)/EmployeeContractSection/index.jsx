@@ -2,7 +2,7 @@ import { faFileContract } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const EmployeeContractSection = () => {
   return (
-    <div className="grid min-h-screen bg-white p-6">
+    <div className="mx-4 my-6 grid min-h-screen max-w-3xl bg-white p-6">
       {/* Title */}
       <div>
         <h6 className="mb-4 flex items-center text-xl text-gray-600">

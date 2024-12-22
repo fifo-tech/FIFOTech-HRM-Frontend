@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const EmployeePersonalInformationSection = () => {
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-lg">
+    <div className="min-h-screen bg-gray-100 py-6">
+      <div className="mx-4 max-w-3xl rounded-lg bg-white p-8 shadow-lg">
         {/* Title */}
         <div>
           <h6 className="mb-8 flex items-center text-xl text-gray-500">
@@ -19,16 +19,16 @@ const EmployeePersonalInformationSection = () => {
 
         {/* Subtitle Links */}
         <div className="text-md mt-2 flex space-x-10 text-primary">
-          <p className="cursor-pointer transition-all duration-200 hover:text-blue-700 hover:shadow-md">
+          <p className="cursor-pointer transition-all duration-200 hover:text-primary hover:shadow-md">
             Bio
           </p>
-          <p className="cursor-pointer transition-all duration-200 hover:text-green-700 hover:shadow-md">
+          <p className="cursor-pointer transition-all duration-200 hover:text-primary hover:shadow-md">
             Social Profile
           </p>
-          <p className="cursor-pointer transition-all duration-200 hover:text-purple-700 hover:shadow-md">
+          <p className="cursor-pointer transition-all duration-200 hover:text-primary hover:shadow-md">
             Bank Account
           </p>
-          <p className="cursor-pointer transition-all duration-200 hover:text-red-700 hover:shadow-md">
+          <p className="cursor-pointer transition-all duration-200 hover:text-primary hover:shadow-md">
             Emergency Contact
           </p>
         </div>
