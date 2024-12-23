@@ -10,6 +10,7 @@ import HomePage from "@/pages/(common)/HomePage";
 import EmployeesPage from "@/pages/(admin)/EmployeesPage/index";
 
 // authentication pages
+import DepartmentPage from "@/pages/(admin)/(corehr)/DepartmentPage";
 import EmployeeDetailsPage from "@/pages/(admin)/EmployeeDetailsPage";
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
@@ -33,6 +34,10 @@ export const routes = [
           {
             path: "employee-details/:id",
             element: <EmployeeDetailsPage />,
+          },
+          {
+            path: "departments-list",
+            element: <DepartmentPage />,
           },
         ],
       },

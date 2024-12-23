@@ -28,7 +28,7 @@ const Sidebar = () => {
             title="Core HR"
             icon={<FontAwesomeIcon icon={faEdit} />}
             children={[
-              { title: "Department", link: "#" },
+              { title: "Department", link: "/departments-list" },
               { title: "Designation", link: "#" },
               { title: "Policies", link: "#" },
               { title: "Make Announcement", link: "#" },
