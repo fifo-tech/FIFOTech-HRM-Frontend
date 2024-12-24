@@ -35,7 +35,7 @@ const EmployeeChangePasswordSection = () => {
         </div>
 
         {/* Title */}
-        <h1 className="mb-6 flex items-center text-2xl font-bold text-gray-800">
+        <h1 className="mb-6 flex items-center text-xl font-bold text-gray-800">
           <FontAwesomeIcon
             icon={faKey}
             className="mr-2 text-primary"
@@ -110,7 +110,7 @@ const EmployeeChangePasswordSection = () => {
           <div className="mt-8 flex justify-end">
             <button
               type="submit"
-              className="rounded-lg bg-primary px-6 py-2 text-white shadow-md transition-colors hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="rounded-lg bg-primary px-6 py-2 text-white shadow-md transition-colors hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Change Password
             </button>

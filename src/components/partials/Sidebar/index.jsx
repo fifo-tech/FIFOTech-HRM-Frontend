@@ -29,7 +29,7 @@ const Sidebar = () => {
             icon={<FontAwesomeIcon icon={faEdit} />}
             children={[
               { title: "Department", link: "/departments-list" },
-              { title: "Designation", link: "#" },
+              { title: "Designation", link: "/designations-list" },
               { title: "Policies", link: "#" },
               { title: "Make Announcement", link: "#" },
               { title: "Organization Chart", link: "#" },

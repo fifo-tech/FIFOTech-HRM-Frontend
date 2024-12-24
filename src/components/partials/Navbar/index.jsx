@@ -8,7 +8,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="flex h-16 items-center justify-between bg-info px-4 py-2 shadow">
+    <header className="flex h-16 items-center justify-between bg-sky-500 px-4 py-2 shadow">
       <div className="flex items-center">
         {/* Hamburger Menu */}
         <button className="mr-4 text-gray-600 hover:text-gray-800">

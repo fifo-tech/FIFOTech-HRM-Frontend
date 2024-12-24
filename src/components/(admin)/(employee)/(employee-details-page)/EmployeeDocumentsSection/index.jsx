@@ -30,7 +30,7 @@ const EmployeeDocumentsSection = () => {
     <div className="mx-4 my-6 max-w-3xl rounded-lg bg-white p-6 shadow">
       {/* Documents Section */}
       <div className="mb-6">
-        <h2 className="flex items-center text-3xl font-semibold text-gray-800">
+        <h2 className="flex items-center text-xl font-semibold text-gray-800">
           <FontAwesomeIcon icon={faFolder} className="mr-2 text-primary" />
           Documents
         </h2>
@@ -70,7 +70,7 @@ const EmployeeDocumentsSection = () => {
         {/* Document Table */}
         <table className="w-full table-auto border bg-white shadow-sm">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-gray-100 text-sm">
               <th className="border px-4 py-2 text-left text-gray-700">
                 DOCUMENT NAME
               </th>
@@ -96,15 +96,17 @@ const EmployeeDocumentsSection = () => {
         {/* Pagination */}
         <div className="mt-4 flex justify-end">
           <button
-            className="rounded bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300 disabled:opacity-50"
+            className="rounded-l-md bg-gray-200 px-4 py-2 text-gray-600 hover:bg-gray-300 disabled:opacity-50"
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(currentPage - 1)}
           >
             Previous
           </button>
-          <span className="text-gray-600">{currentPage}</span>
+          <span className="bg-primary px-4 py-2 text-gray-600">
+            {currentPage}
+          </span>
           <button
-            className="rounded bg-gray-200 px-4 py-2 text-gray-700 hover:bg-gray-300 disabled:opacity-50"
+            className="rounded-r-md bg-gray-200 px-4 py-2 text-gray-600 hover:bg-gray-300 disabled:opacity-50"
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(currentPage + 1)}
           >
@@ -158,7 +160,7 @@ const EmployeeDocumentsSection = () => {
           <div className="flex justify-end">
             <button
               type="submit"
-              className="rounded bg-primary px-4 py-2 text-white hover:bg-blue-600"
+              className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-600"
             >
               Add Document
             </button>

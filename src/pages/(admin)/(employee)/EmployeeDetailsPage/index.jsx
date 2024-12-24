@@ -1,12 +1,12 @@
-import EmployeeAccountInformationSection from "@/components/(admin)/(employee-details-page)/EmployeeAccountInformationSection";
-import EmployeeBasicInformationSection from "@/components/(admin)/(employee-details-page)/EmployeeBasicInformationSection";
-import EmployeeChangePasswordSection from "@/components/(admin)/(employee-details-page)/EmployeeChangePasswordSection";
-import EmployeeContractSection from "@/components/(admin)/(employee-details-page)/EmployeeContractSection";
-import EmployeeDocumentsSection from "@/components/(admin)/(employee-details-page)/EmployeeDocumentsSection";
-import EmployeePersonalInformationSection from "@/components/(admin)/(employee-details-page)/EmployeePersonalInformationSection";
-import EmployeeProfilePictureSection from "@/components/(admin)/(employee-details-page)/EmployeeProfilePictureSection";
-import EmployeeSidebar from "@/components/(admin)/(employee-details-page)/EmployeeSidebar";
-import EmployeeTimesheetAgendaSection from "@/components/(admin)/(employee-details-page)/EmployeeTimesheetAgendaSection";
+import EmployeeAccountInformationSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeAccountInformationSection";
+import EmployeeBasicInformationSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeBasicInformationSection";
+import EmployeeChangePasswordSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeChangePasswordSection";
+import EmployeeContractSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeContractSection";
+import EmployeeDocumentsSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeDocumentsSection";
+import EmployeePersonalInformationSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeePersonalInformationSection";
+import EmployeeProfilePictureSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeProfilePictureSection";
+import EmployeeSidebar from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeSidebar";
+import EmployeeTimesheetAgendaSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeTimesheetAgendaSection";
 import { Tabs, TabsItem } from "@/components/ui/Tabs";
 import {
   faCalendarAlt,

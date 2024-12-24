@@ -7,11 +7,12 @@ import RootLayout from "@/components/layouts/RootLayout";
 import HomePage from "@/pages/(common)/HomePage";
 
 // admin pages
-import EmployeesPage from "@/pages/(admin)/EmployeesPage/index";
+import EmployeeDetailsPage from "@/pages/(admin)/(employee)/EmployeeDetailsPage";
+import EmployeesPage from "@/pages/(admin)/(employee)/EmployeesPage/index";
+import HrDesignationPage from "@/pages/(admin)/(hr)/HrDesignationPage";
 
 // authentication pages
-import DepartmentPage from "@/pages/(admin)/(corehr)/DepartmentPage";
-import EmployeeDetailsPage from "@/pages/(admin)/EmployeeDetailsPage";
+import HrDepartmentPage from "@/pages/(admin)/(hr)/HrDepartmentPage";
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
 export const routes = [
@@ -37,7 +38,11 @@ export const routes = [
           },
           {
             path: "departments-list",
-            element: <DepartmentPage />,
+            element: <HrDepartmentPage />,
+          },
+          {
+            path: "designations-list",
+            element: <HrDesignationPage />,
           },
         ],
       },

@@ -20,7 +20,7 @@ const DepartmentCreateSection = () => {
   return (
     <div className="mx-4 my-6 flex max-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-lg rounded-lg bg-white p-6 shadow-lg">
-        <h6 className="mb-4 text-xl font-semibold text-gray-700">
+        <h6 className="mb-4 text-lg font-semibold text-gray-700">
           Add New Department
         </h6>
         <hr className="my-4 border-gray-300" />
@@ -72,7 +72,7 @@ const DepartmentCreateSection = () => {
         <div className="flex justify-end">
           <button
             onClick={handleSave}
-            className="rounded-lg bg-primary px-6 py-2 text-white shadow-md transition-all hover:bg-violet-400"
+            className="rounded-lg bg-primary px-6 py-2 text-white shadow-md transition-all hover:bg-indigo-600"
           >
             Save
           </button>

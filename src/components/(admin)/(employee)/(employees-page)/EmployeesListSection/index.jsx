@@ -1,12 +1,13 @@
 import {
+  faEdit,
   faEye,
-  faPencilAlt,
   faPlus,
   faTable,
-  faTrashAlt,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const EmployeesListSection = ({ toggleCreateForm }) => {
   const initialEmployees = [
@@ -110,7 +111,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
           <div className="mb-4 flex justify-end">
             <button
               onClick={toggleCreateForm} // Call the passed function to toggle the form visibility
-              className="flex items-center space-x-1 rounded bg-primary px-3 py-2 text-white hover:bg-blue-600"
+              className="flex items-center space-x-1 rounded bg-primary px-3 py-2 text-white hover:bg-indigo-600"
             >
               <FontAwesomeIcon icon={faPlus} />
               <span>New Employee</span>
@@ -159,20 +160,19 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
           <table className="w-full table-auto border-collapse">
             <thead>
               <tr className="bg-gray-100 text-left">
-                <th className="border px-4 py-2">Name</th>
-                <th className="border px-4 py-2">Employee Code</th>
-                <th className="border px-4 py-2">Department</th>
-                <th className="border px-4 py-2">Designation</th>
-                <th className="border px-4 py-2">Role</th>
-                <th className="border px-4 py-2">Status</th>
-                {/* <th className="border px-4 py-2">Image</th> */}
+                <th className="border-b border-t px-4 py-2">Name</th>
+                <th className="border-b border-t px-4 py-2">Employee Code</th>
+                <th className="border-b border-t px-4 py-2">Department</th>
+                <th className="border-b border-t px-4 py-2">Designation</th>
+                <th className="border-b border-t px-4 py-2">Role</th>
+                <th className="border-b border-t px-4 py-2">Status</th>
               </tr>
             </thead>
             <tbody>
               {currentEmployees.map((employee, index) => (
                 <tr key={employee.id} className="hover:bg-gray-50">
-                  <td className="h-[50px] border px-4 py-2">
-                    <div className="group relative flex items-center space-x-4">
+                  <td className="h-[50px] border-b px-4 py-2">
+                    <div className="group relative flex h-[50px] items-center space-x-4">
                       {/* Image */}
                       <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
                         <img
@@ -183,7 +183,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                       </div>
 
                       {/* Name and Email */}
-                      <div className="flex flex-col truncate group-hover:hidden">
+                      <div className="flex min-w-[150px] flex-col truncate group-hover:hidden">
                         <span className="truncate whitespace-nowrap font-medium">
                           {employee.first_name + " " + employee.last_name}
                         </span>
@@ -194,45 +194,40 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
 
                       {/* Action Buttons */}
                       <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
-                        <a
-                          href={`/employees/${employee.id}/edit`}
-                          className="rounded bg-blue-500 p-2 text-white hover:bg-blue-600"
+                        <Link
+                          to={`/employees/${employee.id}/edit`}
+                          className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
                           title="Edit"
                         >
-                          <FontAwesomeIcon icon={faPencilAlt} />
-                        </a>
-                        <a
-                          href={`/employee-details/${employee.id}`}
-                          className="rounded bg-primary p-2 text-white hover:bg-violet-800"
+                          <FontAwesomeIcon icon={faEdit} />
+                        </Link>
+                        <Link
+                          to={`/employee-details/${employee.id}`}
+                          className="rounded bg-indigo-400 p-2 text-sm text-white hover:bg-primary"
                           title="Show"
                         >
                           <FontAwesomeIcon icon={faEye} />
-                        </a>
+                        </Link>
                         <button
                           onClick={() => handleDelete(employee.id)}
-                          className="rounded bg-red-500 p-2 text-white hover:bg-red-600"
+                          className="rounded bg-red-400 p-2 text-sm text-white hover:bg-red-600"
                           title="Delete"
                         >
-                          <FontAwesomeIcon icon={faTrashAlt} />
+                          <FontAwesomeIcon icon={faTrash} />
                         </button>
                       </div>
                     </div>
                   </td>
 
-                  <td className="border px-4 py-2">{employee.employee_code}</td>
-                  <td className="border px-4 py-2">{employee.department}</td>
-                  <td className="border px-4 py-2">{employee.designation}</td>
-                  <td className="border px-4 py-2">{employee.role}</td>
-                  <td className="border px-4 py-2">
+                  <td className="border-b px-4 py-2">
+                    {employee.employee_code}
+                  </td>
+                  <td className="border-b px-4 py-2">{employee.department}</td>
+                  <td className="border-b px-4 py-2">{employee.designation}</td>
+                  <td className="border-b px-4 py-2">{employee.role}</td>
+                  <td className="border-b px-4 py-2">
                     {employee.status === 1 ? "Active" : "Inactive"}
                   </td>
-                  {/* <td className="border px-4 py-2">
-                    <img
-                      src={`/storage/${employee.image}`}
-                      alt="Employee"
-                      className="h-12 w-12 rounded-full object-cover"
-                    />
-                  </td> */}
                 </tr>
               ))}
             </tbody>
@@ -253,7 +248,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className={`rounded px-4 py-2 text-sm font-medium ${
+              className={`rounded-l-md px-4 py-2 text-sm font-medium ${
                 currentPage === 1
                   ? "cursor-not-allowed bg-gray-300 text-gray-400"
                   : "bg-primary text-white hover:bg-blue-600"
@@ -273,7 +268,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
               disabled={currentPage === totalPages}
-              className={`rounded px-4 py-2 text-sm font-medium ${
+              className={`rounded-r-md px-4 py-2 text-sm font-medium ${
                 currentPage === totalPages
                   ? "cursor-not-allowed bg-gray-300 text-gray-400"
                   : "bg-primary text-white hover:bg-blue-600"

@@ -1,25 +1,35 @@
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const DepartmentsListSection = () => {
   const [search, setSearch] = useState("");
   const [entries, setEntries] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const departments = [
+  // State to hold department data
+  const [departments, setDepartments] = useState([
     { id: 1, name: "HR", head: "Rakib Hassan", createdAt: "2023-01-01" },
     { id: 2, name: "Admin", head: "Sakib Hassan", createdAt: "2023-01-01" },
     // Add more mock data if needed
-  ];
+  ]);
 
+  // Filter departments based on the search input
   const filteredDepartments = departments.filter((department) =>
     department.name.toLowerCase().includes(search.toLowerCase()),
   );
+
+  // Delete handler to remove a department by ID
+  const handleDelete = (id) => {
+    setDepartments(departments.filter((department) => department.id !== id));
+  };
 
   return (
     <div className="mx-4 mt-6 max-h-screen max-w-2xl bg-white p-6">
       {/* Title */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold text-gray-800">
+        <h2 className="text-lg font-semibold text-gray-800">
           List All Departments
         </h2>
       </div>
@@ -60,10 +70,10 @@ const DepartmentsListSection = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="min-w-full overflow-x-auto">
         <table className="min-w-full border border-gray-300 bg-white">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-gray-200 text-sm">
               <th className="border-b px-4 py-2">DEPARTMENT NAME</th>
               <th className="border-b px-4 py-2">DEPARTMENT HEAD</th>
               <th className="border-b px-4 py-2">CREATED AT</th>
@@ -71,9 +81,31 @@ const DepartmentsListSection = () => {
           </thead>
           <tbody>
             {filteredDepartments.slice(0, entries).map((department) => (
-              <tr key={department.id}>
-                <td className="border-b px-4 py-2 text-center">
-                  {department.name}
+              <tr
+                key={department.id}
+                className="group transition-colors duration-150 hover:bg-gray-100"
+              >
+                <td className="relative border-b px-4 py-2 text-center">
+                  <span
+                    className="block group-hover:hidden"
+                    title={department.name}
+                  >
+                    {department.name}
+                  </span>
+                  <div className="absolute right-16 top-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+                    <Link
+                      to={`/departments/${department.id}/edit`}
+                      className="mx-1 rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(department.id)}
+                      className="mx-1 rounded bg-red-400 p-2 text-sm text-white hover:bg-red-600"
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </div>
                 </td>
                 <td className="border-b px-4 py-2 text-center">
                   {department.head}
@@ -106,19 +138,20 @@ const DepartmentsListSection = () => {
         </p>
 
         {/* Pagination Buttons */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            className="rounded-md bg-primary px-3 py-1.5 text-sm shadow-sm hover:bg-violet-300"
+            disabled={currentPage === 1}
+            className="rounded-l-md bg-gray-200 px-4 py-2 text-sm text-gray-600 shadow-sm hover:bg-gray-300 disabled:opacity-50"
           >
             Previous
           </button>
-          <span className="px-3 py-1.5 text-sm">{currentPage}</span>
+          <span className="bg-primary px-4 py-2 text-sm">{currentPage}</span>
           <button
             onClick={() =>
               setCurrentPage((prev) => prev + 1 /* Add logic here */)
             }
-            className="rounded-md bg-primary px-3 py-1.5 text-sm shadow-sm hover:bg-violet-300"
+            className="rounded-r-md bg-gray-200 px-4 py-2 text-sm text-gray-600 shadow-sm hover:bg-gray-300"
           >
             Next
           </button>

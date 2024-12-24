@@ -1,7 +1,7 @@
-import EmployeesCreateSection from "@/components/(admin)/(employees-page)/EmployeesCreateSection";
-import EmployeesListSection from "@/components/(admin)/(employees-page)/EmployeesListSection";
-import EmployeesPageHeaderSection from "@/components/(admin)/(employees-page)/EmployeesPageHeaderSection";
-import EmployeesRolesAndPrivileges from "@/components/(admin)/(employees-page)/EmployeesRolesAndPrivileges";
+import EmployeesCreateSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesCreateSection";
+import EmployeesListSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesListSection";
+import EmployeesPageHeaderSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesPageHeaderSection";
+import EmployeesRolesAndPrivileges from "@/components/(admin)/(employee)/(employees-page)/EmployeesRolesAndPrivileges";
 import { useState } from "react";
 
 const EmployeePage = () => {
