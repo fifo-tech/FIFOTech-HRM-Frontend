@@ -30,8 +30,8 @@ const Sidebar = () => {
             children={[
               { title: "Department", link: "/departments-list" },
               { title: "Designation", link: "/designations-list" },
-              { title: "Policies", link: "#" },
-              { title: "Make Announcement", link: "#" },
+              { title: "Policies", link: "/policies-list" },
+              { title: "Make Announcement", link: "/announcement-list" },
               { title: "Organization Chart", link: "#" },
             ]}
           />

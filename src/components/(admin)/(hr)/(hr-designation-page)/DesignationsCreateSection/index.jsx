@@ -26,7 +26,7 @@ const DesignationsCreateSection = () => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl rounded-sm bg-white p-6 shadow-md">
+    <div className="mx-4 my-6 max-w-4xl rounded-sm bg-white p-6 shadow-md">
       <h2 className="mb-4 text-lg font-semibold">Add New Designation</h2>
 
       {/* Horizontal line */}
