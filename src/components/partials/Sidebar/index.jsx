@@ -39,8 +39,9 @@ const Sidebar = () => {
             title="Attendance"
             icon={<FontAwesomeIcon icon={faTable} />}
             children={[
-              { title: "Attendance", link: "#" },
-              { title: "Monthly Report", link: "#" },
+              { title: "Attendance", link: "/attendance-daily-list" },
+              { title: "Manual Attendance", link: "#" },
+              { title: "Monthly Report", link: "/attendance-monthly-report" },
               { title: "Overtime Request", link: "#" },
             ]}
           />

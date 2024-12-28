@@ -12,6 +12,9 @@ import EmployeesPage from "@/pages/(admin)/(employee)/EmployeesPage/index";
 import HrDesignationPage from "@/pages/(admin)/(hr)/HrDesignationPage";
 
 // authentication pages
+
+import AttendanceDailyListPage from "@/pages/(admin)/(attendance)/AttendanceDailyListPage";
+import AttendanceMonthlyReportPage from "@/pages/(admin)/(attendance)/AttendanceMonthlyReportPage";
 import HrAnnouncementPage from "@/pages/(admin)/(hr)/HrAnnouncementPage";
 import HrDepartmentPage from "@/pages/(admin)/(hr)/HrDepartmentPage";
 import HrPoliciesPage from "@/pages/(admin)/(hr)/HrPoliciesPage";
@@ -53,6 +56,14 @@ export const routes = [
           {
             path: "announcement-list",
             element: <HrAnnouncementPage />,
+          },
+          {
+            path: "attendance-monthly-report",
+            element: <AttendanceMonthlyReportPage />,
+          },
+          {
+            path: "attendance-daily-list",
+            element: <AttendanceDailyListPage />,
           },
         ],
       },
