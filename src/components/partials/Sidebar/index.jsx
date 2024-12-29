@@ -40,9 +40,9 @@ const Sidebar = () => {
             icon={<FontAwesomeIcon icon={faTable} />}
             children={[
               { title: "Attendance", link: "/attendance-daily-list" },
-              { title: "Manual Attendance", link: "#" },
+              { title: "Manual Attendance", link: "/manual-attendance" },
               { title: "Monthly Report", link: "/attendance-monthly-report" },
-              { title: "Overtime Request", link: "#" },
+              { title: "Overtime Request", link: "/overtime-request" },
             ]}
           />
           <SidebarMenuItem

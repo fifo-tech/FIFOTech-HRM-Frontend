@@ -15,6 +15,8 @@ import HrDesignationPage from "@/pages/(admin)/(hr)/HrDesignationPage";
 
 import AttendanceDailyListPage from "@/pages/(admin)/(attendance)/AttendanceDailyListPage";
 import AttendanceMonthlyReportPage from "@/pages/(admin)/(attendance)/AttendanceMonthlyReportPage";
+import AttendanceOvertimeRequestPage from "@/pages/(admin)/(attendance)/AttendanceOvertimeRequestPage";
+import ManualAttendancePage from "@/pages/(admin)/(attendance)/ManualAttendancePage";
 import HrAnnouncementPage from "@/pages/(admin)/(hr)/HrAnnouncementPage";
 import HrDepartmentPage from "@/pages/(admin)/(hr)/HrDepartmentPage";
 import HrPoliciesPage from "@/pages/(admin)/(hr)/HrPoliciesPage";
@@ -64,6 +66,14 @@ export const routes = [
           {
             path: "attendance-daily-list",
             element: <AttendanceDailyListPage />,
+          },
+          {
+            path: "manual-attendance",
+            element: <ManualAttendancePage />,
+          },
+          {
+            path: "overtime-request",
+            element: <AttendanceOvertimeRequestPage />,
           },
         ],
       },

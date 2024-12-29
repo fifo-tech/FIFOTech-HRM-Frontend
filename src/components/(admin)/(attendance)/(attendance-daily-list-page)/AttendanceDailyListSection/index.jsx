@@ -124,32 +124,32 @@ const AttendanceDailyListSection = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="max-h-96 overflow-x-auto overflow-y-auto">
           <table className="min-w-full border-collapse text-sm">
             <thead className="bg-gray-100">
               <tr>
-                <th className="border-b border-gray-300 px-4 py-2 text-left">
+                <th className="min-w-[150px] border-b border-gray-300 px-4 py-2 text-left">
                   EMPLOYEE
                 </th>
-                <th className="border-b border-gray-300 px-4 py-2 text-left">
+                <th className="min-w-[120px] border-b border-gray-300 px-4 py-2 text-left">
                   DATE
                 </th>
                 <th className="border-b border-gray-300 px-4 py-2 text-left">
                   STATUS
                 </th>
-                <th className="border-b border-gray-300 px-4 py-2 text-left">
+                <th className="min-w-[120px] border-b border-gray-300 px-4 py-2 text-left">
                   CLOCK IN
                 </th>
-                <th className="border-b border-gray-300 px-4 py-2 text-left">
+                <th className="min-w-[120px] border-b border-gray-300 px-4 py-2 text-left">
                   CLOCK OUT
                 </th>
                 <th className="border-b border-gray-300 px-4 py-2 text-left">
                   LATE
                 </th>
-                <th className="border-b border-gray-300 px-4 py-2 text-left">
+                <th className="min-w-[140px] border-b border-gray-300 px-4 py-2 text-left">
                   EARLY LEAVING
                 </th>
-                <th className="border-b border-gray-300 px-4 py-2 text-left">
+                <th className="min-w-[140px] border-b border-gray-300 px-4 py-2 text-left">
                   TOTAL WORK
                 </th>
               </tr>

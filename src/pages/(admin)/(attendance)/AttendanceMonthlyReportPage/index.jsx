@@ -1,4 +1,4 @@
-import AttendanceMonthlyReportSection from "@/components/(admin)/(attendance)/(attendence-monthly-report)/AttendenceMonthlyReportSection";
+import AttendanceMonthlyReportSection from "@/components/(admin)/(attendance)/(attendance-monthly-report)/AttendanceMonthlyReportSection";
 import EmployeesPageHeaderSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesPageHeaderSection";
 
 const AttendanceMonthlyReportPage = () => {

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const AttendanceOvertimeRequestListSection = () => {
+const ManualAttendanceViewSection = () => {
   const [entries, setEntries] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +16,6 @@ const AttendanceOvertimeRequestListSection = () => {
       inTime: "9:00 AM",
       outTime: "5:00 PM",
       totalWork: "8:00",
-      status: "pending",
       image: "../../../../../../src/assets/images/image.jpg",
     },
   ];
@@ -46,7 +45,7 @@ const AttendanceOvertimeRequestListSection = () => {
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-          <h6 className="text-xl font-semibold">Overtime Request</h6>
+          <h1 className="text-xl font-semibold">View Attendance</h1>
           <button className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-600">
             <FontAwesomeIcon icon={faPlus} />
             Add
@@ -108,9 +107,6 @@ const AttendanceOvertimeRequestListSection = () => {
                 <th className="border-b border-t px-4 py-2 text-left">
                   TOTAL WORK
                 </th>
-                <th className="border-b border-t px-4 py-2 text-left">
-                  STATUS
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -163,7 +159,6 @@ const AttendanceOvertimeRequestListSection = () => {
                   <td className="min-w-28 px-4 py-2">{item.inTime}</td>
                   <td className="min-w-28 px-4 py-2">{item.outTime}</td>
                   <td className="min-w-32 px-4 py-2">{item.totalWork}</td>
-                  <td className="min-w-32 px-4 py-2">{item.status}</td>
                 </tr>
               ))}
             </tbody>
@@ -209,4 +204,4 @@ const AttendanceOvertimeRequestListSection = () => {
   );
 };
 
-export default AttendanceOvertimeRequestListSection;
+export default ManualAttendanceViewSection;
