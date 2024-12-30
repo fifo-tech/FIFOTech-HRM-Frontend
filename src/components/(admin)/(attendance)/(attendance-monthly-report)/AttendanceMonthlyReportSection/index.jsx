@@ -31,9 +31,9 @@ const AttendanceMonthlyReportSection = () => {
               className="mt-1 block w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
             >
               <option value="">Select an Employee</option>
-              <option value="John Doe">John Doe</option>
-              <option value="Jane Smith">Jane Smith</option>
-              <option value="Alice Johnson">Alice Johnson</option>
+              <option value="Hassan Mahmud">Hassan Mahmud</option>
+              <option value="Shohel Rana">Shohel Rana</option>
+              <option value="Arefin Piash">Arefin Piash</option>
               {/* Add more options as needed */}
             </select>
           </div>

@@ -1,4 +1,7 @@
+import { faEdit, faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AnnouncementsListSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -98,33 +101,72 @@ const AnnouncementsListSection = () => {
       <table className="w-full border-collapse border border-gray-200">
         <thead>
           <tr className="bg-gray-100">
-            <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
+            <th className="border-b border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
               TITLE
             </th>
-            <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
+            <th className="border-b border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
               DEPARTMENT
             </th>
-            <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
+            <th className="border-b border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
               START DATE
             </th>
-            <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
+            <th className="border-b border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
               END DATE
             </th>
           </tr>
         </thead>
         <tbody>
           {currentAnnouncements.map((announcement, index) => (
-            <tr key={index} className="odd:bg-white even:bg-gray-50">
-              <td className="border border-gray-200 px-4 py-2 text-sm text-gray-700">
-                {announcement.title}
+            <tr
+              key={index}
+              className="h-[30px] border-b border-gray-300 transition duration-100 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
+            >
+              <td className="relative min-w-[150px] px-4 py-2">
+                <div className="group relative flex h-[30px] items-center space-x-4">
+                  {/* Employee Details */}
+                  <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
+                    <div className="flex flex-col truncate">
+                      <span className="truncate whitespace-nowrap">
+                        {announcement.title}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons (shown on hover) */}
+                  <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
+                    <Link
+                      to={`/announcement-list/${announcement.id}/edit`}
+                      className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
+                      title="Edit"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </Link>
+                    <Link
+                      to={`/announcement-list/${announcement.id}/view`}
+                      className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
+                      title="View"
+                    >
+                      <FontAwesomeIcon icon={faEye} />
+                    </Link>
+
+                    <button
+                      onClick={() => handleDelete(announcement.id)}
+                      className="rounded bg-red-400 p-2 text-sm text-white hover:bg-red-600"
+                      title="Delete"
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+                  </div>
+                </div>
               </td>
-              <td className="border border-gray-200 px-4 py-2 text-sm text-gray-700">
+
+              <td className="border-b border-gray-200 px-4 py-2 text-sm text-gray-700">
                 {announcement.department}
               </td>
-              <td className="border border-gray-200 px-4 py-2 text-sm text-gray-700">
+              <td className="border-b border-gray-200 px-4 py-2 text-sm text-gray-700">
                 {announcement.startDate}
               </td>
-              <td className="border border-gray-200 px-4 py-2 text-sm text-gray-700">
+              <td className="border-b border-gray-200 px-4 py-2 text-sm text-gray-700">
                 {announcement.endDate}
               </td>
             </tr>

@@ -86,7 +86,7 @@ const DesignationsListSection = () => {
             {filteredDesignations.slice(0, entries).map((designation) => (
               <tr
                 key={designation.id}
-                className="group transition-colors duration-150 hover:bg-gray-100"
+                className="group h-[50px] border-b border-gray-300 transition-colors duration-150 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
               >
                 <td className="relative min-w-52 border-b px-4 py-2 text-center">
                   <span

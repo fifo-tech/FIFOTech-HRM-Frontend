@@ -1,4 +1,7 @@
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const PoliciesListSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,54 +14,63 @@ const PoliciesListSection = () => {
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image.jpg",
     },
     {
       title: "Leave Policy",
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image-1.jpg",
     },
     {
       title: "Leave Policy",
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image-2.jpg",
     },
     {
       title: "Leave Policy",
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image.jpg",
     },
     {
       title: "Leave Policy",
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image-2.jpg",
     },
     {
       title: "Leave Policy",
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image.jpg",
     },
     {
       title: "Leave Policy",
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image-1.jpg",
     },
     {
       title: "Leave Policy",
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image-2.jpg",
     },
     {
       title: "Leave Policy",
       createdAt: "2024-12-20",
       addedBy: "Admin",
       description: "Details about leave policies.",
+      attachment: "../../../../../../src/assets/images/image.jpg",
     },
     // Add more policy data as needed
   ];
@@ -128,16 +140,16 @@ const PoliciesListSection = () => {
         </div>
       </div>
 
-      <table className="w-full border-collapse border border-gray-200">
+      <table className="w-full border-collapse border-b border-gray-200">
         <thead>
           <tr className="bg-gray-100">
-            <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
+            <th className="border-b border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
               TITLE
             </th>
-            <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
+            <th className="border-b border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
               ADDED BY
             </th>
-            <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
+            <th className="border-b border-gray-200 px-4 py-2 text-left text-sm font-medium text-gray-600">
               CREATED AT
             </th>
           </tr>
@@ -146,15 +158,49 @@ const PoliciesListSection = () => {
           {currentPolicies.map((policy, index) => (
             <tr
               key={index}
-              className="border-gray-200 odd:bg-white even:bg-gray-50"
+              className="h-[50px] border-b border-gray-300 transition duration-100 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
             >
-              <td className="border border-gray-200 px-4 py-2 text-sm text-gray-700">
-                {policy.title}
+              <td className="relative min-w-[150px] px-4 py-2">
+                <div className="group relative flex h-[50px] items-center space-x-4">
+                  {/* Employee Details */}
+                  <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
+                    <img
+                      src={`/storage/${policy.attachment}`}
+                      alt="policy"
+                      className="h-12 w-12 rounded-full object-cover"
+                    />
+                    <div className="flex flex-col truncate px-4 py-4 text-sm">
+                      <span className="truncate whitespace-nowrap">
+                        {policy.title}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons (shown on hover) */}
+                  <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
+                    <Link
+                      to={`/policy-list/${policy.id}/edit`}
+                      className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
+                      title="Edit"
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </Link>
+
+                    <button
+                      onClick={() => handleDelete(policy.id)}
+                      className="rounded bg-red-400 p-2 text-sm text-white hover:bg-red-600"
+                      title="Delete"
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+                  </div>
+                </div>
               </td>
-              <td className="border border-gray-200 px-4 py-2 text-sm text-gray-700">
+
+              <td className="border-b border-gray-200 px-4 py-2 text-sm text-gray-700">
                 {policy.addedBy}
               </td>
-              <td className="border border-gray-200 px-4 py-2 text-sm text-gray-700">
+              <td className="border-b border-gray-200 px-4 py-2 text-sm text-gray-700">
                 {policy.createdAt}
               </td>
             </tr>

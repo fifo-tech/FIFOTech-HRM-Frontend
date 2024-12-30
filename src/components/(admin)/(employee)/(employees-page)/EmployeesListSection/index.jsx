@@ -207,7 +207,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                         <Link
                           to={`/employee-details/${employee.id}`}
                           className="rounded bg-indigo-400 p-2 text-sm text-white hover:bg-primary"
-                          title="Show"
+                          title="View"
                         >
                           <FontAwesomeIcon icon={faEye} />
                         </Link>

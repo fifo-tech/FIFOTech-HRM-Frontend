@@ -45,7 +45,7 @@ const Sidebar = () => {
               { title: "Overtime Request", link: "/overtime-request" },
             ]}
           />
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             title="Finance"
             icon={<FontAwesomeIcon icon={faTable} />}
           />
@@ -121,31 +121,36 @@ const Sidebar = () => {
               { title: "Track Goals(OKRs)", link: "#" },
               { title: "Goals Calendar", link: "#" },
             ]}
+          /> */}
+
+          <SidebarMenuItem
+            title="Recruitment"
+            icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Helpdesk"
             icon={<FontAwesomeIcon icon={faTable} />}
           />
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             title="Invoices"
             icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Estimates"
             icon={<FontAwesomeIcon icon={faTable} />}
-          />
+          /> */}
           <SidebarMenuItem
             title="Leave Request"
             icon={<FontAwesomeIcon icon={faTable} />}
           />
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             title="Training Sessions"
             icon={<FontAwesomeIcon icon={faTable} />}
-          />
-          <SidebarMenuItem
+          /> */}
+          {/* <SidebarMenuItem
             title="Disciplinary Cases"
             icon={<FontAwesomeIcon icon={faTable} />}
-          />
+          /> */}
         </ul>
       </nav>
     </aside>
