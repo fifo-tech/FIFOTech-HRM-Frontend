@@ -7,19 +7,23 @@ import RootLayout from "@/components/layouts/RootLayout";
 import HomePage from "@/pages/(common)/HomePage";
 
 // admin pages
-import EmployeeDetailsPage from "@/pages/(admin)/(employee)/EmployeeDetailsPage";
-import EmployeesPage from "@/pages/(admin)/(employee)/EmployeesPage/index";
-import HrDesignationPage from "@/pages/(admin)/(hr)/HrDesignationPage";
-
-// authentication pages
-
 import AttendanceDailyListPage from "@/pages/(admin)/(attendance)/AttendanceDailyListPage";
 import AttendanceMonthlyReportPage from "@/pages/(admin)/(attendance)/AttendanceMonthlyReportPage";
 import AttendanceOvertimeRequestPage from "@/pages/(admin)/(attendance)/AttendanceOvertimeRequestPage";
 import ManualAttendancePage from "@/pages/(admin)/(attendance)/ManualAttendancePage";
+import EmployeeDetailsPage from "@/pages/(admin)/(employee)/EmployeeDetailsPage";
+import EmployeesPage from "@/pages/(admin)/(employee)/EmployeesPage/index";
 import HrAnnouncementPage from "@/pages/(admin)/(hr)/HrAnnouncementPage";
 import HrDepartmentPage from "@/pages/(admin)/(hr)/HrDepartmentPage";
+import HrDesignationPage from "@/pages/(admin)/(hr)/HrDesignationPage";
 import HrPoliciesPage from "@/pages/(admin)/(hr)/HrPoliciesPage";
+import ComplaintsListPage from "@/pages/(admin)/complaints/ComplaintsListPage";
+
+// authentication pages
+
+import EmployeesExitPage from "@/pages/(admin)/(employee)/EmployeesExitPage";
+import EmployeesRolesAndPrivilegesPage from "@/pages/(admin)/(employee)/EmployeesRolesAndPrivilegesPage";
+import EmployeesShiftAndSchedulingPage from "@/pages/(admin)/(employee)/EmployeesShiftAndSchedulingPage";
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
 export const routes = [
@@ -42,6 +46,18 @@ export const routes = [
           {
             path: "employee-details/:id",
             element: <EmployeeDetailsPage />,
+          },
+          {
+            path: "employee-roles",
+            element: <EmployeesRolesAndPrivilegesPage />,
+          },
+          {
+            path: "office-shifts",
+            element: <EmployeesShiftAndSchedulingPage />,
+          },
+          {
+            path: "employees-exit",
+            element: <EmployeesExitPage />,
           },
           {
             path: "departments-list",
@@ -74,6 +90,10 @@ export const routes = [
           {
             path: "overtime-request",
             element: <AttendanceOvertimeRequestPage />,
+          },
+          {
+            path: "complaint-list",
+            element: <ComplaintsListPage />,
           },
         ],
       },

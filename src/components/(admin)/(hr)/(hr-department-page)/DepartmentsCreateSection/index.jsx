@@ -20,9 +20,11 @@ const DepartmentCreateSection = () => {
   return (
     <div className="mx-4 my-6 flex max-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-lg rounded-lg bg-white p-6 shadow-lg">
-        <h6 className="mb-4 text-lg font-semibold text-gray-700">
-          Add New Department
-        </h6>
+        <div>
+          <h6 className="mb-4 text-lg font-semibold text-gray-700">
+            Add New Department
+          </h6>
+        </div>
         <hr className="my-4 border-gray-300" />
         {/* Department Name Input */}
         <div className="mb-4">

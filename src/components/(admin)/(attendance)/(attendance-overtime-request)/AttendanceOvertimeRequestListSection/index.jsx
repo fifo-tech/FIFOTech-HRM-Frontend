@@ -46,8 +46,8 @@ const AttendanceOvertimeRequestListSection = () => {
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-          <h6 className="text-xl font-semibold">Overtime Request</h6>
-          <button className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-600">
+          <h6 className="text-lg font-semibold">Overtime Request</h6>
+          <button className="rounded bg-primary px-4 py-1 text-white hover:bg-indigo-600">
             <FontAwesomeIcon icon={faPlus} />
             Add
           </button>

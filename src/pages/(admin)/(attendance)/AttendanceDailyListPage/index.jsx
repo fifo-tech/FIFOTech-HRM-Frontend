@@ -1,10 +1,10 @@
 import AttendanceDailyListSection from "@/components/(admin)/(attendance)/(attendance-daily-list-page)/AttendanceDailyListSection";
-import EmployeesPageHeaderSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesPageHeaderSection";
+import AttendanceHeaderSection from "@/components/(admin)/(attendance)/AttendanceHeaderSection";
 
 const AttendanceDailyListPage = () => {
   return (
     <main>
-      <EmployeesPageHeaderSection />
+      <AttendanceHeaderSection />
       <AttendanceDailyListSection />
     </main>
   );

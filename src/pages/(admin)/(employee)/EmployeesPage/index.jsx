@@ -1,7 +1,6 @@
 import EmployeesCreateSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesCreateSection";
 import EmployeesListSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesListSection";
 import EmployeesPageHeaderSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesPageHeaderSection";
-import EmployeesRolesAndPrivileges from "@/components/(admin)/(employee)/(employees-page)/EmployeesRolesAndPrivileges";
 import { useState } from "react";
 
 const EmployeePage = () => {
@@ -48,7 +47,6 @@ const EmployeePage = () => {
 
       {/* <EmployeesCreateSection /> */}
       {/* <EmployeesListSection /> */}
-      <EmployeesRolesAndPrivileges />
     </main>
   );
 };

@@ -108,7 +108,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
             <h2 className="text-xl font-semibold">Employee List</h2>
           </div>
 
-          <div className="mb-4 flex justify-end">
+          <div className="flex justify-end">
             <button
               onClick={toggleCreateForm} // Call the passed function to toggle the form visibility
               className="flex items-center space-x-1 rounded bg-primary px-3 py-2 text-white hover:bg-indigo-600"
@@ -144,14 +144,13 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
               entries
             </label>
           </div>
-
           {/* Search */}
           <input
             type="text"
             placeholder="Search employees..."
             value={searchQuery}
             onChange={handleSearch}
-            className="w-30 max-w-sm rounded border p-2"
+            className="max-w-sm rounded border p-2"
           />
         </div>
 

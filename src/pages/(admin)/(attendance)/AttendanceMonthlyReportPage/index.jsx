@@ -1,10 +1,10 @@
 import AttendanceMonthlyReportSection from "@/components/(admin)/(attendance)/(attendance-monthly-report)/AttendanceMonthlyReportSection";
-import EmployeesPageHeaderSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesPageHeaderSection";
+import AttendanceHeaderSection from "@/components/(admin)/(attendance)/AttendanceHeaderSection";
 
 const AttendanceMonthlyReportPage = () => {
   return (
     <main>
-      <EmployeesPageHeaderSection />
+      <AttendanceHeaderSection />
       <AttendanceMonthlyReportSection />
     </main>
   );

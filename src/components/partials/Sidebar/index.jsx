@@ -4,7 +4,7 @@ import SidebarMenuItem from "./SidebarMenuItem";
 
 const Sidebar = () => {
   return (
-    <aside className="mx-4 my-6 ml-6 bg-card shadow-lg">
+    <aside className="mx-4 my-6 ml-6 rounded-md bg-card shadow-lg">
       {/* Sidebar Header */}
       <div className="flex items-center border-border p-4">
         {/* <FontAwesomeIcon icon={faTachometerAlt} className="text-xl" /> */}
@@ -125,10 +125,12 @@ const Sidebar = () => {
 
           <SidebarMenuItem
             title="Recruitment"
+            link="/"
             icon={<FontAwesomeIcon icon={faTable} />}
           />
           <SidebarMenuItem
             title="Helpdesk"
+            link="/complaint-list"
             icon={<FontAwesomeIcon icon={faTable} />}
           />
           {/* <SidebarMenuItem
@@ -141,6 +143,7 @@ const Sidebar = () => {
           /> */}
           <SidebarMenuItem
             title="Leave Request"
+            link="/"
             icon={<FontAwesomeIcon icon={faTable} />}
           />
           {/* <SidebarMenuItem

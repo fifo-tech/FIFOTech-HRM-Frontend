@@ -1,23 +1,25 @@
-import { faEdit, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
-const EmployeesRolesAndPrivileges = () => {
+const ComplaintsListSection = () => {
   const [entries, setEntries] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const data = [
     {
-      roleName: "Admin",
-      menuPermission: "Full Access",
-      addedDate: "2024-12-30",
+      category: "Service",
+      subject: "Delayed response",
+      details: "The response to my complaint was delayed by two weeks.",
     },
   ];
 
-  const filteredData = data.filter((item) =>
-    item.roleName.toLowerCase().includes(searchTerm.toLowerCase()),
+  const filteredData = data.filter(
+    (item) =>
+      item.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.details.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const totalPages = Math.ceil(filteredData.length / entries);
@@ -39,10 +41,7 @@ const EmployeesRolesAndPrivileges = () => {
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-          <h6 className="text-xl font-semibold">List All Roles</h6>
-          <button className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-600">
-            <FontAwesomeIcon icon={faPlus} /> Add New
-          </button>
+          <h6 className="text-lg font-semibold">Complaint/Suggestion List</h6>
         </div>
         <hr className="mb-4" />
 
@@ -88,13 +87,13 @@ const EmployeesRolesAndPrivileges = () => {
             <thead className="bg-gray-100 text-sm">
               <tr>
                 <th className="border-b border-t px-4 py-2 text-left">
-                  ROLE NAME
+                  CATEGORY
                 </th>
                 <th className="border-b border-t px-4 py-2 text-left">
-                  MENU PERMISSION
+                  SUBJECT
                 </th>
                 <th className="border-b border-t px-4 py-2 text-left">
-                  ADDED DATE
+                  DETAILS
                 </th>
               </tr>
             </thead>
@@ -102,23 +101,22 @@ const EmployeesRolesAndPrivileges = () => {
               {paginatedData.map((item, index) => (
                 <tr
                   key={index}
-                  className="h-[50px] border-b border-gray-300 transition duration-100 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
+                  className="h-[50px] border-b border-gray-300 transition duration-150 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
                 >
-                  <td className="relative min-w-[150px] px-4 py-2">
-                    <div className="group relative flex h-[50px] items-center space-x-4">
-                      <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
-                        <span>{item.roleName}</span>
-                      </div>
+                  <td className="relative min-w-[200px] px-4 py-2">
+                    <div className="group relative flex h-[50px] items-center">
+                      <span className="flex flex-shrink-0 items-start truncate group-hover:hidden">
+                        {item.category}
+                      </span>
                       <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
-                        <Link
-                          to={`/roles/${index}/edit`}
-                          className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
-                          title="Edit"
-                        >
-                          <FontAwesomeIcon icon={faEdit} />
-                        </Link>
                         <button
-                          onClick={() => console.log("Delete", index)}
+                          className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
+                          title="View"
+                        >
+                          <FontAwesomeIcon icon={faEye} />
+                        </button>
+
+                        <button
                           className="rounded bg-red-400 p-2 text-sm text-white hover:bg-red-600"
                           title="Delete"
                         >
@@ -127,8 +125,9 @@ const EmployeesRolesAndPrivileges = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-2">{item.menuPermission}</td>
-                  <td className="px-4 py-2">{item.addedDate}</td>
+
+                  <td className="min-w-28 px-4 py-2">{item.subject}</td>
+                  <td className="min-w-32 px-4 py-2">{item.details}</td>
                 </tr>
               ))}
             </tbody>
@@ -174,4 +173,4 @@ const EmployeesRolesAndPrivileges = () => {
   );
 };
 
-export default EmployeesRolesAndPrivileges;
+export default ComplaintsListSection;
