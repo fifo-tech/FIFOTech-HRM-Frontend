@@ -125,7 +125,7 @@ const AttendanceDailyListSection = () => {
         </div>
 
         <div className="max-h-96 overflow-x-auto overflow-y-auto">
-          <table className="min-w-full border-collapse text-sm">
+          <table className="max-w-full border-collapse text-sm">
             <thead className="bg-gray-100">
               <tr>
                 <th className="min-w-[150px] border-b border-gray-300 px-4 py-2 text-left">
@@ -146,10 +146,10 @@ const AttendanceDailyListSection = () => {
                 <th className="border-b border-gray-300 px-4 py-2 text-left">
                   LATE
                 </th>
-                <th className="min-w-[140px] border-b border-gray-300 px-4 py-2 text-left">
+                <th className="min-w-[45px] border-b border-gray-300 px-4 py-2 text-left">
                   EARLY LEAVING
                 </th>
-                <th className="min-w-[140px] border-b border-gray-300 px-4 py-2 text-left">
+                <th className="min-w-[45px] border-b border-gray-300 px-4 py-2 text-left">
                   TOTAL WORK
                 </th>
               </tr>

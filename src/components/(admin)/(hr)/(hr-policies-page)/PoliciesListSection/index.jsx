@@ -105,7 +105,7 @@ const PoliciesListSection = () => {
         <h1 className="text-xl font-semibold text-gray-600">
           List All Policies
         </h1>
-        <button className="rounded-lg bg-primary px-4 py-2 text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        <button className="rounded-sm bg-primary px-3 py-1 text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
           + View Policies
         </button>
       </div>

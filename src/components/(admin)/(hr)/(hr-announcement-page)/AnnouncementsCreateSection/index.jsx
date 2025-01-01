@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AnnouncementsCreateSection = () => {
+const AnnouncementsCreateSection = ({ toggleHideCreateForm }) => {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -40,7 +40,10 @@ const AnnouncementsCreateSection = () => {
         <h1 className="text-2xl font-bold text-gray-800">
           Add New Announcement
         </h1>
-        <button className="rounded-lg bg-primary px-4 py-2 text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        <button
+          onClick={toggleHideCreateForm}
+          className="rounded-lg bg-primary px-4 py-2 text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
           Hide
         </button>
       </div>

@@ -76,7 +76,7 @@ const EmployeesCreate = () => {
       <div className="mb-4 flex justify-end">
         <button
           // onClick={toggleCreateForm} // Call the passed function to toggle the form visibility
-          className="flex items-center space-x-1 rounded bg-primary px-3 py-2 text-white hover:bg-blue-600"
+          className="flex items-center space-x-1 rounded bg-primary px-3 py-1 text-white hover:bg-blue-600"
         >
           <FontAwesomeIcon icon={faMinus} />
           <span>Hide</span>

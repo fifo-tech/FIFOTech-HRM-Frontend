@@ -12,9 +12,7 @@ const ManualAttendanceFilterSection = () => {
 
   return (
     <div className="mx-4 my-6 max-w-md rounded-lg bg-white p-6 shadow-md">
-      <h2 className="mb-4 text-xl font-semibold text-gray-800">
-        Filter Attendance
-      </h2>
+      <h2 className="mb-4 text-lg font-semibold">Filter Attendance</h2>
       <hr className="mb-4" />
       <div className="mb-4">
         <label

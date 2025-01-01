@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const AnnouncementsListSection = () => {
+const AnnouncementsListSection = ({ toggleCreateForm }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,9 +59,14 @@ const AnnouncementsListSection = () => {
         <h6 className="text-xl font-bold text-gray-600">
           List All Announcements
         </h6>
-        <button className="rounded-lg bg-primary px-4 py-2 text-white shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-primary">
-          + Add New
-        </button>
+        <div className="flex justify-end">
+          <button
+            onClick={toggleCreateForm}
+            className="rounded-lg bg-primary px-4 py-2 text-white shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-primary"
+          >
+            + Add New
+          </button>
+        </div>
       </div>
 
       {/* Horizontal Line */}

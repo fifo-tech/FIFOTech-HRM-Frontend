@@ -114,7 +114,7 @@ const PoliciesCreateSection = () => {
       <div className="text-right">
         <button
           onClick={handleSave}
-          className="rounded-lg bg-primary px-5 py-2 text-white shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="rounded-sm bg-primary px-5 py-2 text-white shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Save
         </button>

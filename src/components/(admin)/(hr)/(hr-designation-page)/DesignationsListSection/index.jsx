@@ -33,9 +33,7 @@ const DesignationsListSection = () => {
     <div className="mx-4 mt-6 max-h-screen max-w-2xl rounded-sm bg-white p-6">
       {/* Title */}
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-gray-800">
-          List All Designations
-        </h2>
+        <h2 className="text-lg font-semibold">List All Designations</h2>
       </div>
       <hr className="my-4 w-full border-gray-300" />
 

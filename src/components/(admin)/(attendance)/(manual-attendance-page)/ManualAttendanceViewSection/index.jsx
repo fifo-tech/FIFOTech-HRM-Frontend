@@ -45,10 +45,10 @@ const ManualAttendanceViewSection = () => {
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-xl font-semibold">View Attendance</h1>
-          <button className="rounded bg-primary px-4 py-2 text-white hover:bg-indigo-600">
+          <h1 className="text-lg font-semibold">View Attendance</h1>
+          <button className="rounded bg-primary px-4 py-1 text-white hover:bg-indigo-600">
             <FontAwesomeIcon icon={faPlus} />
-            Add
+            <span className="ml-2">Add New</span>
           </button>
         </div>
         <hr className="mb-4" />

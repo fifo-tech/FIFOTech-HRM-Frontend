@@ -111,7 +111,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
           <div className="flex justify-end">
             <button
               onClick={toggleCreateForm} // Call the passed function to toggle the form visibility
-              className="flex items-center space-x-1 rounded bg-primary px-3 py-2 text-white hover:bg-indigo-600"
+              className="flex items-center space-x-1 rounded bg-primary px-2 py-1 text-white hover:bg-indigo-600"
             >
               <FontAwesomeIcon icon={faPlus} />
               <span>New Employee</span>
