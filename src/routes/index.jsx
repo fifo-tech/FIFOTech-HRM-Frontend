@@ -24,6 +24,7 @@ import ComplaintsListPage from "@/pages/(admin)/complaints/ComplaintsListPage";
 import EmployeesExitPage from "@/pages/(admin)/(employee)/EmployeesExitPage";
 import EmployeesRolesAndPrivilegesPage from "@/pages/(admin)/(employee)/EmployeesRolesAndPrivilegesPage";
 import EmployeesShiftAndSchedulingPage from "@/pages/(admin)/(employee)/EmployeesShiftAndSchedulingPage";
+import ApplicantsListPage from "@/pages/(admin)/(recruitment)/ApplicantsListPage";
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
 export const routes = [
@@ -94,6 +95,10 @@ export const routes = [
           {
             path: "complaint-list",
             element: <ComplaintsListPage />,
+          },
+          {
+            path: "Applicants-list",
+            element: <ApplicantsListPage />,
           },
         ],
       },

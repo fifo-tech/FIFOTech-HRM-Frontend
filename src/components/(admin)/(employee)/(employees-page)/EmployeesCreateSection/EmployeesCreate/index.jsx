@@ -2,7 +2,7 @@ import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-const EmployeesCreate = () => {
+const EmployeesCreate = ({ toggleHideCreateForm }) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -75,8 +75,8 @@ const EmployeesCreate = () => {
       </h6>
       <div className="mb-4 flex justify-end">
         <button
-          // onClick={toggleCreateForm} // Call the passed function to toggle the form visibility
-          className="flex items-center space-x-1 rounded bg-primary px-3 py-1 text-white hover:bg-blue-600"
+          onClick={toggleHideCreateForm}
+          className="flex items-center space-x-1 rounded bg-primary px-3 py-1 text-white hover:bg-indigo-600"
         >
           <FontAwesomeIcon icon={faMinus} />
           <span>Hide</span>

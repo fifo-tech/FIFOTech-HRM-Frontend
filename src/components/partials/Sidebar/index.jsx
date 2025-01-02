@@ -125,8 +125,13 @@ const Sidebar = () => {
 
           <SidebarMenuItem
             title="Recruitment"
-            link="/"
             icon={<FontAwesomeIcon icon={faTable} />}
+            children={[
+              { title: "Applicant", link: "/applicants-list" },
+              { title: "Manual Attendance", link: "/manual-attendance" },
+              { title: "Monthly Report", link: "/attendance-monthly-report" },
+              { title: "Overtime Request", link: "/overtime-request" },
+            ]}
           />
           <SidebarMenuItem
             title="Helpdesk"

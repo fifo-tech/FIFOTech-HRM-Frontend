@@ -1,29 +1,40 @@
-import { faEdit, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faDownload,
+  faEdit,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const ManualAttendanceViewSection = () => {
+const ApplicantListSection = () => {
   const [entries, setEntries] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Sample applicant data
   const data = [
     {
-      employee: "Hassan Mahmud",
+      id: 1,
+      name: "Hassan Mahmud",
+      address: "123 Mohammadpur",
       email: "hassan@gmail.com",
-      date: "2024-12-28",
-      inTime: "9:00 AM",
-      outTime: "5:00 PM",
-      totalWork: "8:00",
-      image: "../../../../../../src/assets/images/image.jpg",
+      phone: "01748-4567890",
+      position: "Software Engineer",
+      experience: "5 years",
+      cv: "resume-hassan.pdf",
     },
   ];
 
+  // Filtered and paginated data
   const filteredData = data.filter(
     (item) =>
-      item.employee.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.email.toLowerCase().includes(searchTerm.toLowerCase()),
+      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.experience.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const totalPages = Math.ceil(filteredData.length / entries);
@@ -45,11 +56,7 @@ const ManualAttendanceViewSection = () => {
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-lg font-semibold">View Attendance</h1>
-          <button className="rounded bg-primary px-4 py-1 text-white hover:bg-indigo-600">
-            <FontAwesomeIcon icon={faPlus} />
-            <span className="ml-2">Add New</span>
-          </button>
+          <h6 className="text-lg font-semibold">Applicant List</h6>
         </div>
         <hr className="mb-4" />
 
@@ -71,7 +78,6 @@ const ManualAttendanceViewSection = () => {
               <option value={10}>10</option>
               <option value={25}>25</option>
               <option value={50}>50</option>
-              <option value={100}>100</option>
             </select>
             <span className="ml-2 text-sm">entries</span>
           </div>
@@ -91,45 +97,32 @@ const ManualAttendanceViewSection = () => {
 
         {/* Table */}
         <div className="overflow-x-auto p-4">
-          <table className="min-w-full table-auto border-collapse text-sm">
-            <thead className="bg-gray-100">
+          <table className="min-w-full table-auto border-collapse">
+            <thead className="bg-gray-100 text-sm">
               <tr>
-                <th className="border-b border-t px-4 py-2 text-left">
-                  EMPLOYEE
-                </th>
-                <th className="border-b border-t px-4 py-2 text-left">DATE</th>
-                <th className="border-b border-t px-4 py-2 text-left">
-                  IN TIME
-                </th>
-                <th className="border-b border-t px-4 py-2 text-left">
-                  OUT TIME
-                </th>
-                <th className="border-b border-t px-4 py-2 text-left">
-                  TOTAL WORK
-                </th>
+                <th className="border-b px-4 py-2 text-left">ID</th>
+                <th className="border-b px-4 py-2 text-left">Name</th>
+                <th className="border-b px-4 py-2 text-left">Address</th>
+                <th className="border-b px-4 py-2 text-left">Email</th>
+                <th className="border-b px-4 py-2 text-left">Phone</th>
+                <th className="border-b px-4 py-2 text-left">Position</th>
+                <th className="border-b px-4 py-2 text-left">Experience</th>
+                <th className="border-b px-4 py-2 text-left">CV Download</th>
               </tr>
             </thead>
             <tbody>
-              {paginatedData.map((item, index) => (
+              {paginatedData.map((item) => (
                 <tr
-                  key={index}
+                  key={item.id}
                   className="h-[50px] border-b border-gray-300 transition duration-100 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
                 >
-                  <td className="relative min-w-[240px] px-4 py-2">
+                  <td className="px-4 py-2">{item.id}</td>
+                  <td className="relative min-w-[200px] px-4 py-2">
                     <div className="group relative flex h-[50px] items-center space-x-4">
-                      {/* Employee Details */}
                       <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
-                        <img
-                          src={`/storage/${item.image}`}
-                          alt="Employee"
-                          className="h-12 w-12 rounded-full object-cover"
-                        />
                         <div className="ml-4 flex flex-col truncate">
                           <span className="truncate whitespace-nowrap font-medium">
-                            {item.employee}
-                          </span>
-                          <span className="truncate text-sm text-gray-500">
-                            {item.email}
+                            {item.name}
                           </span>
                         </div>
                       </div>
@@ -155,12 +148,29 @@ const ManualAttendanceViewSection = () => {
                     </div>
                   </td>
 
-                  <td className="min-w-28 px-4 py-2">{item.date}</td>
-                  <td className="min-w-28 px-4 py-2">{item.inTime}</td>
-                  <td className="min-w-28 px-4 py-2">{item.outTime}</td>
-                  <td className="min-w-32 px-4 py-2">{item.totalWork}</td>
+                  <td className="px-4 py-2">{item.address}</td>
+                  <td className="px-4 py-2">{item.email}</td>
+                  <td className="px-4 py-2">{item.phone}</td>
+                  <td className="px-4 py-2">{item.position}</td>
+                  <td className="px-4 py-2">{item.experience}</td>
+                  <td className="px-4 py-2">
+                    <a
+                      href={`/${item.cv}`}
+                      download
+                      className="text-blue-500 hover:underline"
+                    >
+                      <FontAwesomeIcon icon={faDownload} />
+                    </a>
+                  </td>
                 </tr>
               ))}
+              {paginatedData.length === 0 && (
+                <tr>
+                  <td colSpan="8" className="py-4 text-center text-gray-500">
+                    No records found.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -169,7 +179,7 @@ const ManualAttendanceViewSection = () => {
         <div className="mt-4 flex items-center justify-between">
           <p className="text-sm">
             Showing {Math.min(entries, paginatedData.length)} to{" "}
-            {paginatedData.length} of {filteredData.length} records
+            {filteredData.length} of {filteredData.length} records
           </p>
           <div className="flex items-center">
             <button
@@ -204,4 +214,4 @@ const ManualAttendanceViewSection = () => {
   );
 };
 
-export default ManualAttendanceViewSection;
+export default ApplicantListSection;

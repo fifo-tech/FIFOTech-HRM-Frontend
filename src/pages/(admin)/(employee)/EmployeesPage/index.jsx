@@ -10,43 +10,22 @@ const EmployeePage = () => {
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);
   };
+  const toggleHideCreateForm = () => {
+    setShowCreateForm(false);
+  };
 
   return (
     <main>
       <EmployeesPageHeaderSection />
-      {/* <div className="border p-4">
-        <Tabs value="hello">
-          <TabsList className="gap-4">
-            <TabsTrigger
-              className="bg-secondary px-4 py-2"
-              activeClassName="bg-red-400"
-              value="hello"
-            >
-              Hello Trigger
-            </TabsTrigger>
-            <TabsTrigger
-              className="bg-secondary px-4 py-2"
-              activeClassName="bg-red-400"
-              value="bello"
-            >
-              Bello Trigger
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent>
-            <TabsItem value="hello">Hello Everyone</TabsItem>
-            <TabsItem value="bello">Bello Everyone</TabsItem>
-          </TabsContent>
-        </Tabs>
-      </div> */}
 
       {/* Conditionally render the EmployeesCreateSection if showCreateForm is true */}
-      {showCreateForm && <EmployeesCreateSection />}
+
+      {showCreateForm && (
+        <EmployeesCreateSection toggleHideCreateForm={toggleHideCreateForm} />
+      )}
 
       {/* Pass toggleCreateForm as a prop to the EmployeesListSection */}
       <EmployeesListSection toggleCreateForm={toggleCreateForm} />
-
-      {/* <EmployeesCreateSection /> */}
-      {/* <EmployeesListSection /> */}
     </main>
   );
 };

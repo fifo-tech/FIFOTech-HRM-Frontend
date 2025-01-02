@@ -34,12 +34,10 @@ const AnnouncementsCreateSection = ({ toggleHideCreateForm }) => {
   };
 
   return (
-    <div className="mx-auto max-w-4xl rounded-md border border-gray-200 bg-white p-6 shadow-lg">
+    <div className="min-w-4xl mx-4 rounded-md border border-gray-200 bg-white p-6 shadow-lg">
       {/* Header */}
       <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-800">
-          Add New Announcement
-        </h1>
+        <h1 className="text-lg font-bold">Add New Announcement</h1>
         <button
           onClick={toggleHideCreateForm}
           className="rounded-lg bg-primary px-4 py-2 text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
