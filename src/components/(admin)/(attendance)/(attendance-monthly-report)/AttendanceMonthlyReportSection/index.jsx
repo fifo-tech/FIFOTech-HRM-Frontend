@@ -10,8 +10,8 @@ const AttendanceMonthlyReportSection = () => {
   };
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="mx-auto max-w-3xl rounded-md bg-white p-6 shadow-md">
+    <div className="mx-4 my-6 min-h-screen">
+      <div className="min-w-3xl rounded-md bg-white p-6 shadow-md">
         <h1 className="mb-4 text-xl font-semibold text-gray-700">
           Attendance Monthly Report
         </h1>

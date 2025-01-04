@@ -1,10 +1,18 @@
-import { faEdit, faHome, faTable } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarCheck,
+  faClock,
+  faHeadset,
+  faHome,
+  faUserPlus,
+  faUsers,
+  faUserTie,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarMenuItem from "./SidebarMenuItem";
 
 const Sidebar = () => {
   return (
-    <aside className="mx-4 my-6 ml-6 rounded-md bg-card shadow-lg">
+    <aside className="w-70 sticky top-0 mx-4 my-6 ml-6 h-screen overflow-y-scroll rounded-md bg-card shadow-lg">
       {/* Sidebar Header */}
       <div className="flex items-center border-border p-4">
         {/* <FontAwesomeIcon icon={faTachometerAlt} className="text-xl" /> */}
@@ -22,11 +30,11 @@ const Sidebar = () => {
           <SidebarMenuItem
             title="Employees"
             link="/employees"
-            icon={<FontAwesomeIcon icon={faEdit} />}
+            icon={<FontAwesomeIcon icon={faUsers} />}
           />
           <SidebarMenuItem
             title="Core HR"
-            icon={<FontAwesomeIcon icon={faEdit} />}
+            icon={<FontAwesomeIcon icon={faUserTie} />}
             children={[
               { title: "Department", link: "/departments-list" },
               { title: "Designation", link: "/designations-list" },
@@ -37,7 +45,7 @@ const Sidebar = () => {
           />
           <SidebarMenuItem
             title="Attendance"
-            icon={<FontAwesomeIcon icon={faTable} />}
+            icon={<FontAwesomeIcon icon={faClock} />}
             children={[
               { title: "Attendance", link: "/attendance-daily-list" },
               { title: "Manual Attendance", link: "/manual-attendance" },
@@ -125,18 +133,21 @@ const Sidebar = () => {
 
           <SidebarMenuItem
             title="Recruitment"
-            icon={<FontAwesomeIcon icon={faTable} />}
+            icon={<FontAwesomeIcon icon={faUserPlus} />}
             children={[
-              { title: "Applicant", link: "/applicants-list" },
-              { title: "Manual Attendance", link: "/manual-attendance" },
-              { title: "Monthly Report", link: "/attendance-monthly-report" },
-              { title: "Overtime Request", link: "/overtime-request" },
+              { title: "Applicants", link: "/applicants-list" },
+              { title: "Create Career Post", link: "/create-career-post" },
+              { title: "Career-Posts-List", link: "/career-posts-list" },
+              {
+                title: "Career Completed List",
+                link: "/career-completed-list",
+              },
             ]}
           />
           <SidebarMenuItem
             title="Helpdesk"
             link="/complaint-list"
-            icon={<FontAwesomeIcon icon={faTable} />}
+            icon={<FontAwesomeIcon icon={faHeadset} />}
           />
           {/* <SidebarMenuItem
             title="Invoices"
@@ -149,7 +160,7 @@ const Sidebar = () => {
           <SidebarMenuItem
             title="Leave Request"
             link="/"
-            icon={<FontAwesomeIcon icon={faTable} />}
+            icon={<FontAwesomeIcon icon={faCalendarCheck} />}
           />
           {/* <SidebarMenuItem
             title="Training Sessions"

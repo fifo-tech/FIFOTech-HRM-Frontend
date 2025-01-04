@@ -25,6 +25,9 @@ import EmployeesExitPage from "@/pages/(admin)/(employee)/EmployeesExitPage";
 import EmployeesRolesAndPrivilegesPage from "@/pages/(admin)/(employee)/EmployeesRolesAndPrivilegesPage";
 import EmployeesShiftAndSchedulingPage from "@/pages/(admin)/(employee)/EmployeesShiftAndSchedulingPage";
 import ApplicantsListPage from "@/pages/(admin)/(recruitment)/ApplicantsListPage";
+import CareerCompletedListPage from "@/pages/(admin)/(recruitment)/CareerCompletedListPage";
+import CareerPostsListPage from "@/pages/(admin)/(recruitment)/CareerPostsListPage";
+import CreateCareerPostPage from "@/pages/(admin)/(recruitment)/CreateCareerPostPage";
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
 export const routes = [
@@ -99,6 +102,18 @@ export const routes = [
           {
             path: "Applicants-list",
             element: <ApplicantsListPage />,
+          },
+          {
+            path: "create-career-post",
+            element: <CreateCareerPostPage />,
+          },
+          {
+            path: "career-posts-list",
+            element: <CareerPostsListPage />,
+          },
+          {
+            path: "career-completed-list",
+            element: <CareerCompletedListPage />,
           },
         ],
       },
