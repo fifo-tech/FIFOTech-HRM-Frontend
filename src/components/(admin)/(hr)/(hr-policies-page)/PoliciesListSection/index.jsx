@@ -161,7 +161,7 @@ const PoliciesListSection = () => {
               className="h-[50px] border-b border-gray-300 transition duration-100 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
             >
               <td className="relative min-w-[150px] px-4 py-2">
-                <div className="group relative flex h-[50px] items-center space-x-4">
+                <div className="group relative flex h-[40px] items-center space-x-4">
                   {/* Employee Details */}
                   <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
                     <img

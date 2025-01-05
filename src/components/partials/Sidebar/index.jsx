@@ -12,7 +12,7 @@ import SidebarMenuItem from "./SidebarMenuItem";
 
 const Sidebar = () => {
   return (
-    <aside className="w-70 sticky top-0 mx-4 my-6 ml-6 h-screen overflow-y-scroll rounded-md bg-card shadow-lg">
+    <aside className="w-70 sticky top-0 mx-4 my-6 ml-6 h-screen overflow-y-scroll rounded-sm bg-card shadow-lg">
       {/* Sidebar Header */}
       <div className="flex items-center border-border p-4">
         {/* <FontAwesomeIcon icon={faTachometerAlt} className="text-xl" /> */}
@@ -159,7 +159,7 @@ const Sidebar = () => {
           /> */}
           <SidebarMenuItem
             title="Leave Request"
-            link="/"
+            link="/leaves-list"
             icon={<FontAwesomeIcon icon={faCalendarCheck} />}
           />
           {/* <SidebarMenuItem

@@ -3,21 +3,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const EmployeesRolesAndPrivileges = () => {
+const LeaveList = ({ toggleCreateForm }) => {
   const [entries, setEntries] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const data = [
     {
-      roleName: "Admin",
-      menuPermission: "Full Access",
-      addedDate: "2024-12-30",
+      employee: "Hassan Mahmud",
+      image: "../../../../../src/assets/images/image-1.jpg",
+      email: "hassan@gmail.com",
+      leaveType: "Sick Leave",
+      leaveDuration: "2024-12-20 to 2024-12-22",
+      days: 3,
+      appliedOn: "2024-12-15",
+      status: "pending",
     },
   ];
 
-  const filteredData = data.filter((item) =>
-    item.roleName.toLowerCase().includes(searchTerm.toLowerCase()),
+  const filteredData = data.filter(
+    (item) =>
+      item.employee.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.leaveType.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const totalPages = Math.ceil(filteredData.length / entries);
@@ -39,8 +46,11 @@ const EmployeesRolesAndPrivileges = () => {
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-          <h6 className="text-xl font-semibold">List All Roles</h6>
-          <button className="rounded bg-primary px-3 py-1 text-white hover:bg-indigo-600">
+          <h6 className="text-lg font-semibold">Leave Requests</h6>
+          <button
+            onClick={toggleCreateForm}
+            className="rounded bg-primary px-3 py-1 text-white hover:bg-indigo-600"
+          >
             <FontAwesomeIcon icon={faPlus} /> Add New
           </button>
         </div>
@@ -84,17 +94,24 @@ const EmployeesRolesAndPrivileges = () => {
 
         {/* Table */}
         <div className="overflow-x-auto p-4">
-          <table className="min-w-full table-auto border-collapse">
-            <thead className="bg-gray-100 text-sm">
+          <table className="min-w-full table-auto border-collapse text-sm">
+            <thead className="bg-gray-100">
               <tr>
                 <th className="border-b border-t px-4 py-2 text-left">
-                  ROLE NAME
+                  EMPLOYEE
                 </th>
                 <th className="border-b border-t px-4 py-2 text-left">
-                  MENU PERMISSION
+                  LEAVE TYPE
                 </th>
                 <th className="border-b border-t px-4 py-2 text-left">
-                  ADDED DATE
+                  LEAVE DURATION
+                </th>
+                <th className="border-b border-t px-4 py-2 text-left">DAYS</th>
+                <th className="border-b border-t px-4 py-2 text-left">
+                  APPLIED ON
+                </th>
+                <th className="border-b border-t px-4 py-2 text-left">
+                  STATUS
                 </th>
               </tr>
             </thead>
@@ -104,21 +121,37 @@ const EmployeesRolesAndPrivileges = () => {
                   key={index}
                   className="h-[50px] border-b border-gray-300 transition duration-100 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
                 >
-                  <td className="relative min-w-[150px] px-4 py-2">
+                  <td className="relative min-w-[240px] px-4 py-2">
                     <div className="group relative flex h-[50px] items-center space-x-4">
+                      {/* Employee Details */}
                       <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
-                        <span>{item.roleName}</span>
+                        <img
+                          src={`/storage/${item.image}`}
+                          alt="Employee"
+                          className="h-12 w-12 rounded-full object-cover"
+                        />
+                        <div className="ml-4 flex flex-col truncate">
+                          <span className="truncate whitespace-nowrap font-medium">
+                            {item.employee}
+                          </span>
+                          <span className="truncate text-sm text-gray-500">
+                            {item.email}
+                          </span>
+                        </div>
                       </div>
+
+                      {/* Action Buttons (shown on hover) */}
                       <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
                         <Link
-                          to={`/roles/${index}/edit`}
+                          to={`/employees/${item.id}/edit`}
                           className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
                           title="Edit"
                         >
                           <FontAwesomeIcon icon={faEdit} />
                         </Link>
+
                         <button
-                          onClick={() => console.log("Delete", index)}
+                          onClick={() => handleDelete(item.id)}
                           className="rounded bg-red-400 p-2 text-sm text-white hover:bg-red-600"
                           title="Delete"
                         >
@@ -127,8 +160,11 @@ const EmployeesRolesAndPrivileges = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-2">{item.menuPermission}</td>
-                  <td className="px-4 py-2">{item.addedDate}</td>
+                  <td className="px-4 py-2">{item.leaveType}</td>
+                  <td className="px-4 py-2">{item.leaveDuration}</td>
+                  <td className="px-4 py-2">{item.days}</td>
+                  <td className="px-4 py-2">{item.appliedOn}</td>
+                  <td className="px-4 py-2">{item.status}</td>
                 </tr>
               ))}
             </tbody>
@@ -174,4 +210,4 @@ const EmployeesRolesAndPrivileges = () => {
   );
 };
 
-export default EmployeesRolesAndPrivileges;
+export default LeaveList;

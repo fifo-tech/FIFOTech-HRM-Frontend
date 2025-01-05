@@ -70,18 +70,17 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
   return (
     <div className="container mx-4 my-8 max-w-4xl rounded-lg bg-white p-8 shadow-md">
       {/* Title */}
-      <h6 className="mb-6 text-center text-xl font-semibold text-gray-700">
-        Add New Employee
-      </h6>
-      <div className="mb-4 flex justify-end">
+      <div className="mb-4 flex items-center justify-between">
+        <h6 className="text-lg font-semibold">Add New Employee</h6>
         <button
           onClick={toggleHideCreateForm}
-          className="flex items-center space-x-1 rounded bg-primary px-3 py-1 text-white hover:bg-indigo-600"
+          className="rounded bg-primary px-4 py-1 text-white hover:bg-indigo-700"
         >
           <FontAwesomeIcon icon={faMinus} />
           <span>Hide</span>
         </button>
       </div>
+      <hr className="mb-4" />
 
       {/* Success Message */}
       {successMessage && (

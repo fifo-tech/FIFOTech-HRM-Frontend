@@ -24,6 +24,8 @@ import ComplaintsListPage from "@/pages/(admin)/complaints/ComplaintsListPage";
 import EmployeesExitPage from "@/pages/(admin)/(employee)/EmployeesExitPage";
 import EmployeesRolesAndPrivilegesPage from "@/pages/(admin)/(employee)/EmployeesRolesAndPrivilegesPage";
 import EmployeesShiftAndSchedulingPage from "@/pages/(admin)/(employee)/EmployeesShiftAndSchedulingPage";
+import LeaveListPage from "@/pages/(admin)/(leave-request)/LeaveListPage";
+import LeaveTypePage from "@/pages/(admin)/(leave-request)/LeaveTypePage";
 import ApplicantsListPage from "@/pages/(admin)/(recruitment)/ApplicantsListPage";
 import CareerCompletedListPage from "@/pages/(admin)/(recruitment)/CareerCompletedListPage";
 import CareerPostsListPage from "@/pages/(admin)/(recruitment)/CareerPostsListPage";
@@ -114,6 +116,14 @@ export const routes = [
           {
             path: "career-completed-list",
             element: <CareerCompletedListPage />,
+          },
+          {
+            path: "leaves-list",
+            element: <LeaveListPage />,
+          },
+          {
+            path: "leave-types",
+            element: <LeaveTypePage />,
           },
         ],
       },

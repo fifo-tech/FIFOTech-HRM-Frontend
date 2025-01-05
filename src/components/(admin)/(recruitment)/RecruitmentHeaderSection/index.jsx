@@ -10,7 +10,7 @@ function RecruitmentHeaderSection() {
   return (
     <section className="my-8 ml-4 mr-10">
       <div className="flex h-12 items-center justify-between rounded-md bg-background p-4">
-        {/* Employees */}
+        {/* Applicants */}
         <div className="flex flex-row items-center text-center">
           <FontAwesomeIcon
             icon={faUsers}
@@ -28,7 +28,7 @@ function RecruitmentHeaderSection() {
           </div>
         </div>
 
-        {/* Roles & Privileges */}
+        {/*  Create Career Post */}
         <div className="flex flex-row items-center text-center">
           <FontAwesomeIcon
             icon={faPlus}
@@ -47,7 +47,7 @@ function RecruitmentHeaderSection() {
           </div>
         </div>
 
-        {/* Shift & Scheduling */}
+        {/* Career Posts List */}
         <div className="flex flex-row items-center text-center">
           <FontAwesomeIcon
             icon={faListAlt}
@@ -65,7 +65,7 @@ function RecruitmentHeaderSection() {
             <span className="text-xs text-gray-500">View Career Posts</span>
           </div>
         </div>
-        {/* Employees Exit */}
+        {/* Career Completed List */}
         <div className="flex flex-row items-center text-center">
           <FontAwesomeIcon
             icon={faCheckCircle}
