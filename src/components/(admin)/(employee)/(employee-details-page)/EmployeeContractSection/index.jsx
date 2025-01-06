@@ -1,6 +1,16 @@
 import { faFileContract } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 const EmployeeContractSection = () => {
+  const [departments, setDepartments] = useState([]);
+  const [designations, setDesignations] = useState([]);
+
+  useEffect(() => {
+    // Simulate API calls to fetch data
+    setDepartments(["HR", "IT", "Finance", "Marketing"]);
+    setDesignations(["Manager", "Developer", "Accountant", "Designer"]);
+  }, []);
+
   return (
     <div className="mx-4 my-6 grid min-h-screen max-w-3xl bg-white p-6">
       {/* Title */}
@@ -52,12 +62,19 @@ const EmployeeContractSection = () => {
           <label className="block font-medium text-gray-700">
             Department<span className="text-red-500">*</span>
           </label>
-          <input
-            type="text"
+          <select
             className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-            placeholder="Enter department"
             required
-          />
+          >
+            <option value="" disabled selected>
+              Select department
+            </option>
+            {departments.map((dept, index) => (
+              <option key={index} value={dept.toLowerCase()}>
+                {dept}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Designation */}
@@ -65,12 +82,19 @@ const EmployeeContractSection = () => {
           <label className="block font-medium text-gray-700">
             Designation<span className="text-red-500">*</span>
           </label>
-          <input
-            type="text"
+          <select
             className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-            placeholder="Enter designation"
             required
-          />
+          >
+            <option value="" disabled selected>
+              Select designation
+            </option>
+            {designations.map((des, index) => (
+              <option key={index} value={des.toLowerCase()}>
+                {des}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Basic Salary */}

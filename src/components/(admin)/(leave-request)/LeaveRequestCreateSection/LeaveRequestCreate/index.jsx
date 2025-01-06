@@ -50,12 +50,19 @@ function LeaveRequestCreate({ toggleHideCreateForm }) {
               <label className="mb-1 block text-sm font-medium">
                 Leave Type <span className="text-red-500">*</span>
               </label>
-              <input
-                type="text"
+              <select
                 className="w-full rounded-md border px-3 py-2 text-sm"
-                placeholder="Enter leave type"
                 required
-              />
+              >
+                <option value="" disabled selected>
+                  Select leave type
+                </option>
+                <option value="annual">Annual Leave</option>
+                <option value="sick">Sick Leave</option>
+                <option value="maternity">Maternity Leave</option>
+                <option value="paternity">Paternity Leave</option>
+                <option value="study">Study Leave</option>
+              </select>
             </div>
           </div>
 

@@ -40,7 +40,7 @@ const Sidebar = () => {
               { title: "Designation", link: "/designations-list" },
               { title: "Policies", link: "/policies-list" },
               { title: "Make Announcement", link: "/announcement-list" },
-              { title: "Organization Chart", link: "#" },
+              // { title: "Organization Chart", link: "#" },
             ]}
           />
           <SidebarMenuItem
@@ -138,10 +138,10 @@ const Sidebar = () => {
               { title: "Applicants", link: "/applicants-list" },
               { title: "Create Career Post", link: "/create-career-post" },
               { title: "Career-Posts-List", link: "/career-posts-list" },
-              {
-                title: "Career Completed List",
-                link: "/career-completed-list",
-              },
+              // {
+              //   title: "Career Completed List",
+              //   link: "/career-completed-list",
+              // },
             ]}
           />
           <SidebarMenuItem

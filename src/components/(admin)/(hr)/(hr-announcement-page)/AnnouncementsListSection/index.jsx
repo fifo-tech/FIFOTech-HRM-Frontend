@@ -53,7 +53,7 @@ const AnnouncementsListSection = ({ toggleCreateForm }) => {
   };
 
   return (
-    <div className="mx-4 max-w-5xl rounded-sm border border-gray-200 bg-white p-6 shadow-lg">
+    <div className="mx-4 my-6 max-w-5xl rounded-sm border border-gray-200 bg-white p-6 shadow-lg">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <h6 className="text-xl font-bold text-gray-600">
