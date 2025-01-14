@@ -1,15 +1,17 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { routes } from './routes'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { routes } from "./routes";
+import AuthProvider from "./providers/AuthProvider"; // Import the AuthProvider
 
 const App = () => {
-  console.log(routes)
   const router = createBrowserRouter(routes);
 
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
-  )
-}
+    <AuthProvider>
+      <div>
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
+  );
+};
 
-export default App
+export default App;

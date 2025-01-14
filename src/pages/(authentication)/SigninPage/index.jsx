@@ -1,27 +1,67 @@
-// src/Pages/Login/Login.js
-import { useState } from "react";
+import { useState, useContext } from "react"; // Ensure useContext is imported
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "@/providers/AuthProvider"; // Import AuthContext
+import Swal from "sweetalert2";
 
 const SigninPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { signIn } = useContext(AuthContext); // Get signIn function from AuthProvider
+  const navigate = useNavigate();
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if fields are empty
     if (!email || !password) {
       setError("Both fields are required");
-    } else {
-      setError("");
-      // Process the login (e.g., authenticate with backend)
-      console.log("Login successful", { email, password });
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+      // Use the signIn function from AuthProvider
+      await signIn(email, password);
+
+      // Show success notification
+      Swal.fire({
+        title: "Success!",
+        text: "Login successful!",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      // Navigate to the dashboard
+      navigate("/dashboard", { replace: true });
+    } catch (err) {
+      // Handle login errors
+      setError(err.message || "Login failed. Please try again.");
+      Swal.fire({
+        title: "Error!",
+        text: err.message || "An error occurred during login.",
+        icon: "error",
+        confirmButtonText: "Okay",
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
+
+
+        <h2 className="mb-6 text-center text-2xl font-bold text-blue-700">
+          WeTech HUB
+        </h2>
+
         <h2 className="mb-6 text-center text-2xl font-bold text-gray-700">
           Login
         </h2>
@@ -72,8 +112,9 @@ const SigninPage = () => {
           <button
             type="submit"
             className="w-full rounded-md bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-700"
+            disabled={loading}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
@@ -88,7 +129,7 @@ const SigninPage = () => {
         </div>
         <div className="mt-2 text-center">
           <span className="text-sm text-gray-600">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <a href="/signUp" className="text-blue-600 hover:underline">
               Sign Up
             </a>

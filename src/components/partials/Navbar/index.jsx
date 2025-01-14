@@ -1,10 +1,28 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // To navigate to the sign-in page
+import { useContext, useRef } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  // Retrieve first name and last name from localStorage
+  const firstName = localStorage.getItem("first_name");
+  const lastName = localStorage.getItem("last_name");
+  const profile_pic = localStorage.getItem("user_profile_pic");
+  
+  const handleLogout = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.error("Log out error:", error);
+    }
   };
 
   return (
@@ -27,11 +45,11 @@ const Navbar = () => {
             onClick={toggleDropdown}
           >
             <img
-              src="src/assets/images/image.jpg"
+              src={profile_pic}
               alt="Profile"
               className="mr-2 h-8 w-8 rounded-full"
             />
-            <span>Hasan Mahmud</span>
+            <span>{firstName} {lastName}</span>  {/* Dynamically display the name */}
             <i className="fa fa-angle-down ml-2"></i>
           </button>
           {isDropdownOpen && (
@@ -42,12 +60,12 @@ const Navbar = () => {
               <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                 Settings
               </a>
-              <a
-                href="login.html"
-                className="block px-4 py-2 text-red-500 hover:bg-gray-100"
+              <button
+                onClick={handleLogout}
+                className="block w-full px-4 py-2 text-left text-red-500 hover:bg-gray-100"
               >
                 Logout
-              </a>
+              </button>
             </div>
           )}
         </div>

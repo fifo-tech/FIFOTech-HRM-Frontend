@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarMenuItem from "./SidebarMenuItem";
 
 const Sidebar = () => {
+  const role_id = localStorage.getItem('role_id');
   return (
     <aside className="w-70 sticky top-0 mx-4 my-6 ml-6 h-screen overflow-y-scroll rounded-sm bg-card shadow-lg">
       {/* Sidebar Header */}
@@ -24,33 +25,36 @@ const Sidebar = () => {
         <ul>
           <SidebarMenuItem
             title="Home"
-            link="/"
+            link="/dashboard"
             icon={<FontAwesomeIcon icon={faHome} />}
           />
           <SidebarMenuItem
             title="Employees"
-            link="/employees"
+            link="employees"
             icon={<FontAwesomeIcon icon={faUsers} />}
           />
-          <SidebarMenuItem
-            title="Core HR"
-            icon={<FontAwesomeIcon icon={faUserTie} />}
-            children={[
-              { title: "Department", link: "/departments-list" },
-              { title: "Designation", link: "/designations-list" },
-              { title: "Policies", link: "/policies-list" },
-              { title: "Make Announcement", link: "/announcement-list" },
-              // { title: "Organization Chart", link: "#" },
-            ]}
-          />
+
+        {role_id === '1' || role_id === '2' ? (
+              <SidebarMenuItem
+                title="Core HR"
+                icon={<FontAwesomeIcon icon={faUserTie} />}
+                children={[
+                  { title: "Department", link: "departments-list" },
+                  { title: "Designation", link: "designations-list" },
+                  { title: "Policies", link: "policies-list" },
+                  { title: "Make Announcement", link: "announcement-list" },
+                ]}
+              />
+            ) : null}
+
           <SidebarMenuItem
             title="Attendance"
             icon={<FontAwesomeIcon icon={faClock} />}
             children={[
-              { title: "Attendance", link: "/attendance-daily-list" },
-              { title: "Manual Attendance", link: "/manual-attendance" },
-              { title: "Monthly Report", link: "/attendance-monthly-report" },
-              { title: "Overtime Request", link: "/overtime-request" },
+              { title: "Attendance", link: "attendance-daily-list" },
+              { title: "Manual Attendance", link: "manual-attendance" },
+              { title: "Monthly Report", link: "attendance-monthly-report" },
+              { title: "Overtime Request", link: "overtime-request" },
             ]}
           />
           {/* <SidebarMenuItem
@@ -130,23 +134,25 @@ const Sidebar = () => {
               { title: "Goals Calendar", link: "#" },
             ]}
           /> */}
-
+          {role_id === '1' || role_id === '2' ? (
           <SidebarMenuItem
             title="Recruitment"
             icon={<FontAwesomeIcon icon={faUserPlus} />}
             children={[
-              { title: "Applicants", link: "/applicants-list" },
-              { title: "Create Career Post", link: "/create-career-post" },
-              { title: "Career-Posts-List", link: "/career-posts-list" },
+              { title: "Applicants", link: "applicants-list" },
+              { title: "Create Career Post", link: "create-career-post" },
+              { title: "Career-Posts-List", link: "career-posts-list" },
               // {
               //   title: "Career Completed List",
               //   link: "/career-completed-list",
               // },
             ]}
           />
+          ) : null}
+          
           <SidebarMenuItem
             title="Helpdesk"
-            link="/complaint-list"
+            link="complaint-list"
             icon={<FontAwesomeIcon icon={faHeadset} />}
           />
           {/* <SidebarMenuItem
@@ -159,7 +165,7 @@ const Sidebar = () => {
           /> */}
           <SidebarMenuItem
             title="Leave Request"
-            link="/leaves-list"
+            link="leaves-list"
             icon={<FontAwesomeIcon icon={faCalendarCheck} />}
           />
           {/* <SidebarMenuItem
@@ -170,6 +176,26 @@ const Sidebar = () => {
             title="Disciplinary Cases"
             icon={<FontAwesomeIcon icon={faTable} />}
           /> */}
+
+          {role_id === '1' ? (
+            <div className="text-center mt-5 font-bold">
+              <h1>Welcome Admin</h1>
+            </div>
+          ) : null}
+
+          {role_id === '2' ? (
+            <div className="text-center mt-5 font-bold">
+              <h1>Welcome HR</h1>
+            </div>
+          ) : null}
+
+          {role_id === '3' ? (
+            <div className="text-center mt-5 font-bold">
+              <h1>Welcome Employee</h1>
+            </div>
+          ) : null}
+
+
         </ul>
       </nav>
     </aside>

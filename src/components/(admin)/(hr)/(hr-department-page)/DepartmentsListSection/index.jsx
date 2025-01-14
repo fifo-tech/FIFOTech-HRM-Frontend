@@ -1,37 +1,92 @@
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const DepartmentsListSection = () => {
   const [search, setSearch] = useState("");
-  const [entries, setEntries] = useState(5);
+  const [entries, setEntries] = useState(15);
   const [currentPage, setCurrentPage] = useState(1);
+  const [departments, setDepartments] = useState([]);
 
-  // State to hold department data
-  const [departments, setDepartments] = useState([
-    { id: 1, name: "HR", head: "Rakib Hassan", createdAt: "2023-01-01" },
-    { id: 2, name: "Admin", head: "Sakib Hassan", createdAt: "2023-01-01" },
-    // Add more mock data if needed
-  ]);
+  // Fetch departments data from the API on component mount
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const token = localStorage.getItem("token"); // Retrieve token from localStorage
+        
+        if (!token) {
+          alert("You are not logged in!");
+          return;
+        }
+
+        const response = await fetch("http://localhost:8000/api/department-list", {
+          method: "GET",  // Use GET method to fetch data
+          headers: {
+            "Authorization": `Bearer ${token}`,  // Add the Bearer token in the Authorization header
+            "Content-Type": "application/json",
+          },
+        });
+
+        const data = await response.json();
+        
+        if (data.success) {
+          setDepartments(data.data); // Set the fetched department data
+        } else {
+          alert("Failed to fetch departments");
+        }
+      } catch (error) {
+        console.error("Error fetching departments:", error);
+        alert("An error occurred while fetching departments.");
+      }
+    };
+
+    fetchDepartments();
+  }, []); // Run once when the component mounts
 
   // Filter departments based on the search input
   const filteredDepartments = departments.filter((department) =>
-    department.name.toLowerCase().includes(search.toLowerCase()),
+    department.name.toLowerCase().includes(search.toLowerCase())
   );
 
   // Delete handler to remove a department by ID
-  const handleDelete = (id) => {
-    setDepartments(departments.filter((department) => department.id !== id));
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("token"); // Retrieve token from localStorage
+
+    if (!token) {
+      alert("You are not logged in!");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/delete-department/${id}`, {
+        method: "DELETE",  // Use DELETE method to remove the department
+        headers: {
+          "Authorization": `Bearer ${token}`, // Add Bearer token to the header
+          "Content-Type": "application/json", // Set content type as JSON
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Remove the deleted department from the list
+        setDepartments(departments.filter((department) => department.id !== id));
+        alert("Department deleted successfully!");
+      } else {
+        alert("Failed to delete department: " + data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting department:", error);
+      alert("An error occurred while deleting the department.");
+    }
   };
 
   return (
     <div className="mx-4 mt-6 max-h-screen max-w-2xl bg-white p-6">
       {/* Title */}
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-gray-800">
-          List All Departments
-        </h2>
+        <h2 className="text-lg font-semibold text-gray-800">List All Departments</h2>
       </div>
       <hr className="my-4 w-full border-gray-300" />
 
@@ -108,10 +163,10 @@ const DepartmentsListSection = () => {
                   </div>
                 </td>
                 <td className="border-b px-4 py-2 text-center">
-                  {department.head}
+                  {department.head_name}
                 </td>
                 <td className="border-b px-4 py-2 text-center">
-                  {department.createdAt}
+                  {new Date(department.created_at).toLocaleDateString()}
                 </td>
               </tr>
             ))}

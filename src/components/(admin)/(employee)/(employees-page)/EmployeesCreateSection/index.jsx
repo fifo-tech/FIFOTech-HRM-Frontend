@@ -4,13 +4,13 @@ import ProfilePictureUpload from "./ProfilePictureUpload";
 const EmployeesCreateSection = ({ toggleHideCreateForm }) => {
   return (
     <section className="my-8">
-      <div className="grid grid-cols-3 gap-8">
-        <div className="col-span-2">
+      <div className="grid grid-cols-4 gap-8">
+        <div className="col-span-4">
           <EmployeesCreate toggleHideCreateForm={toggleHideCreateForm} />
         </div>
-        <div className="col-span-1">
+        {/* <div className="col-span-1">
           <ProfilePictureUpload />
-        </div>
+        </div> */}
       </div>
     </section>
   );

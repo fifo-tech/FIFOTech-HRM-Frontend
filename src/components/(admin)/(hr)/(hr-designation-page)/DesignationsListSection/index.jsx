@@ -1,32 +1,109 @@
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const DesignationsListSection = () => {
   const [search, setSearch] = useState("");
-  const [entries, setEntries] = useState(5);
+  const [entries, setEntries] = useState(15);
   const [currentPage, setCurrentPage] = useState(1);
+  const [designations, setDesignations] = useState([]);
+  const [departments, setDepartments] = useState([]);
 
-  // State to hold designation data
-  const [designations, setDesignations] = useState([
-    { id: 1, designation: "Software Engineer", department: "IT" },
-    { id: 2, designation: "HR Manager", department: "Human Resources" },
-    // Add more mock data if needed
-  ]);
+  // Fetch designations and departments data from the API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("You are not logged in!");
+          return;
+        }
+
+        // Fetch departments data
+        const deptResponse = await fetch("http://localhost:8000/api/department-list", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        const deptData = await deptResponse.json();
+        if (deptData.success) {
+          setDepartments(deptData.data);  // Store departments data
+        } else {
+          alert("Failed to fetch departments");
+        }
+
+        // Fetch designations data
+        const desigResponse = await fetch("http://localhost:8000/api/designation-list", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        const desigData = await desigResponse.json();
+        if (desigData.success) {
+          setDesignations(desigData.data);  // Store designations data
+        } else {
+          alert("Failed to fetch designations");
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        alert("An error occurred while fetching data.");
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Filter designations based on the search input
-  const filteredDesignations = designations.filter(
-    (designation) =>
-      designation.designation.toLowerCase().includes(search.toLowerCase()) ||
-      designation.department.toLowerCase().includes(search.toLowerCase()),
+  const filteredDesignations = designations.filter((designation) =>
+    designation.name.toLowerCase().includes(search.toLowerCase()) ||
+    departments.some(
+      (dept) => dept.id === designation.dept_id && dept.name.toLowerCase().includes(search.toLowerCase())
+    )
   );
 
   // Delete handler to remove a designation by ID
-  const handleDelete = (id) => {
-    setDesignations(
-      designations.filter((designation) => designation.id !== id),
-    );
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("You are not logged in!");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/delete-designation/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Remove the deleted designation from the list
+        setDesignations(designations.filter((designation) => designation.id !== id));
+        alert("Designation deleted successfully!");
+      } else {
+        alert("Failed to delete designation: " + data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting designation:", error);
+      alert("An error occurred while deleting the designation.");
+    }
+  };
+
+  // Get department name by dept_id
+  const getDepartmentName = (dept_id) => {
+    const department = departments.find((dept) => dept.id === dept_id);
+    return department ? department.name : "Unknown";
   };
 
   return (
@@ -89,9 +166,9 @@ const DesignationsListSection = () => {
                 <td className="relative min-w-52 border-b px-4 py-2 text-center">
                   <span
                     className="block group-hover:hidden"
-                    title={designation.designation}
+                    title={designation.name}
                   >
-                    {designation.designation}
+                    {designation.name}
                   </span>
                   <div className="absolute right-24 top-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover:opacity-100">
                     <Link
@@ -109,7 +186,7 @@ const DesignationsListSection = () => {
                   </div>
                 </td>
                 <td className="border-b px-4 py-2 text-center">
-                  {designation.department}
+                  {getDepartmentName(designation.dept_id)}
                 </td>
               </tr>
             ))}
@@ -146,9 +223,7 @@ const DesignationsListSection = () => {
           </button>
           <span className="bg-primary px-4 py-2 text-sm">{currentPage}</span>
           <button
-            onClick={() =>
-              setCurrentPage((prev) => prev + 1 /* Add logic here */)
-            }
+            onClick={() => setCurrentPage((prev) => prev + 1)}
             className="rounded-r-md bg-gray-200 px-4 py-2 text-sm text-gray-600 shadow-sm hover:bg-gray-300"
           >
             Next

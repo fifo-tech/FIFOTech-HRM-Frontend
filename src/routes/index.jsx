@@ -2,6 +2,7 @@
 import AuthenticationLayout from "@/components/layouts/AuthenticationLayout";
 import MainLayout from "@/components/layouts/MainLayout";
 import RootLayout from "@/components/layouts/RootLayout";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 // common pages
 import HomePage from "@/pages/(common)/HomePage";
@@ -35,14 +36,33 @@ import SigninPage from "@/pages/(authentication)/SigninPage";
 export const routes = [
   {
     path: "/",
-    element: <RootLayout />,
+    element: <RootLayout />, // Main layout
     children: [
       {
         path: "/",
-        element: <MainLayout />,
+        element: <AuthenticationLayout />, // Sign-in layout
         children: [
           {
-            path: "/",
+            index: true, // Default route as SigninPage
+            element: <SigninPage />,
+          },
+          {
+            path: "sign-up",
+            element: <SigninPage />,
+          },
+        ],
+      },
+      {
+        path: "dashboard", // Separate path for the dashboard
+        element: (
+          <ProtectedRoute> 
+            <MainLayout /> 
+          </ProtectedRoute>
+        ), // Wrap MainLayout with ProtectedRoute
+        children: [
+          {
+            index: true, // Home page of the dashboard
+            //path: "/",
             element: <HomePage />,
           },
           {
@@ -127,20 +147,7 @@ export const routes = [
           },
         ],
       },
-      {
-        path: "authentication",
-        element: <AuthenticationLayout />,
-        children: [
-          {
-            path: "sing-in",
-            element: <SigninPage />,
-          },
-          {
-            path: "sing-up",
-            element: <SigninPage />,
-          },
-        ],
-      },
     ],
   },
 ];
+
