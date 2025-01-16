@@ -6,7 +6,8 @@ export const fetchDepartments = async () => {
     }
   
     try {
-      const response = await fetch("http://localhost:8000/api/department-list", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/department-list`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,

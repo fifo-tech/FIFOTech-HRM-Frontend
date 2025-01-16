@@ -13,11 +13,16 @@ import SidebarMenuItem from "./SidebarMenuItem";
 const Sidebar = () => {
   const role_id = localStorage.getItem('role_id');
   return (
-    <aside className="w-70 sticky top-0 mx-4 my-6 ml-6 h-screen overflow-y-scroll rounded-sm bg-card shadow-lg">
+    <aside className="w-70 sticky top-0 mx-4 my-6 ml-6 h-screen overflow-y-scroll rounded-md bg-card shadow-lg">
       {/* Sidebar Header */}
-      <div className="flex items-center border-border p-4">
+      <div className="flex items-center border-border px-4 pt-4 pb-0" >
+
+
         {/* <FontAwesomeIcon icon={faTachometerAlt} className="text-xl" /> */}
-        <span className="ml-2 text-xl font-bold">Wetechhub-HRM</span>
+        {/* <span className="ml-2 text-xl font-bold">Wetechhub-HRM</span> */}
+        {/* <div>
+          <img src="../../../../public/logo.jpeg" alt="img" className="h-20 w-20"/>
+        </div> */}
       </div>
 
       {/* Menu */}
@@ -42,6 +47,7 @@ const Sidebar = () => {
                   { title: "Department", link: "departments-list" },
                   { title: "Designation", link: "designations-list" },
                   { title: "Policies", link: "policies-list" },
+    
                   { title: "Make Announcement", link: "announcement-list" },
                 ]}
               />
@@ -176,7 +182,7 @@ const Sidebar = () => {
             title="Disciplinary Cases"
             icon={<FontAwesomeIcon icon={faTable} />}
           /> */}
-
+{/* 
           {role_id === '1' ? (
             <div className="text-center mt-5 font-bold">
               <h1>Welcome Admin</h1>
@@ -193,7 +199,7 @@ const Sidebar = () => {
             <div className="text-center mt-5 font-bold">
               <h1>Welcome Employee</h1>
             </div>
-          ) : null}
+          ) : null} */}
 
 
         </ul>

@@ -6,7 +6,8 @@ export const createEmployee = async (first_name, last_name, phone_num, gender, e
     }
   
     try {
-      const response = await fetch("http://localhost:8000/api/create-employee", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/create-employee`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,

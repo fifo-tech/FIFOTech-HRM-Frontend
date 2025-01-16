@@ -30,7 +30,8 @@ const AuthProvider = ({ children }) => {
   const signIn = async (email, password) => {
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:8000/api/login", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${apiUrl}/login`, {
         email,
         password,
       });
@@ -75,6 +76,7 @@ const AuthProvider = ({ children }) => {
   const logOut = async () => {
     setLoading(true);
     try {
+      const apiUrl = import.meta.env.VITE_API_URL;
       const token = localStorage.getItem("token");
 
       if (!token) {
@@ -82,7 +84,7 @@ const AuthProvider = ({ children }) => {
         
       }
 
-      const response = await fetch("http://localhost:8000/api/logout", {
+      const response = await fetch(`${apiUrl}/logout`, {
         method: "DELETE",  // Logout uses DELETE method
         headers: {
           "Authorization": `Bearer ${token}`,  // Include the token in the Authorization header

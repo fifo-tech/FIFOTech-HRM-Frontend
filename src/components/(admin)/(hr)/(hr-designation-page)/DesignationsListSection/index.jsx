@@ -14,6 +14,7 @@ const DesignationsListSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const apiUrl = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem("token");
         if (!token) {
           alert("You are not logged in!");
@@ -21,7 +22,8 @@ const DesignationsListSection = () => {
         }
 
         // Fetch departments data
-        const deptResponse = await fetch("http://localhost:8000/api/department-list", {
+        
+        const deptResponse = await fetch(`${apiUrl}/department-list`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -37,7 +39,7 @@ const DesignationsListSection = () => {
         }
 
         // Fetch designations data
-        const desigResponse = await fetch("http://localhost:8000/api/designation-list", {
+        const desigResponse = await fetch(`${apiUrl}/designation-list`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -77,7 +79,8 @@ const DesignationsListSection = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8000/api/delete-designation/${id}`, {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/delete-designation/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${token}`,

@@ -177,9 +177,9 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                     <th className="border-b border-t px-4 py-2">Role</th>
                     <th className="border-b border-t px-4 py-2">Status</th>
 
-                    {role_id !=3 ? (
+                    {/* {role_id !=3 ? (
                         <th className="border-b border-t px-4 py-2">Actions</th>
-                    ) : null}
+                    ) : null} */}
                     
 
                   </tr>
@@ -188,19 +188,93 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                   {currentEmployees.map((employee) => (
                     <tr
                       key={employee.id}
-                      className="h-[50px] border-b hover:bg-gray-100"
+                      className="h-[50px] border-b border-gray-300 transition duration-100 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
                     >
                       
-                      <td className="px-4 py-2">
-                      <div className="px-4 py-2">
-                        <img
-                          src={employee.profile_photo_path || defaultImage}
-                          alt="Employee"
-                          className="h-12 w-12 rounded-full object-cover"
-                        />
-                      </div>
-                      
-                        {`${employee.first_name} ${employee.last_name}`}
+                      <td className="h-[50px] border-b px-4 py-2 max-w-[240px]">
+                        <div className="group relative flex h-[50px] items-center space-x-4">
+                         
+                          {/* Image */}
+                          <div className="flex flex-shrink-0 items-start truncate group-hover:hidden">
+                          <img
+                            src={employee.profile_photo_path || defaultImage}
+                            alt="Employee"
+                            className="h-12 w-12 rounded-full object-cover"
+                          />
+                          </div>
+
+                          {/* Name and Email */}
+                          <div className="flex min-w-[150px] flex-col truncate group-hover:hidden">
+                            <span className="truncate whitespace-nowrap font-medium">
+                            {`${employee.first_name} ${employee.last_name}`}
+                            </span>
+                            <span className="truncate text-sm text-gray-500">
+                              {employee.email}
+                            </span>
+                          </div>
+
+
+
+                        {/* Disapear Edit Delte View section from Employee */}
+
+                        {role_id !=3 ? (
+                        <td className="px-4 py-2">
+                          <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
+                            <button
+                              onClick={() => handleDelete(employee.id)}
+                              className="rounded bg-red-400 p-2 text-sm text-white hover:bg-red-500"
+                              title="Delete"
+                            >
+                              <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                            <button
+                              className="rounded bg-indigo-400 p-2 text-sm text-white hover:bg-primary"
+                              title="View Details"
+                              onClick={() => handleViewDetails(employee.id)}                  
+                            >
+                              <FontAwesomeIcon icon={faEye} />
+                            </button>
+                            <button
+                              className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-500"
+                              title="Edit"
+                            >
+                              <FontAwesomeIcon icon={faEdit} />
+                            </button>
+                          </div>
+                        </td>
+                      ) : null}
+
+
+
+                          {/* Action Buttons */}
+                          {/* <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
+                            <Link
+                              to={/employees/${employee.id}/edit}
+                              className="rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
+                              title="Edit"
+                            >
+                              <FontAwesomeIcon icon={faEdit} />
+                            </Link>
+                            <Link
+                              to={/employee-details/${employee.id}}
+                              className="rounded bg-indigo-400 p-2 text-sm text-white hover:bg-primary"
+                              title="View"
+                            >
+                              <FontAwesomeIcon icon={faEye} />
+                            </Link>
+                            <button
+                              onClick={() => handleDelete(employee.id)}
+                              className="rounded bg-red-400 p-2 text-sm text-white hover:bg-red-600"
+                              title="Delete"
+                            >
+                              <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                          </div> */}
+
+                          
+                        </div>
+
+                        
                         
                       </td>
                       <td className="px-4 py-2">{employee.emp_id}</td>
@@ -211,34 +285,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                         {employee.active_status}
                       </td>
 
-                      {/* Disapear Edit Delte View section from Employee */}
-
-                      {role_id !=3 ? (
-                        <td className="px-4 py-2">
-                          <div className="flex justify-start space-x-2">
-                            <button
-                              onClick={() => handleDelete(employee.id)}
-                              className="rounded p-2 text-red-500 hover:bg-red-100"
-                              title="Delete"
-                            >
-                              <FontAwesomeIcon icon={faTrash} />
-                            </button>
-                            <button
-                              className="rounded p-2 text-blue-500 hover:bg-blue-100"
-                              title="View Details"
-                              onClick={() => handleViewDetails(employee.id)}                  
-                            >
-                              <FontAwesomeIcon icon={faEye} />
-                            </button>
-                            <button
-                              className="rounded p-2 text-green-500 hover:bg-green-100"
-                              title="Edit"
-                            >
-                              <FontAwesomeIcon icon={faEdit} />
-                            </button>
-                          </div>
-                        </td>
-                      ) : null}
+                     
 
                     </tr>
                   ))}
@@ -259,12 +306,15 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                   className={`rounded-l-md px-4 py-2 ${
                     currentPage === 1
                       ? "cursor-not-allowed bg-gray-300"
-                      : "bg-primary text-white"
+                      : "bg-gray-400 text-white"
                   }`}
                 >
                   Previous
                 </button>
-                <span className="mx-2">{currentPage}</span>
+                <span className="flex h-10 w-10 items-center justify-center bg-primary text-lg text-white">
+                {currentPage}
+              </span>
+
                 <button
                   onClick={() =>
                     setCurrentPage((prev) => Math.min(prev + 1, totalPages))
@@ -273,7 +323,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                   className={`rounded-r-md px-4 py-2 ${
                     currentPage === totalPages
                       ? "cursor-not-allowed bg-gray-300"
-                      : "bg-primary text-white"
+                      : "bg-gray-400 text-white"
                   }`}
                 >
                   Next

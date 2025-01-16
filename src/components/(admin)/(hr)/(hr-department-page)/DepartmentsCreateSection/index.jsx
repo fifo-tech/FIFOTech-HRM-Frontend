@@ -25,7 +25,8 @@ const DepartmentCreateSection = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8000/api/create-department", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/create-department`, {
         method: "POST",  // Use POST to create new department
         headers: {
           "Authorization": `Bearer ${token}`,  // Add Bearer token to the header

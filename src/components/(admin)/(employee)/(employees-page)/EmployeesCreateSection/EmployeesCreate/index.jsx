@@ -10,6 +10,7 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
     phone_number: "",
     gender: "",
     email: "",
+    emp_id : "",
     dept_id: "",
     designation_id: "",
     profile_picture: null, // Added for profile picture
@@ -99,7 +100,9 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
         payload.append(key, formData[key]);
       });
 
-      fetch("http://localhost:8000/api/create-employee", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+
+      fetch(`${apiUrl}/create-employee`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -116,6 +119,7 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
               phone_number: "",
               gender: "",
               email: "",
+              emp_id : "",
               dept_id: "",
               designation_id: "",
               profile_picture: null,
@@ -138,6 +142,7 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
       phone_number: "",
       gender: "",
       email: "",
+      emp_id : "",
       dept_id: "",
       designation_id: "",
       profile_picture: null,
@@ -213,6 +218,30 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
             className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:ring focus:ring-blue-300"
           />
         </div>
+
+
+
+
+
+      {/* Employee ID Number */}
+      <div>
+          <label className="mb-2 block font-medium text-gray-600">
+            Employee ID (If Existing)
+          </label>
+          <input
+            type="text"
+            name="emp_id"
+            value={formData.emp_id}
+            onChange={handleChange}
+            placeholder="Enter Existing Employee ID"
+            className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:ring focus:ring-blue-300"
+          />
+        </div>
+
+
+
+
+
 
         {/* Phone Number */}
         <div>

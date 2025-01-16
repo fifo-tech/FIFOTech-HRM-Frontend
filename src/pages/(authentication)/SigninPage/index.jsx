@@ -56,15 +56,18 @@ const SigninPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
-
-
-        <h2 className="mb-6 text-center text-2xl font-bold text-blue-700">
+        {/* <h2 className="mb-6 text-center text-2xl font-bold text-blue-700">
           WeTech HUB
-        </h2>
+        </h2> */}
+        <div className="flex flex-col items-center justify-center">
+          <img src="logo.jpeg" alt="logo" className="mb-1 h-28 w-28" />
+          <h2 className="mb-6 text-2xl font-bold mr-5 bg-gradient-to-r from-cyan-500 to-blue-700 text-transparent bg-clip-text">WeTechHub HRMS
+          </h2>
+        </div>
 
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-700">
+        {/* <h2 className="mb-6 text-center text-2xl font-bold text-gray-700">
           Login
-        </h2>
+        </h2> */}
 
         {/* Error message */}
         {error && <div className="mb-4 text-sm text-red-500">{error}</div>}
@@ -84,7 +87,7 @@ const SigninPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="border-border mt-2 w-full rounded-md border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-2 w-full rounded-md border border-border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your email"
             />
           </div>
@@ -103,7 +106,7 @@ const SigninPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="border-border mt-2 w-full rounded-md border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="mt-2 w-full rounded-md border border-border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your password"
             />
           </div>
@@ -121,20 +124,20 @@ const SigninPage = () => {
         {/* Links */}
         <div className="mt-4 text-center">
           <a
-            href="/resetPass"
+          
             className="text-sm text-blue-600 hover:underline"
           >
             Forgot Password?
           </a>
         </div>
-        <div className="mt-2 text-center">
+        {/* <div className="mt-2 text-center">
           <span className="text-sm text-gray-600">
             Don&apos;t have an account?{" "}
             <a href="/signUp" className="text-blue-600 hover:underline">
               Sign Up
             </a>
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

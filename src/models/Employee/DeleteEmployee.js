@@ -1,5 +1,7 @@
 export const deleteEmployee = async (employeeId) => {
-    const API_URL = `http://localhost:8000/api/delete-employee/${employeeId}`;
+
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const API_URL = `${apiUrl}/delete-employee/${employeeId}`;
     
     // Get the bearer token from local storage
     const token = localStorage.getItem("token");

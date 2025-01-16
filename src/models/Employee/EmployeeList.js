@@ -1,7 +1,8 @@
 export const fetchEmployees = async () => {
     try {
       const token = localStorage.getItem("token"); // Retrieve token from localStorage
-      const response = await fetch("http://localhost:8000/api/employee-list", {
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${apiUrl}/employee-list`, {
         method: "GET", // Specify GET method
         headers: {
           Authorization: `Bearer ${token}`, // Include token in Authorization header

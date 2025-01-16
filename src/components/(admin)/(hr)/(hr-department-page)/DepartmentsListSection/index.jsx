@@ -20,7 +20,9 @@ const DepartmentsListSection = () => {
           return;
         }
 
-        const response = await fetch("http://localhost:8000/api/department-list", {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        
+        const response = await fetch(`${apiUrl}/department-list`, {
           method: "GET",  // Use GET method to fetch data
           headers: {
             "Authorization": `Bearer ${token}`,  // Add the Bearer token in the Authorization header

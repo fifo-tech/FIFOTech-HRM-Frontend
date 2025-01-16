@@ -33,8 +33,13 @@ const Navbar = () => {
           <i className="fa fa-bars"></i>
         </button>
 
+        <img src="../../../../public/fav-radius-logo.png" alt="logo" className="h-10 me-2" />
+
         {/* Brand Name */}
-        <h1 className="text-lg font-bold text-gray-800">Wetechhub-HRM</h1>
+        <h1 className="text-lg font-bold text-white">WeTechHub - HRMS</h1>
+
+        
+     
       </div>
 
       <div className="flex items-center">
@@ -49,7 +54,10 @@ const Navbar = () => {
               alt="Profile"
               className="mr-2 h-8 w-8 rounded-full"
             />
-            <span>{firstName} {lastName}</span>  {/* Dynamically display the name */}
+            <div className="text-white">
+            <span>{firstName} {lastName}</span>
+            </div>
+             {/* Dynamically display the name */}
             <i className="fa fa-angle-down ml-2"></i>
           </button>
           {isDropdownOpen && (
