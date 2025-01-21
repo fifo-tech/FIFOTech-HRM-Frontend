@@ -198,7 +198,14 @@ const DesignationEditSection = () => {
         </div>
 
         {/* Save Button */}
-        <div className="mt-6 flex justify-end">
+        <div className="mt-6 flex justify-end space-x-4">
+          <button
+            type="button"
+            onClick={() => window.history.back()}
+            className="rounded bg-gray-300 px-6 py-2"
+          >
+            Cancel
+          </button>
           <button
             type="submit"
             className="rounded-md bg-primary px-6 py-2 font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
