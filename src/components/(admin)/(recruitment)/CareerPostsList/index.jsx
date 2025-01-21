@@ -1,4 +1,4 @@
-import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTable, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
@@ -60,7 +60,10 @@ const CareerPostsList = () => {
     <div className="mx-4 my-6 min-h-screen">
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
-        <h6 className="mb-4 text-lg font-semibold">Career Posts List</h6>
+        <div className="flex items-center space-x-2">
+          <FontAwesomeIcon icon={faTable} className="text-gray-700" />
+          <h2 className="text-xl font-semibold">Career Posts List</h2>
+        </div>
         <hr className="mb-4" />
 
         {/* Controls */}

@@ -1,7 +1,7 @@
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useEffect } from "react";
-import { createEmployee } from "@/models/Employee/CreateEmployee";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const EmployeesCreate = ({ toggleHideCreateForm }) => {
   const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
     phone_number: "",
     gender: "",
     email: "",
-    emp_id : "",
+    emp_id: "",
     dept_id: "",
     designation_id: "",
     profile_picture: null, // Added for profile picture
@@ -27,7 +27,8 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
 
     const fetchDepartments = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/department-list", {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        const response = await fetch(`${apiUrl}/department-list`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -47,7 +48,8 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
 
     const fetchDesignations = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/designation-list", {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        const response = await fetch(`${apiUrl}/designation-list`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -112,25 +114,32 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            setSuccessMessage("Employee created successfully!");
-            setFormData({
-              first_name: "",
-              last_name: "",
-              phone_number: "",
-              gender: "",
-              email: "",
-              emp_id : "",
-              dept_id: "",
-              designation_id: "",
-              profile_picture: null,
+            Swal.fire({
+              title: "Success!",
+              text: "Employee created successfully!",
+              icon: "success",
+              confirmButtonText: "Ok",
+            }).then(() => {
+              // Reload the page after success
+              window.location.reload();
             });
           } else {
-            setErrors([data.message || "Failed to create employee."]);
+            Swal.fire({
+              title: "Error!",
+              text: data.message || "Failed to create employee.",
+              icon: "error",
+              confirmButtonText: "Close",
+            });
           }
         })
         .catch((error) => {
           console.error("Error creating employee:", error);
-          setErrors(["An unexpected error occurred."]);
+          Swal.fire({
+            title: "Error!",
+            text: "An unexpected error occurred.",
+            icon: "error",
+            confirmButtonText: "Close",
+          });
         });
     }
   };
@@ -142,7 +151,7 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
       phone_number: "",
       gender: "",
       email: "",
-      emp_id : "",
+      emp_id: "",
       dept_id: "",
       designation_id: "",
       profile_picture: null,
@@ -219,12 +228,8 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
           />
         </div>
 
-
-
-
-
-      {/* Employee ID Number */}
-      <div>
+        {/* Employee ID */}
+        <div>
           <label className="mb-2 block font-medium text-gray-600">
             Employee ID (If Existing)
           </label>
@@ -237,11 +242,6 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
             className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:ring focus:ring-blue-300"
           />
         </div>
-
-
-
-
-
 
         {/* Phone Number */}
         <div>
@@ -282,7 +282,10 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
             onChange={handleChange}
             className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:ring focus:ring-blue-300"
           >
-            <option value="" disabled> Select gender </option>
+            <option value="" disabled>
+              {" "}
+              Select gender{" "}
+            </option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other</option>
@@ -300,7 +303,9 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
             onChange={handleChange}
             className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:ring focus:ring-blue-300"
           >
-            <option value="" disabled>Select a department</option>
+            <option value="" disabled>
+              Select a department
+            </option>
             {departments.map((dept) => (
               <option key={dept.id} value={dept.id}>
                 {dept.name}
@@ -320,7 +325,9 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
             onChange={handleChange}
             className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:ring focus:ring-blue-300"
           >
-            <option value="" disabled>Select a designation</option>
+            <option value="" disabled>
+              Select a designation
+            </option>
             {designations.map((desg) => (
               <option key={desg.id} value={desg.id}>
                 {desg.name}
@@ -330,7 +337,7 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
         </div>
 
         {/* Profile Picture Upload */}
-        <div className="col-span-2 flex flex-col ">
+        <div className="col-span-2 flex flex-col">
           <label className="mb-2 block font-medium text-gray-600">
             Profile Picture
           </label>

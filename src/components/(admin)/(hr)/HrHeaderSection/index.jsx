@@ -19,7 +19,7 @@ function HrHeaderSection() {
 
           <div className="flex flex-col p-1">
             <Link
-              to="/departments-list"
+              to="/dashboard/departments-list"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">Department</span>
@@ -36,7 +36,7 @@ function HrHeaderSection() {
           />
           <div className="flex flex-col p-1">
             <Link
-              to="/designations-list"
+              to="/dashboard/designations-list"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">Designation</span>

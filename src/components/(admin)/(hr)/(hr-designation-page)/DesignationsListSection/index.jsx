@@ -1,7 +1,8 @@
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTable, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2"; // Import Swal for alerts
 
 const DesignationsListSection = () => {
   const [search, setSearch] = useState("");
@@ -17,45 +18,60 @@ const DesignationsListSection = () => {
         const apiUrl = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem("token");
         if (!token) {
-          alert("You are not logged in!");
+          Swal.fire({
+            title: "Error!",
+            text: "You are not logged in!",
+            icon: "error",
+          });
           return;
         }
 
         // Fetch departments data
-        
         const deptResponse = await fetch(`${apiUrl}/department-list`, {
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
 
         const deptData = await deptResponse.json();
         if (deptData.success) {
-          setDepartments(deptData.data);  // Store departments data
+          setDepartments(deptData.data); // Store departments data
         } else {
-          alert("Failed to fetch departments");
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to fetch departments.",
+            icon: "error",
+          });
         }
 
         // Fetch designations data
         const desigResponse = await fetch(`${apiUrl}/designation-list`, {
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
 
         const desigData = await desigResponse.json();
         if (desigData.success) {
-          setDesignations(desigData.data);  // Store designations data
+          setDesignations(desigData.data); // Store designations data
         } else {
-          alert("Failed to fetch designations");
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to fetch designations.",
+            icon: "error",
+          });
         }
       } catch (error) {
         console.error("Error fetching data:", error);
-        alert("An error occurred while fetching data.");
+        Swal.fire({
+          title: "Error!",
+          text: "An error occurred while fetching data.",
+          icon: "error",
+        });
       }
     };
 
@@ -63,43 +79,80 @@ const DesignationsListSection = () => {
   }, []);
 
   // Filter designations based on the search input
-  const filteredDesignations = designations.filter((designation) =>
-    designation.name.toLowerCase().includes(search.toLowerCase()) ||
-    departments.some(
-      (dept) => dept.id === designation.dept_id && dept.name.toLowerCase().includes(search.toLowerCase())
-    )
+  const filteredDesignations = designations.filter(
+    (designation) =>
+      designation.name.toLowerCase().includes(search.toLowerCase()) ||
+      departments.some(
+        (dept) =>
+          dept.id === designation.dept_id &&
+          dept.name.toLowerCase().includes(search.toLowerCase()),
+      ),
   );
+
+  // Calculate total pages
+  const totalPages = Math.ceil(filteredDesignations.length / entries);
 
   // Delete handler to remove a designation by ID
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("You are not logged in!");
+      Swal.fire({
+        title: "Error!",
+        text: "You are not logged in!",
+        icon: "error",
+      });
       return;
     }
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await fetch(`${apiUrl}/delete-designation/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+      const confirm = await Swal.fire({
+        title: "Are you sure?",
+        text: "This action cannot be undone!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#7267EF",
       });
 
-      const data = await response.json();
+      if (confirm.isConfirmed) {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        const response = await fetch(`${apiUrl}/delete-designation/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
 
-      if (data.success) {
-        // Remove the deleted designation from the list
-        setDesignations(designations.filter((designation) => designation.id !== id));
-        alert("Designation deleted successfully!");
-      } else {
-        alert("Failed to delete designation: " + data.message);
+        const data = await response.json();
+
+        if (data.success) {
+          // Remove the deleted designation from the list
+          setDesignations(
+            designations.filter((designation) => designation.id !== id),
+          );
+          Swal.fire({
+            title: "Deleted!",
+            text: "Designation deleted successfully!",
+            icon: "success",
+          });
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: `Failed to delete designation: ${data.message}`,
+            icon: "error",
+          });
+        }
       }
     } catch (error) {
       console.error("Error deleting designation:", error);
-      alert("An error occurred while deleting the designation.");
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred while deleting the designation.",
+        icon: "error",
+      });
     }
   };
 
@@ -110,10 +163,11 @@ const DesignationsListSection = () => {
   };
 
   return (
-    <div className="mx-4 mt-6 max-h-screen max-w-2xl rounded-sm bg-white p-6">
+    <div className="mx-4 mr-6 mt-6 max-h-screen max-w-3xl rounded-md bg-white p-6">
       {/* Title */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">List All Designations</h2>
+      <div className="flex items-center space-x-2">
+        <FontAwesomeIcon icon={faTable} className="text-gray-700" />
+        <h2 className="text-xl font-semibold">List All Designations</h2>
       </div>
       <hr className="my-4 w-full border-gray-300" />
 
@@ -127,7 +181,10 @@ const DesignationsListSection = () => {
           <select
             id="entries"
             value={entries}
-            onChange={(e) => setEntries(Number(e.target.value))}
+            onChange={(e) => {
+              setEntries(Number(e.target.value));
+              setCurrentPage(1); // Reset to the first page when entries per page change
+            }}
             className="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-blue-500 focus:ring-blue-500"
           >
             {[5, 10, 15, 20].map((num) => (
@@ -161,38 +218,40 @@ const DesignationsListSection = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredDesignations.slice(0, entries).map((designation) => (
-              <tr
-                key={designation.id}
-                className="group h-[50px] border-b border-gray-300 transition-colors duration-150 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
-              >
-                <td className="relative min-w-52 border-b px-4 py-2 text-center">
-                  <span
-                    className="block group-hover:hidden"
-                    title={designation.name}
-                  >
-                    {designation.name}
-                  </span>
-                  <div className="absolute right-24 top-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-150 group-hover:opacity-100">
-                    <Link
-                      to={`/designations/${designation.id}/edit`}
-                      className="mx-1 rounded bg-blue-400 p-2 text-sm text-white hover:bg-blue-600"
+            {filteredDesignations
+              .slice((currentPage - 1) * entries, currentPage * entries)
+              .map((designation) => (
+                <tr
+                  key={designation.id}
+                  className="group h-[50px] border-b border-gray-300 transition-colors duration-150 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
+                >
+                  <td className="relative min-w-52 border-b px-4 py-2 text-center">
+                    <span
+                      className="block group-hover:hidden"
+                      title={designation.name}
                     >
-                      <FontAwesomeIcon icon={faEdit} />
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(designation.id)}
-                      className="mx-1 rounded bg-red-400 p-2 text-sm text-white hover:bg-red-600"
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                  </div>
-                </td>
-                <td className="border-b px-4 py-2 text-center">
-                  {getDepartmentName(designation.dept_id)}
-                </td>
-              </tr>
-            ))}
+                      {designation.name}
+                    </span>
+                    <div className="absolute inset-0 hidden items-center justify-center space-x-2 group-hover:flex">
+                      <Link
+                        to={`/dashboard/designations/${designation.id}/edit`}
+                        className="mx-1 rounded bg-blue-400 p-1 text-sm text-white hover:bg-blue-600"
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(designation.id)}
+                        className="mx-1 rounded bg-red-400 p-1 text-sm text-white hover:bg-red-600"
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
+                  </td>
+                  <td className="border-b px-4 py-2 text-center">
+                    {getDepartmentName(designation.dept_id)}
+                  </td>
+                </tr>
+              ))}
             {filteredDesignations.length === 0 && (
               <tr>
                 <td
@@ -211,7 +270,8 @@ const DesignationsListSection = () => {
       <div className="mt-4 flex items-center justify-between">
         {/* Showing Records */}
         <p className="text-sm text-gray-700">
-          Showing 1 to {filteredDesignations.slice(0, entries).length} of{" "}
+          Showing {(currentPage - 1) * entries + 1} to{" "}
+          {Math.min(currentPage * entries, filteredDesignations.length)} of{" "}
           {filteredDesignations.length} records
         </p>
 
@@ -226,8 +286,11 @@ const DesignationsListSection = () => {
           </button>
           <span className="bg-primary px-4 py-2 text-sm">{currentPage}</span>
           <button
-            onClick={() => setCurrentPage((prev) => prev + 1)}
-            className="rounded-r-md bg-gray-200 px-4 py-2 text-sm text-gray-600 shadow-sm hover:bg-gray-300"
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className="rounded-r-md bg-gray-200 px-4 py-2 text-sm text-gray-600 shadow-sm hover:bg-gray-300 disabled:opacity-50"
           >
             Next
           </button>

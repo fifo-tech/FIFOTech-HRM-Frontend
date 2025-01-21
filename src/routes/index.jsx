@@ -20,17 +20,19 @@ import HrDesignationPage from "@/pages/(admin)/(hr)/HrDesignationPage";
 import HrPoliciesPage from "@/pages/(admin)/(hr)/HrPoliciesPage";
 import ComplaintsListPage from "@/pages/(admin)/complaints/ComplaintsListPage";
 
-// authentication pages
-
+import EmployeeEditPage from "@/pages/(admin)/(employee)/EmployeeEditPage";
 import EmployeesExitPage from "@/pages/(admin)/(employee)/EmployeesExitPage";
 import EmployeesRolesAndPrivilegesPage from "@/pages/(admin)/(employee)/EmployeesRolesAndPrivilegesPage";
 import EmployeesShiftAndSchedulingPage from "@/pages/(admin)/(employee)/EmployeesShiftAndSchedulingPage";
+import HrDepartmentEditPage from "@/pages/(admin)/(hr)/HrDepartmentEditPage";
+import HrDesignationEditPage from "@/pages/(admin)/(hr)/HrDesignationEditPage";
 import LeaveListPage from "@/pages/(admin)/(leave-request)/LeaveListPage";
 import LeaveTypePage from "@/pages/(admin)/(leave-request)/LeaveTypePage";
 import ApplicantsListPage from "@/pages/(admin)/(recruitment)/ApplicantsListPage";
 import CareerCompletedListPage from "@/pages/(admin)/(recruitment)/CareerCompletedListPage";
 import CareerPostsListPage from "@/pages/(admin)/(recruitment)/CareerPostsListPage";
 import CreateCareerPostPage from "@/pages/(admin)/(recruitment)/CreateCareerPostPage";
+// authentication pages
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
 export const routes = [
@@ -55,8 +57,8 @@ export const routes = [
       {
         path: "dashboard", // Separate path for the dashboard
         element: (
-          <ProtectedRoute> 
-            <MainLayout /> 
+          <ProtectedRoute>
+            <MainLayout />
           </ProtectedRoute>
         ), // Wrap MainLayout with ProtectedRoute
         children: [
@@ -86,12 +88,25 @@ export const routes = [
             element: <EmployeesExitPage />,
           },
           {
+            path: "employee-edit/:id",
+            element: <EmployeeEditPage />,
+          },
+
+          {
             path: "departments-list",
             element: <HrDepartmentPage />,
           },
           {
+            path: "departments/:id/edit",
+            element: <HrDepartmentEditPage />,
+          },
+          {
             path: "designations-list",
             element: <HrDesignationPage />,
+          },
+          {
+            path: "designations/:id/edit",
+            element: <HrDesignationEditPage />,
           },
           {
             path: "policies-list",
@@ -150,4 +165,3 @@ export const routes = [
     ],
   },
 ];
-

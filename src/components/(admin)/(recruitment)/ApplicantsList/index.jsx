@@ -1,6 +1,7 @@
 import {
   faDownload,
   faEdit,
+  faTable,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -56,7 +57,10 @@ const ApplicantListSection = () => {
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-          <h6 className="text-lg font-semibold">Applicant List</h6>
+          <div className="flex items-center space-x-2">
+            <FontAwesomeIcon icon={faTable} className="text-gray-700" />
+            <h2 className="text-xl font-semibold">Applicants List</h2>
+          </div>
         </div>
         <hr className="mb-4" />
 

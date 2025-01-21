@@ -1,3 +1,5 @@
+import { faTable } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { getAttendanceList } from "../../../../../models/Attendance/GetAttendance";
 
@@ -33,43 +35,37 @@ const AttendanceDailyListSection = () => {
     fetchAttendanceData();
   }, []);
 
-
   function formatTimeWithAMPM(time) {
     if (!time) return "N/A";
-    
+
     const [hours, minutes] = time.split(":").map(Number);
-    
+
     // Determine AM or PM
     const period = hours >= 12 ? "PM" : "AM";
-    
+
     // Adjust hours for 12-hour format
     const adjustedHours = hours % 12;
-    
+
     // If the hour is 0 (midnight), set it to 12 for 12:00 AM
     const formattedHours = adjustedHours === 0 ? 12 : adjustedHours;
-    
+
     // Ensure 2 digits for minutes
     const formattedMinutes = minutes.toString().padStart(2, "0");
-  
+
     return `${formattedHours}:${formattedMinutes} ${period}`;
   }
-  
-  
-  
-
-
 
   const filteredData = attendanceData.filter(
     (item) =>
       item.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.last_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.date.includes(searchTerm)
+      item.date.includes(searchTerm),
   );
 
   const totalPages = Math.ceil(filteredData.length / entries);
   const paginatedData = filteredData.slice(
     (currentPage - 1) * entries,
-    currentPage * entries
+    currentPage * entries,
   );
 
   const handlePrevious = () => {
@@ -87,10 +83,9 @@ const AttendanceDailyListSection = () => {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-full rounded-md bg-white p-6 shadow-md">
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-gray-700">
-            Daily Attendance Report
-          </h2>
+        <div className="flex items-center space-x-2">
+          <FontAwesomeIcon icon={faTable} className="text-gray-700" />
+          <h2 className="text-xl font-semibold">Daily Attendance Report</h2>
         </div>
 
         <hr className="mb-4 border-gray-300" />
@@ -179,39 +174,50 @@ const AttendanceDailyListSection = () => {
                   </tr>
                 </thead>
                 <tbody>
-                {paginatedData.map((item, index) => (
-                  <tr key={index} className="h-[50px] border-b border-gray-300 transition duration-100 hover:bg-gray-100">
-                    <td className="h-[50px] border-b px-4 py-2">
-                      <div className="group relative flex h-[50px] items-center space-x-4">
-                        <div className="flex flex-shrink-0 items-start truncate">
-                          <img
-                            src={item.image || "/default-profile.jpg"}
-                            alt="Employee"
-                            className="h-12 w-12 rounded-full object-cover"
-                          />
+                  {paginatedData.map((item, index) => (
+                    <tr
+                      key={index}
+                      className="h-[50px] border-b border-gray-300 transition duration-100 hover:bg-gray-50 hover:shadow-[0_-5px_10px_rgba(99,102,241,0.2),0_5px_10px_rgba(99,102,241,0.2),-5px_0_10px_rgba(99,102,241,0.2)]"
+                    >
+                      <td className="h-[50px] max-w-[240px] border-b px-4 py-2">
+                        <div className="group relative flex h-[50px] items-center space-x-4">
+                          <div className="flex flex-shrink-0 items-start truncate">
+                            <img
+                              src={item.image || "/default-profile.jpg"}
+                              alt="Employee"
+                              className="h-12 w-12 rounded-full object-cover"
+                            />
+                          </div>
+                          <div className="flex min-w-[150px] flex-col truncate">
+                            <span className="truncate whitespace-nowrap font-medium">
+                              {item.first_name || "N/A"}{" "}
+                              {item.last_name || "N/A"}
+                            </span>
+                            <span className="truncate text-sm text-gray-500">
+                              {item.email || "N/A"}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex min-w-[150px] flex-col truncate">
-                          <span className="truncate whitespace-nowrap font-medium">
-                            {item.first_name || "N/A"} {item.last_name || "N/A"}
-                          </span>
-                          <span className="truncate text-sm text-gray-500">
-                            {item.email || "N/A"}
-                          </span>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-2">{item.emp_id || "N/A"}</td>
-                    <td className="px-4 py-2">{item.date || "N/A"}</td>
-                    <td className="px-4 py-2">{item.status || "N/A"}</td>
-                    <td className="px-4 py-2">{formatTimeWithAMPM(item.clock_in)}</td>
-                    <td className="px-4 py-2">{formatTimeWithAMPM(item.clock_out)}</td>
-                    <td className="px-4 py-2">{item.late  || "N/A"}</td>
-                    <td className="px-4 py-2">{item.early_leaving  || "N/A"}</td>
-                    <td className="px-4 py-2">{item.total_work_hour || "N/A"}</td>
-                  </tr>
-                ))}
-              </tbody>
-
+                      </td>
+                      <td className="px-4 py-2">{item.emp_id || "N/A"}</td>
+                      <td className="px-4 py-2">{item.date || "N/A"}</td>
+                      <td className="px-4 py-2">{item.status || "N/A"}</td>
+                      <td className="px-4 py-2">
+                        {formatTimeWithAMPM(item.clock_in)}
+                      </td>
+                      <td className="px-4 py-2">
+                        {formatTimeWithAMPM(item.clock_out)}
+                      </td>
+                      <td className="px-4 py-2">{item.late || "N/A"}</td>
+                      <td className="px-4 py-2">
+                        {item.early_leaving || "N/A"}
+                      </td>
+                      <td className="px-4 py-2">
+                        {item.total_work_hour || "N/A"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
 
@@ -227,7 +233,7 @@ const AttendanceDailyListSection = () => {
                   className={`rounded-l-md px-4 py-2 text-sm font-medium ${
                     currentPage === 1
                       ? "cursor-not-allowed bg-gray-300 text-gray-400"
-                      : "bg-primary text-white hover:bg-blue-600"
+                      : "bg-gray-400 text-white"
                   }`}
                 >
                   Previous
@@ -241,7 +247,7 @@ const AttendanceDailyListSection = () => {
                   className={`rounded-r-md px-4 py-2 text-sm font-medium ${
                     currentPage === totalPages
                       ? "cursor-not-allowed bg-gray-300 text-gray-400"
-                      : "bg-primary text-white hover:bg-blue-600"
+                      : "bg-gray-400 text-white"
                   }`}
                 >
                   Next

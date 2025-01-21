@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2"; // For showing alerts
-import { createDesignation } from "../../../../../models/Designation/CreateDesignation"; // Import method to create designation
-import { fetchDepartments } from "../../../../../models/Designation/GetDepartments"; // Import method to fetch departments
+import { fetchDepartments } from "../../../../../models/Designation/GetDepartments"; // Method to fetch departments
+import { fetchDesignationDetails } from "../../../../../models/Designation/GetDesignationDetails"; // Method to fetch specific designation details
+import { updateDesignation } from "../../../../../models/Designation/UpdateDesignation"; // Method to update designation
 
-const DesignationsCreateSection = () => {
-  const [departments, setDepartments] = useState([]); // Initialize as an empty array
+const DesignationEditSection = () => {
+  const { id } = useParams(); // Get the ID from the URL
+  const navigate = useNavigate(); // For navigating after successful update
+  const [departments, setDepartments] = useState([]);
   const [department, setDepartment] = useState("");
   const [designationName, setDesignationName] = useState("");
   const [description, setDescription] = useState("");
@@ -34,9 +38,40 @@ const DesignationsCreateSection = () => {
         });
       }
     };
+
     loadDepartments();
   }, []);
 
+  // Fetch the specific designation details when the component mounts
+  useEffect(() => {
+    const loadDesignation = async () => {
+      try {
+        const designation = await fetchDesignationDetails(id); // Fetch the designation details by ID
+        if (designation) {
+          setDepartment(designation.dept_id); // Set the selected department
+          setDesignationName(designation.name); // Set the designation name
+          setDescription(designation.description || ""); // Set description if available
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to load designation details.",
+            icon: "error",
+          });
+        }
+      } catch (error) {
+        console.error("Failed to load designation details:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to load designation details.",
+          icon: "error",
+        });
+      }
+    };
+
+    loadDesignation();
+  }, [id]);
+
+  // Handle form submission to update the designation
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!department || !designationName) {
@@ -47,31 +82,39 @@ const DesignationsCreateSection = () => {
     setLoading(true);
 
     try {
-      // Call the createDesignation API
-      const response = await createDesignation(
+      // Call the updateDesignation API
+      const response = await updateDesignation(
+        id,
         department,
         designationName,
         description,
       );
 
-      // Show success notification
-      Swal.fire({
-        title: "Success!",
-        text: "Designation created successfully!",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+      if (response.success) {
+        // Show success notification
+        Swal.fire({
+          title: "Success!",
+          text: "Designation updated successfully!",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
 
-      // Reload the page after a delay to allow the alert to show
-      setTimeout(() => {
-        window.location.reload();
-      }, 1600);
+        // Navigate back to the list page
+        navigate("/dashboard/designations-list");
+      } else {
+        // Handle failure
+        Swal.fire({
+          title: "Error!",
+          text: response.message || "Failed to update designation.",
+          icon: "error",
+        });
+      }
     } catch (error) {
-      // Handle error during designation creation
+      // Handle error during designation update
       Swal.fire({
         title: "Error!",
-        text: error.message || "Failed to create designation.",
+        text: error.message || "Failed to update designation.",
         icon: "error",
       });
     } finally {
@@ -80,8 +123,8 @@ const DesignationsCreateSection = () => {
   };
 
   return (
-    <div className="mx-4 my-6 max-w-4xl rounded-md bg-white p-6 shadow-md">
-      <h2 className="mb-4 text-lg font-semibold">Add New Designation</h2>
+    <div className="mx-4 my-6 max-w-5xl rounded-sm bg-white p-6 shadow-md">
+      <h2 className="mb-4 text-lg font-semibold">Edit Designation</h2>
 
       <hr className="border-t-1 mb-6 border-gray-300" />
 
@@ -158,7 +201,7 @@ const DesignationsCreateSection = () => {
         <div className="mt-6 flex justify-end">
           <button
             type="submit"
-            className="rounded-md bg-primary px-6 py-2 font-semibold text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="rounded-md bg-primary px-6 py-2 font-semibold text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             disabled={loading}
           >
             {loading ? "Saving..." : "Save"}
@@ -169,4 +212,4 @@ const DesignationsCreateSection = () => {
   );
 };
 
-export default DesignationsCreateSection;
+export default DesignationEditSection;

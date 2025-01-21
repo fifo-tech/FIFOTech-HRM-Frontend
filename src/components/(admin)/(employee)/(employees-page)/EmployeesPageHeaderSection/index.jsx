@@ -17,7 +17,10 @@ function EmployeesPageHeaderSection() {
             className="mb-2 text-lg text-blue-500"
           />
           <div className="flex flex-col p-1">
-            <Link to="/employees" className="text-gray-700 hover:text-blue-500">
+            <Link
+              to="/dashboard/employees"
+              className="text-gray-700 hover:text-blue-500"
+            >
               <span className="font-medium text-gray-700">Employees</span>
             </Link>
             <span className="text-xs text-gray-500">Set up Emplouees</span>
