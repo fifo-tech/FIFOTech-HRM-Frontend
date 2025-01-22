@@ -33,7 +33,7 @@ const Navbar = () => {
           <i className="fa fa-bars"></i>
         </button>
 
-        <img src="../../../../public/fav-radius-logo.png" alt="logo" className="h-10 me-2" />
+        <img src="./assets/fav-radius-logo.png" alt="logo" className="h-10 me-2" />
 
         {/* Brand Name */}
         <h1 className="text-lg font-bold text-white">WeTechHub - HRMS</h1>
