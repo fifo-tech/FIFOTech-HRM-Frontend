@@ -35,7 +35,7 @@ function EmployeesPageHeaderSection() {
           />
           <div className="flex flex-col p-2">
             <Link
-              to="/employee-roles"
+              to="/dashboard/employee-roles"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">
@@ -54,7 +54,7 @@ function EmployeesPageHeaderSection() {
           />
           <div className="flex flex-col p-2">
             <Link
-              to="/office-shifts"
+              to="/dashboard/office-shifts"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">

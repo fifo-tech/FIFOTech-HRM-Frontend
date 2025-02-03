@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 export const AuthContext = createContext(null);
@@ -37,7 +37,15 @@ const AuthProvider = ({ children }) => {
       });
 
       if (response.data.success) {
-        const { first_name, last_name, email, profile_photo_url, token, role_id } = response.data.data;
+        const {
+          id,
+          first_name,
+          last_name,
+          email,
+          profile_photo_url,
+          token,
+          role_id,
+        } = response.data.data;
 
         // Save user data in localStorage
         localStorage.setItem("first_name", first_name);
@@ -46,9 +54,10 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem("user_profile_pic", profile_photo_url);
         localStorage.setItem("token", token);
         localStorage.setItem("role_id", role_id);
-        
+        localStorage.setItem("logged_in_user_id", id);
+
         const f_name = localStorage.getItem("first_name");
-        console.log(f_name)
+        console.log(f_name);
 
         // Set user state
         setUser({
@@ -61,11 +70,15 @@ const AuthProvider = ({ children }) => {
         return response.data.data;
       } else {
         throw new Error(
-          response.data.message || "Login failed. Please check your credentials."
+          response.data.message ||
+            "Login failed. Please check your credentials.",
         );
       }
     } catch (error) {
-      console.error("Login error:", error.response ? error.response.data : error.message);
+      console.error(
+        "Login error:",
+        error.response ? error.response.data : error.message,
+      );
       throw error;
     } finally {
       setLoading(false);
@@ -81,13 +94,12 @@ const AuthProvider = ({ children }) => {
 
       if (!token) {
         throw new Error("No token found. You are already logged out.");
-        
       }
 
       const response = await fetch(`${apiUrl}/logout`, {
-        method: "DELETE",  // Logout uses DELETE method
+        method: "DELETE", // Logout uses DELETE method
         headers: {
-          "Authorization": `Bearer ${token}`,  // Include the token in the Authorization header
+          Authorization: `Bearer ${token}`, // Include the token in the Authorization header
           "Content-Type": "application/json",
         },
       });

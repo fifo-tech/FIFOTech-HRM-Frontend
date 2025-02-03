@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2"; // Import Swal for alerts
 
-const DepartmentCreateSection = () => {
+const DepartmentCreateSection = ({ setIsUpdated }) => {
   const [departmentName, setDepartmentName] = useState("");
   const [departmentHead, setDepartmentHead] = useState("");
 
@@ -46,7 +46,11 @@ const DepartmentCreateSection = () => {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (response.ok && data.success) {
+        setIsUpdated((prev) => !prev);
+
+        setDepartmentName("");
+        setDepartmentHead("");
         Swal.fire({
           title: "Success!",
           text: "Department created successfully!",
@@ -56,9 +60,9 @@ const DepartmentCreateSection = () => {
         });
 
         // Reload the page after a short delay
-        setTimeout(() => {
-          window.location.reload();
-        }, 1600);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1600);
       } else {
         Swal.fire({
           title: "Error!",

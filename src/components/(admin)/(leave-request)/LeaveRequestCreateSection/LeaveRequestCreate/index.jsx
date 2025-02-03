@@ -4,6 +4,7 @@ import { useState } from "react";
 
 function LeaveRequestCreate({ toggleHideCreateForm }) {
   const [halfDay, setHalfDay] = useState(false);
+  const [file, setFile] = useState(null);
 
   const handleReset = () => {
     // Add reset functionality
@@ -11,6 +12,26 @@ function LeaveRequestCreate({ toggleHideCreateForm }) {
 
   const handleSave = () => {
     // Add save functionality
+  };
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      const validExtensions = [
+        "application/pdf",
+        "image/gif",
+        "image/png",
+        "image/jpg",
+        "image/jpeg",
+      ];
+      if (validExtensions.includes(selectedFile.type)) {
+        setFile(URL.createObjectURL(selectedFile));
+      } else {
+        alert(
+          "Invalid file type. Please upload a PDF, gif, png, jpg, or jpeg.",
+        );
+      }
+    }
   };
 
   return (
@@ -96,15 +117,11 @@ function LeaveRequestCreate({ toggleHideCreateForm }) {
           <div className="mb-4 mt-4 flex items-center">
             <label className="mr-4 text-sm font-medium">Half Day</label>
             <div
-              className={`relative inline-block h-6 w-10 ${
-                halfDay ? "bg-primary" : "bg-gray-300"
-              } cursor-pointer rounded-full`}
+              className={`relative inline-block h-6 w-10 ${halfDay ? "bg-primary" : "bg-gray-300"} cursor-pointer rounded-full`}
               onClick={() => setHalfDay(!halfDay)}
             >
               <div
-                className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform ${
-                  halfDay ? "translate-x-4 transform" : ""
-                }`}
+                className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform ${halfDay ? "translate-x-4 transform" : ""}`}
               />
             </div>
           </div>
@@ -130,6 +147,29 @@ function LeaveRequestCreate({ toggleHideCreateForm }) {
               placeholder="Provide a reason for the leave"
               required
             />
+          </div>
+
+          {/* File Upload Section */}
+          <div className="mb-6">
+            <label className="mb-1 block text-sm font-medium">
+              Leave Attachment
+            </label>
+            <div className="mb-4 flex h-32 w-32 items-center justify-center border-2 border-gray-300 bg-gray-200">
+              {file ? (
+                <span className="text-gray-500">File selected</span>
+              ) : (
+                <span className="text-gray-500">No file chosen</span>
+              )}
+            </div>
+            <input
+              type="file"
+              accept=".pdf,.gif,.png,.jpg,.jpeg"
+              onChange={handleFileChange}
+              className="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <p className="mt-2 text-sm text-gray-500">
+              Upload files only: pdf, gif, png, jpg, jpeg
+            </p>
           </div>
 
           {/* Buttons */}

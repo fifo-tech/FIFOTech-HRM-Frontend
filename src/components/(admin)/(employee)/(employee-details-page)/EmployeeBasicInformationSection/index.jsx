@@ -1,10 +1,140 @@
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const EmployeeBasicInformationSection = () => {
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+
+const EmployeeBasicInformationSection = ({ id }) => {
+  const [employeeData, setEmployeeData] = useState({
+    first_name: "",
+    last_name: "",
+    contactNumber: "",
+    gender: "",
+    emp_id: "",
+    date_of_birth: "",
+    status: "",
+    marital_status: "",
+    role: "",
+    district: "",
+    city: "",
+    zip_code: "",
+    religion: "",
+    blood_group: "",
+    nationality: "",
+    citizenship: "",
+    present_address: "",
+    permanent_address: "",
+  });
+
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("No token found in local storage");
+        }
+
+        const response = await fetch(`${apiUrl}/employee-profile/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch employee data");
+        }
+
+        const { data } = await response.json();
+
+        setEmployeeData({
+          first_name: data.employee.first_name || "",
+          last_name: data.employee.last_name || "",
+          phone_num: data.employee.phone_num || "",
+          gender: data.employee.gender || "",
+          empId: data.employee.emp_id || "",
+          date_of_birth: data.employee.date_of_birth || "",
+          status: data.employee.active_status || "",
+          marital_status: data.employee.marital_status || "",
+          role: data.employee.role_name || "",
+          district: data.employee.district || "",
+          city: data.employee.city || "",
+          zip_code: data.employee.zip_code || "",
+          religion: data.employee.religion || "",
+          blood_group: data.employee.blood_group || "",
+          nationality: data.employee.nationality || "",
+          citizenship: data.employee.citizenship || "",
+          present_address: data.employee.present_address || "",
+          permanent_address: data.employee.permanent_address || "",
+        });
+      } catch (error) {
+        console.error("Error fetching employee data:", error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEmployeeData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log("Clicked");
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in local storage");
+      }
+
+      const response = await fetch(`${apiUrl}/update-employee/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(employeeData),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (data.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "Employee information updated successfully.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: data.message || "Failed to update employee information.",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "An error occurred while updating the employee information.",
+      });
+      console.error("Error updating employee data:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-50 py-6">
       <div className="mx-4 max-w-3xl rounded-lg bg-white p-8 shadow-lg">
-        {/* Title */}
         <div>
           <h6 className="mb-6 flex items-center text-xl text-gray-600">
             <FontAwesomeIcon
@@ -16,64 +146,118 @@ const EmployeeBasicInformationSection = () => {
           </h6>
         </div>
 
-        {/* Form Section */}
-        <form className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {/* First Name */}
+        <form
+          className="grid grid-cols-1 gap-6 md:grid-cols-2"
+          onSubmit={handleSubmit}
+        >
           <div>
             <label className="block font-medium text-gray-700">
               First Name
             </label>
             <input
               type="text"
-              placeholder="Enter first name"
+              name="first_name"
+              value={employeeData.first_name}
+              onChange={handleInputChange}
               className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
             />
           </div>
 
-          {/* Last Name */}
           <div>
             <label className="block font-medium text-gray-700">Last Name</label>
             <input
               type="text"
-              placeholder="Enter last name"
+              name="last_name"
+              value={employeeData.last_name}
+              onChange={handleInputChange}
               className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
             />
           </div>
 
-          {/* Contact Number */}
           <div>
             <label className="block font-medium text-gray-700">
               Contact Number
             </label>
             <input
               type="tel"
-              placeholder="Enter contact number"
+              name="phone_num"
+              value={employeeData.phone_num}
+              onChange={handleInputChange}
               className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
             />
           </div>
 
-          {/* Gender */}
-          <div>
+          <div className="w-full">
             <label className="block font-medium text-gray-700">Gender</label>
-            <select className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm">
-              <option value="">Select gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+            <select
+              name="gender"
+              value={employeeData.gender}
+              onChange={handleInputChange}
+              className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+            >
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
-          {/* Employee ID */}
-          <div>
-            <label className="block font-medium text-gray-700">
-              Employee ID
-            </label>
-            <input
-              type="text"
-              placeholder="Enter employee ID"
-              className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
-            />
-          </div>
+          {/* Additional fields */}
+          {[
+            // {
+            //   label: "Date of Birth",
+            //   name: "dateOfBirth",
+            //   value: employeeData.dateOfBirth,
+            // },
+            {
+              label: "Marital Status",
+              name: "marital_status",
+              value: employeeData.marital_status,
+            },
+            //  { label: "Role", name: "role", value: employeeData.role },
+            {
+              label: "District",
+              name: "district",
+              value: employeeData.district,
+            },
+            { label: "City", name: "city", value: employeeData.city },
+            {
+              label: "Zip Code",
+              name: "zip_code",
+              value: employeeData.zip_code,
+            },
+            {
+              label: "Religion",
+              name: "religion",
+              value: employeeData.religion,
+            },
+            {
+              label: "Blood Group",
+              name: "blood_group",
+              value: employeeData.blood_group,
+            },
+            {
+              label: "Nationality",
+              name: "nationality",
+              value: employeeData.nationality,
+            },
+            {
+              label: "Citizenship",
+              name: "citizenship",
+              value: employeeData.citizenship,
+            },
+          ].map(({ label, name, value }, index) => (
+            <div key={index}>
+              <label className="block font-medium text-gray-700">{label}</label>
+              <input
+                type="text"
+                name={name}
+                value={value}
+                onChange={handleInputChange}
+                className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+              />
+            </div>
+          ))}
 
           {/* Date of Birth */}
           <div>
@@ -82,58 +266,48 @@ const EmployeeBasicInformationSection = () => {
             </label>
             <input
               type="date"
+              name="date_of_birth"
+              value={employeeData.date_of_birth}
+              onChange={handleInputChange}
               className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
             />
           </div>
 
-          {/* Additional Fields */}
-          {[
-            { label: "Status", placeholder: "Select status" },
-            { label: "Marital Status", placeholder: "Select marital status" },
-            { label: "Role", placeholder: "Enter role" },
-            { label: "District", placeholder: "Enter district" },
-            { label: "City", placeholder: "Enter city" },
-            {
-              label: "Zip Code / Postal Code",
-              placeholder: "Enter zip or postal code",
-            },
-            { label: "Religion", placeholder: "Enter religion" },
-            { label: "Blood Group", placeholder: "Enter blood group" },
-            { label: "Nationality", placeholder: "Enter nationality" },
-            { label: "Citizenship", placeholder: "Enter citizenship" },
-          ].map(({ label, placeholder }, index) => (
-            <div key={index}>
-              <label className="block font-medium text-gray-700">{label}</label>
-              <input
-                type="text"
-                placeholder={placeholder}
-                className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
-              />
-            </div>
-          ))}
+          <div className="col-span-1 md:col-span-2">
+            <label className="block font-medium text-gray-700">
+              Present Address
+            </label>
+            <textarea
+              name="present_address"
+              value={employeeData.present_address}
+              onChange={handleInputChange}
+              rows={3}
+              className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+            ></textarea>
+          </div>
 
-          {/* Address Fields */}
-          {[
-            { label: "Present Address", rows: 3 },
-            { label: "Permanent Address", rows: 3 },
-          ].map(({ label, rows }, index) => (
-            <div key={index} className="col-span-1 md:col-span-2">
-              <label className="block font-medium text-gray-700">{label}</label>
-              <textarea
-                rows={rows}
-                placeholder={`Enter ${label.toLowerCase()}`}
-                className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
-              ></textarea>
-            </div>
-          ))}
+          <div className="col-span-1 md:col-span-2">
+            <label className="block font-medium text-gray-700">
+              Permanent Address
+            </label>
+            <textarea
+              name="permanent_address"
+              value={employeeData.permanent_address}
+              onChange={handleInputChange}
+              rows={3}
+              className="mt-1 w-full rounded-lg border border-gray-300 p-2.5 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 sm:text-sm"
+            ></textarea>
+          </div>
+
+          <div className="mt-8 flex justify-end">
+            <button
+              type="submit"
+              className="rounded-lg bg-primary px-6 py-2 text-white shadow transition hover:bg-primary"
+            >
+              Update Profile
+            </button>
+          </div>
         </form>
-
-        {/* Update Profile Button */}
-        <div className="mt-8 flex justify-end">
-          <button className="rounded-lg bg-primary px-6 py-2 text-white shadow transition hover:bg-primary">
-            Update Profile
-          </button>
-        </div>
       </div>
     </div>
   );

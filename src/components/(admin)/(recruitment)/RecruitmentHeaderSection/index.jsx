@@ -19,7 +19,7 @@ function RecruitmentHeaderSection() {
 
           <div className="flex flex-col p-1">
             <Link
-              to="/applicants-list"
+              to="/dashboard/applicants-list"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">Applicants</span>
@@ -36,7 +36,7 @@ function RecruitmentHeaderSection() {
           />
           <div className="flex flex-col p-1">
             <Link
-              to="/create-career-post"
+              to="/dashboard/create-career-post"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">
@@ -55,7 +55,7 @@ function RecruitmentHeaderSection() {
           />
           <div className="flex flex-col p-1">
             <Link
-              to="/career-posts-list"
+              to="/dashboard/career-posts-list"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">
@@ -73,7 +73,7 @@ function RecruitmentHeaderSection() {
           />
           <div className="flex flex-col p-1">
             <Link
-              to="/career-completed-list"
+              to="/dashboard/career-completed-list"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">

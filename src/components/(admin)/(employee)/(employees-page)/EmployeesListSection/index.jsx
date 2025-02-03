@@ -46,7 +46,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
 
   const handleViewDetails = (id) => {
     console.log(id);
-    navigate(`/dashboard/employee-details/${id}`);
+    navigate(`/dashboard/employee-details/${id}`, { state: { id: id } });
   };
 
   const handleEdit = (id) => {
@@ -208,6 +208,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                               alt="Employee"
                               className="h-12 w-12 rounded-full object-cover"
                             />
+                            {/* <span>{employee.blood_group}</span> */}
                           </div>
 
                           {/* Name and Email */}
@@ -217,6 +218,9 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
                             </span>
                             <span className="truncate text-sm text-gray-500">
                               {employee.email}
+                            </span>
+                            <span className="truncate text-sm text-gray-500">
+                              {employee.phone_num}
                             </span>
                           </div>
 

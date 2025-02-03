@@ -1,16 +1,15 @@
 import LeaveRequestCreate from "./LeaveRequestCreate";
-import LeaveRequestFileUploadSection from "./LeaveRequestFileUploadSection";
 
 const LeaveRequestCreateSection = ({ toggleHideCreateForm }) => {
   return (
     <section className="my-8">
       <div className="grid grid-cols-3 gap-8">
-        <div className="col-span-2">
+        <div className="col-span-3">
           <LeaveRequestCreate toggleHideCreateForm={toggleHideCreateForm} />
         </div>
-        <div className="col-span-1">
+        {/* <div className="col-span-1">
           <LeaveRequestFileUploadSection />
-        </div>
+        </div> */}
       </div>
     </section>
   );

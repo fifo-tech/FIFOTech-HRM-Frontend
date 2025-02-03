@@ -1,10 +1,15 @@
-import { faEdit, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faPlus,
+  faTable,
+  faTrashAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const EmployeesShiftAndScheduling = () => {
-  const [entries, setEntries] = useState(10);
+const EmployeesShiftAndSchedulingList = ({ toggleCreateForm }) => {
+  const [entries, setEntries] = useState(5);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -44,9 +49,17 @@ const EmployeesShiftAndScheduling = () => {
       <div className="rounded-md bg-white p-6 shadow-md">
         {/* Header */}
         <div className="mb-4 flex items-center justify-between">
-          <h6 className="text-lg font-semibold">List All Office Shifts</h6>
-          <button className="rounded bg-primary px-3 py-1 text-white hover:bg-indigo-600">
-            <FontAwesomeIcon icon={faPlus} /> Add New
+          <div className="flex items-center space-x-2">
+            <FontAwesomeIcon icon={faTable} className="text-gray-700" />
+            <h2 className="text-xl font-semibold">List All Office Shifts</h2>
+          </div>
+
+          <button
+            onClick={toggleCreateForm}
+            className="flex items-center space-x-1 rounded bg-primary px-2 py-1 text-white hover:bg-indigo-600"
+          >
+            <FontAwesomeIcon icon={faPlus} />
+            <span>Add New</span>
           </button>
         </div>
         <hr className="mb-4" />
@@ -66,10 +79,10 @@ const EmployeesShiftAndScheduling = () => {
               }}
               className="ml-2 rounded-md border px-2 py-1 text-sm"
             >
+              <option value={5}>5</option>
               <option value={10}>10</option>
-              <option value={25}>25</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
+              <option value={15}>15</option>
+              <option value={20}>20</option>
             </select>
             <span className="ml-2 text-sm">entries</span>
           </div>
@@ -197,4 +210,4 @@ const EmployeesShiftAndScheduling = () => {
   );
 };
 
-export default EmployeesShiftAndScheduling;
+export default EmployeesShiftAndSchedulingList;

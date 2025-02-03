@@ -33,6 +33,8 @@ import CareerCompletedListPage from "@/pages/(admin)/(recruitment)/CareerComplet
 import CareerPostsListPage from "@/pages/(admin)/(recruitment)/CareerPostsListPage";
 import CreateCareerPostPage from "@/pages/(admin)/(recruitment)/CreateCareerPostPage";
 // authentication pages
+import AddEmployeeAttendancePage from "@/pages/(admin)/(attendance)/AddEmployeeAttendancePage";
+import AddSelfAttendancePage from "@/pages/(admin)/(attendance)/AddSelfAttendancePage";
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
 export const routes = [
@@ -78,6 +80,10 @@ export const routes = [
           {
             path: "employee-roles",
             element: <EmployeesRolesAndPrivilegesPage />,
+          },
+          {
+            path: "roles/:id/edit",
+            // element: <EmployeesRolesAndPrivilegesEdit />,
           },
           {
             path: "office-shifts",
@@ -127,6 +133,14 @@ export const routes = [
           {
             path: "manual-attendance",
             element: <ManualAttendancePage />,
+          },
+          {
+            path: "add-self-attendance",
+            element: <AddSelfAttendancePage />,
+          },
+          {
+            path: "add-employee-attendance",
+            element: <AddEmployeeAttendancePage />,
           },
           {
             path: "overtime-request",

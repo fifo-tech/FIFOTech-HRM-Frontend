@@ -1,9 +1,6 @@
 import {
-  faCalendarCheck,
   faClock,
-  faHeadset,
   faHome,
-  faUserPlus,
   faUsers,
   faUserTie,
 } from "@fortawesome/free-solid-svg-icons";
@@ -11,13 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarMenuItem from "./SidebarMenuItem";
 
 const Sidebar = () => {
-  const role_id = localStorage.getItem('role_id');
+  const role_id = localStorage.getItem("role_id");
   return (
     <aside className="w-70 sticky top-0 mx-4 my-6 ml-6 h-screen overflow-y-scroll rounded-md bg-card shadow-lg">
       {/* Sidebar Header */}
-      <div className="flex items-center border-border px-4 pt-4 pb-0" >
-
-
+      <div className="flex items-center border-border px-4 pb-0 pt-4">
         {/* <FontAwesomeIcon icon={faTachometerAlt} className="text-xl" /> */}
         {/* <span className="ml-2 text-xl font-bold">Wetechhub-HRM</span> */}
         {/* <div>
@@ -39,30 +34,48 @@ const Sidebar = () => {
             icon={<FontAwesomeIcon icon={faUsers} />}
           />
 
-        {role_id === '1' || role_id === '2' ? (
-              <SidebarMenuItem
-                title="Core HR"
-                icon={<FontAwesomeIcon icon={faUserTie} />}
-                children={[
-                  { title: "Department", link: "departments-list" },
-                  { title: "Designation", link: "designations-list" },
-                  { title: "Policies", link: "policies-list" },
-    
-                  { title: "Make Announcement", link: "announcement-list" },
-                ]}
-              />
-            ) : null}
+          {role_id === "1" || role_id === "2" ? (
+            <SidebarMenuItem
+              title="Core HR"
+              icon={<FontAwesomeIcon icon={faUserTie} />}
+              children={[
+                { title: "Department", link: "departments-list" },
+                { title: "Designation", link: "designations-list" },
+                // { title: "Policies", link: "policies-list" },
+
+                // { title: "Make Announcement", link: "announcement-list" },
+              ]}
+            />
+          ) : null}
 
           <SidebarMenuItem
             title="Attendance"
             icon={<FontAwesomeIcon icon={faClock} />}
-            children={[
-              { title: "Attendance", link: "attendance-daily-list" },
-              { title: "Manual Attendance", link: "manual-attendance" },
-              { title: "Monthly Report", link: "attendance-monthly-report" },
-              { title: "Overtime Request", link: "overtime-request" },
-            ]}
+            children={
+              role_id === "3"
+                ? [{ title: "Add Attendance", link: "add-attendance" }]
+                : [
+                    {
+                      title: "Daily Attendances List",
+                      link: "attendance-daily-list",
+                    },
+                    {
+                      title: "Add Self Attendance",
+                      link: "add-self-attendance",
+                    },
+                    {
+                      title: "Add Employee Attendance",
+                      link: "add-employee-attendance",
+                    },
+                    // {
+                    //   title: "Monthly Report",
+                    //   link: "attendance-monthly-report",
+                    // },
+                    // { title: "Overtime Request", link: "overtime-request" },
+                  ]
+            }
           />
+
           {/* <SidebarMenuItem
             title="Finance"
             icon={<FontAwesomeIcon icon={faTable} />}
@@ -140,27 +153,27 @@ const Sidebar = () => {
               { title: "Goals Calendar", link: "#" },
             ]}
           /> */}
-          {role_id === '1' || role_id === '2' ? (
-          <SidebarMenuItem
-            title="Recruitment"
-            icon={<FontAwesomeIcon icon={faUserPlus} />}
-            children={[
-              { title: "Applicants", link: "applicants-list" },
-              { title: "Create Career Post", link: "create-career-post" },
-              { title: "Career-Posts-List", link: "career-posts-list" },
-              // {
-              //   title: "Career Completed List",
-              //   link: "/career-completed-list",
-              // },
-            ]}
-          />
-          ) : null}
-          
-          <SidebarMenuItem
+          {/* {role_id === "1" || role_id === "2" ? (
+            <SidebarMenuItem
+              title="Recruitment"
+              icon={<FontAwesomeIcon icon={faUserPlus} />}
+              children={[
+                { title: "Applicants", link: "applicants-list" },
+                { title: "Create Career Post", link: "create-career-post" },
+                { title: "Career-Posts-List", link: "career-posts-list" },
+                // {
+                //   title: "Career Completed List",
+                //   link: "/career-completed-list",
+                // },
+              ]}
+            />
+          ) : null} */}
+
+          {/* <SidebarMenuItem
             title="Helpdesk"
             link="complaint-list"
             icon={<FontAwesomeIcon icon={faHeadset} />}
-          />
+          /> */}
           {/* <SidebarMenuItem
             title="Invoices"
             icon={<FontAwesomeIcon icon={faTable} />}
@@ -169,11 +182,11 @@ const Sidebar = () => {
             title="Estimates"
             icon={<FontAwesomeIcon icon={faTable} />}
           /> */}
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             title="Leave Request"
             link="leaves-list"
             icon={<FontAwesomeIcon icon={faCalendarCheck} />}
-          />
+          /> */}
           {/* <SidebarMenuItem
             title="Training Sessions"
             icon={<FontAwesomeIcon icon={faTable} />}
@@ -182,7 +195,7 @@ const Sidebar = () => {
             title="Disciplinary Cases"
             icon={<FontAwesomeIcon icon={faTable} />}
           /> */}
-{/* 
+          {/* 
           {role_id === '1' ? (
             <div className="text-center mt-5 font-bold">
               <h1>Welcome Admin</h1>
@@ -200,8 +213,6 @@ const Sidebar = () => {
               <h1>Welcome Employee</h1>
             </div>
           ) : null} */}
-
-
         </ul>
       </nav>
     </aside>

@@ -1,6 +1,7 @@
-import { useState, useContext } from "react"; // Ensure useContext is imported
+import { AuthContext } from "@/providers/AuthProvider";
+import { Eye, EyeOff } from "lucide-react"; // Import eye icons
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "@/providers/AuthProvider"; // Import AuthContext
 import Swal from "sweetalert2";
 
 const SigninPage = () => {
@@ -8,27 +9,21 @@ const SigninPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signIn } = useContext(AuthContext); // Get signIn function from AuthProvider
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+
+  const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Check if fields are empty
     if (!email || !password) {
       setError("Both fields are required");
       return;
     }
-
     setLoading(true);
     setError("");
-
     try {
-      // Use the signIn function from AuthProvider
       await signIn(email, password);
-
-      // Show success notification
       Swal.fire({
         title: "Success!",
         text: "Login successful!",
@@ -36,11 +31,8 @@ const SigninPage = () => {
         timer: 1500,
         showConfirmButton: false,
       });
-
-      // Navigate to the dashboard
       navigate("/dashboard", { replace: true });
     } catch (err) {
-      // Handle login errors
       setError(err.message || "Login failed. Please try again.");
       Swal.fire({
         title: "Error!",
@@ -56,24 +48,16 @@ const SigninPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
-        {/* <h2 className="mb-6 text-center text-2xl font-bold text-blue-700">
-          WeTech HUB
-        </h2> */}
         <div className="flex flex-col items-center justify-center">
           <img src="logo.jpeg" alt="logo" className="mb-1 h-28 w-28" />
-          <h2 className="mb-6 text-2xl font-bold mr-5 bg-gradient-to-r from-cyan-500 to-blue-700 text-transparent bg-clip-text">WeTechHub HRMS
+          <h2 className="mb-6 bg-gradient-to-r from-cyan-500 to-blue-700 bg-clip-text text-2xl font-bold text-transparent">
+            WeTechHub HRMS
           </h2>
         </div>
 
-        {/* <h2 className="mb-6 text-center text-2xl font-bold text-gray-700">
-          Login
-        </h2> */}
-
-        {/* Error message */}
         {error && <div className="mb-4 text-sm text-red-500">{error}</div>}
 
         <form onSubmit={handleSubmit}>
-          {/* Email Input */}
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -92,26 +76,34 @@ const SigninPage = () => {
             />
           </div>
 
-          {/* Password Input */}
-          <div className="mb-6">
+          {/* Password Input with Toggle */}
+          <div className="relative mb-6">
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
             >
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="mt-2 w-full rounded-md border border-border px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your password"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="mt-2 w-full rounded-md border border-border px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full rounded-md bg-sky-500 py-2 font-semibold text-white transition hover:bg-sky-700"
@@ -121,23 +113,11 @@ const SigninPage = () => {
           </button>
         </form>
 
-        {/* Links */}
         <div className="mt-4 text-center">
-          <a
-          
-            className="text-sm text-blue-600 hover:underline"
-          >
+          <a className="text-sm text-blue-600 hover:underline">
             Forgot Password?
           </a>
         </div>
-        {/* <div className="mt-2 text-center">
-          <span className="text-sm text-gray-600">
-            Don&apos;t have an account?{" "}
-            <a href="/signUp" className="text-blue-600 hover:underline">
-              Sign Up
-            </a>
-          </span>
-        </div> */}
       </div>
     </div>
   );

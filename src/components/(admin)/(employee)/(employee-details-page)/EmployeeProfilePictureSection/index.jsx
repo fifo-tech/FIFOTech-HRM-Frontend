@@ -1,31 +1,122 @@
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
-const EmployeeProfilePictureSection = () => {
+const EmployeeProfilePictureSection = ({ id }) => {
+  const [profilePhoto, setProfilePhoto] = useState(null);
   const [file, setFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const apiUrl = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    const fetchProfilePhoto = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("No token found in local storage");
+        }
+
+        const response = await fetch(`${apiUrl}/employee-profile/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile photo");
+        }
+
+        const { data } = await response.json();
+        setProfilePhoto(data.employee.profile_photo);
+      } catch (error) {
+        console.error("Error fetching profile photo:", error);
+      }
+    };
+
+    fetchProfilePhoto();
+  }, [id, apiUrl]);
 
   const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
+    const file = event.target.files[0];
+    if (file) {
       const validExtensions = [
         "image/gif",
         "image/png",
         "image/jpg",
         "image/jpeg",
       ];
-      if (validExtensions.includes(selectedFile.type)) {
-        setFile(URL.createObjectURL(selectedFile));
+      if (validExtensions.includes(file.type)) {
+        setFile(URL.createObjectURL(file));
+        setSelectedFile(file);
       } else {
         alert("Invalid file type. Please upload a gif, png, jpg, or jpeg.");
       }
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!selectedFile) {
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Please select a profile picture to upload.",
+      });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("profile_picture", selectedFile); // Match the backend field name
+
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found in local storage");
+      }
+
+      const response = await fetch(`${apiUrl}/update-employee/${id}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`, // DO NOT set Content-Type manually
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "Profile picture updated successfully.",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+        setProfilePhoto(URL.createObjectURL(selectedFile));
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: data.message || "Failed to update profile picture.",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "An error occurred while updating the profile picture.",
+      });
+      console.error("Error updating profile picture:", error);
+    }
+  };
+
   return (
     <div className="my-6 min-h-screen bg-gray-100">
       <div className="mx-4 max-w-3xl rounded-lg bg-white p-8 shadow-lg">
-        {/* Title */}
         <h6 className="mb-6 flex items-center text-xl text-gray-600">
           <FontAwesomeIcon
             icon={faImage}
@@ -35,15 +126,19 @@ const EmployeeProfilePictureSection = () => {
           Profile Picture
         </h6>
 
-        {/* Profile Picture Section */}
-        <form>
-          {/* Profile Picture Preview */}
+        <form onSubmit={handleSubmit}>
           <div className="mb-6 flex flex-col items-center">
             <div className="mb-4 h-32 w-32">
-              {file ? (
+              {profilePhoto && !file ? (
+                <img
+                  src={profilePhoto}
+                  alt="Current Profile"
+                  className="h-full w-full rounded-full border border-gray-300 object-cover"
+                />
+              ) : file ? (
                 <img
                   src={file}
-                  alt="Profile Preview"
+                  alt="Selected Profile Preview"
                   className="h-full w-full rounded-full border border-gray-300 object-cover"
                 />
               ) : (
@@ -53,7 +148,6 @@ const EmployeeProfilePictureSection = () => {
               )}
             </div>
 
-            {/* File Input */}
             <label className="block text-sm font-medium text-gray-700">
               Profile Picture <span className="text-red-500">*</span>
             </label>
@@ -68,7 +162,6 @@ const EmployeeProfilePictureSection = () => {
             </p>
           </div>
 
-          {/* Update Picture Button */}
           <div className="mt-8 flex justify-end">
             <button
               type="submit"

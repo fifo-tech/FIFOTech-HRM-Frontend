@@ -18,10 +18,12 @@ function AttendanceHeaderSection() {
 
           <div className="flex flex-col p-1">
             <Link
-              to="/attendance-daily-list"
+              to="/dashboard/attendance-daily-list"
               className="text-gray-700 hover:text-blue-500"
             >
-              <span className="font-medium text-gray-700">Attendance</span>
+              <span className="font-medium text-gray-700">
+                Daily Attendance List
+              </span>
             </Link>
             <span className="text-xs text-gray-500">View Attendance</span>
           </div>
@@ -35,11 +37,11 @@ function AttendanceHeaderSection() {
 
           <div className="flex flex-col p-1">
             <Link
-              to="/manual-attendance"
+              to="/dashboard/add-self-attendance"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">
-                Manual Attendance
+                Add Self Attendance
               </span>
             </Link>
             <span className="text-xs text-gray-500">Add/Edit Attendance</span>
@@ -54,7 +56,7 @@ function AttendanceHeaderSection() {
 
           <div className="flex flex-col p-1">
             <Link
-              to="/attendance-monthly-report"
+              to="/dashboard/attendance-monthly-report"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">Monthly Report</span>

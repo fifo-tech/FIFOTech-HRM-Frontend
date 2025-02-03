@@ -40,7 +40,7 @@ const SidebarMenuItem = ({ title, icon, link, children }) => {
 
       {/* Render Submenu Items */}
       {children && isOpen && (
-        <ul className="border-border ml-4 mt-2 border-l">
+        <ul className="ml-4 mt-2 border-l border-border">
           {children.map((child, index) => (
             <li key={index} className="mb-1">
               {/* Recursive Rendering for Nested Children */}

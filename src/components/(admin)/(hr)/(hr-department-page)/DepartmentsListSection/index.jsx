@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2"; // Import Swal for alerts
 
-const DepartmentsListSection = () => {
+const DepartmentsListSection = ({ isUpdated }) => {
   const [search, setSearch] = useState("");
-  const [entries, setEntries] = useState(15);
+  const [entries, setEntries] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [departments, setDepartments] = useState([]);
 
@@ -57,7 +57,7 @@ const DepartmentsListSection = () => {
     };
 
     fetchDepartments();
-  }, []); // Run once when the component mounts
+  }, [isUpdated]); // Run once when the component mounts
 
   // Filter departments based on the search input
   const filteredDepartments = departments.filter((department) =>
@@ -138,7 +138,7 @@ const DepartmentsListSection = () => {
   };
 
   return (
-    <div className="mx-4 mr-8 mt-6 max-h-screen max-w-3xl rounded-md bg-white p-6">
+    <div className="mx-4 mr-8 mt-6 max-w-3xl rounded-md bg-white p-6">
       {/* Title */}
 
       <div className="flex items-center space-x-2">
@@ -195,7 +195,7 @@ const DepartmentsListSection = () => {
             <tr className="bg-gray-200 text-sm">
               <th className="border-b px-4 py-2">DEPARTMENT NAME</th>
               <th className="border-b px-4 py-2">DEPARTMENT HEAD</th>
-              <th className="border-b px-4 py-2">CREATED AT</th>
+              <th className="border-b px-4 py-2">TOTAL EMPLOYEES</th>
             </tr>
           </thead>
           <tbody>
@@ -230,8 +230,11 @@ const DepartmentsListSection = () => {
                   {department.head_name}
                 </td>
                 <td className="border-b px-4 py-2 text-center">
-                  {new Date(department.created_at).toLocaleDateString()}
+                  {department.employees_count}
                 </td>
+                {/* <td className="border-b px-4 py-2 text-center">
+                  {new Date(department.created_at).toLocaleDateString()}
+                </td> */}
               </tr>
             ))}
             {paginatedDepartments.length === 0 && (

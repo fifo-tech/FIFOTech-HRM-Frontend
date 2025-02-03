@@ -17,6 +17,7 @@ const ManualAttendancePage = () => {
   return (
     <main>
       <AttendanceHeaderSection />
+
       {/* Conditionally render the ManualAttendanceCreateSection if showCreateForm is true */}
       {showCreateForm && (
         <ManualAttendanceCreateSection

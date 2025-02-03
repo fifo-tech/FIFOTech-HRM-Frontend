@@ -1,10 +1,10 @@
 import { TabsList, TabsTrigger } from "@/components/ui/Tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const EmployeeSidebar = ({ tabs, details }) => {
+const EmployeeSidebar = ({ tabs, details, activeTab, setActiveTab }) => {
   return (
     <div className="mx-4 my-6">
-      <div className="bg-white shadow-lg">
+      <div className="rounded-md bg-white shadow-lg">
         {/* Profile Details Section */}
         <div className="mb-4 border-b p-4 text-center">
           <img
@@ -13,7 +13,9 @@ const EmployeeSidebar = ({ tabs, details }) => {
             className="mx-auto mb-2 h-20 w-20 rounded-full object-cover"
           />
           <h3 className="text-lg font-bold">{details.name}</h3>
-          <p className="text-sm text-gray-600">{details.department}</p>
+          <p className="mb-2 text-sm text-gray-600">
+            {details.department} Department
+          </p>
           <span
             className={`inline-block rounded-full px-3 py-1 text-sm font-medium ${
               details.status === "Active"
@@ -32,7 +34,10 @@ const EmployeeSidebar = ({ tabs, details }) => {
             <TabsTrigger
               key={index}
               value={value}
-              className="flex w-full items-center gap-4 rounded px-4 py-2 text-gray-700 transition hover:bg-gray-100 hover:text-primary"
+              className={`flex w-full items-center gap-4 rounded px-4 py-2 text-gray-700 transition hover:bg-gray-100 hover:text-primary ${
+                activeTab === value ? "bg-gray-300" : "" // Apply active tab styling
+              }`}
+              onClick={() => setActiveTab(value)} // Update active tab
             >
               <span className="inline-block shrink-0">
                 <FontAwesomeIcon icon={icon} className="text-lg" />

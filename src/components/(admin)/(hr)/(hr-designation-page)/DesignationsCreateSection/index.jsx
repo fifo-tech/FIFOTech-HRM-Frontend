@@ -3,7 +3,7 @@ import Swal from "sweetalert2"; // For showing alerts
 import { createDesignation } from "../../../../../models/Designation/CreateDesignation"; // Import method to create designation
 import { fetchDepartments } from "../../../../../models/Designation/GetDepartments"; // Import method to fetch departments
 
-const DesignationsCreateSection = () => {
+const DesignationsCreateSection = ({ setIsUpdated }) => {
   const [departments, setDepartments] = useState([]); // Initialize as an empty array
   const [department, setDepartment] = useState("");
   const [designationName, setDesignationName] = useState("");
@@ -40,7 +40,11 @@ const DesignationsCreateSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!department || !designationName) {
-      alert("Please fill all required fields!");
+      Swal.fire({
+        title: "Error!",
+        text: "Please fill all required fields!",
+        icon: "error",
+      });
       return;
     }
 
@@ -54,19 +58,29 @@ const DesignationsCreateSection = () => {
         description,
       );
 
-      // Show success notification
-      Swal.fire({
-        title: "Success!",
-        text: "Designation created successfully!",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+      if (response && response.success) {
+        // Update the state to trigger re-fetching the list
+        setIsUpdated((prev) => !prev);
 
-      // Reload the page after a delay to allow the alert to show
-      setTimeout(() => {
-        window.location.reload();
-      }, 1600);
+        // Reset the form fields
+        setDepartment("");
+        setDesignationName("");
+        setDescription("");
+
+        Swal.fire({
+          title: "Success!",
+          text: "Designation created successfully!",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: response.message || "Failed to create designation.",
+          icon: "error",
+        });
+      }
     } catch (error) {
       // Handle error during designation creation
       Swal.fire({

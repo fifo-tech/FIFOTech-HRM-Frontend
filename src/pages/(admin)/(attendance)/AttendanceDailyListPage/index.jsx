@@ -5,6 +5,7 @@ const AttendanceDailyListPage = () => {
   return (
     <main>
       <AttendanceHeaderSection />
+      {/* <ManualAttendanceFilterSection /> */}
       <AttendanceDailyListSection />
     </main>
   );

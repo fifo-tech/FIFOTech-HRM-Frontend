@@ -18,7 +18,7 @@ function LeaveRequestHeaderSection() {
           />
           <div className="flex flex-col p-1">
             <Link
-              to="/leaves-list"
+              to="/dashboard/leaves-list"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">Manage Leaves</span>
@@ -37,7 +37,7 @@ function LeaveRequestHeaderSection() {
           />
           <div className="flex flex-col p-1">
             <Link
-              to="/leave-types"
+              to="/dashboard/leave-types"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">Leave Type</span>
@@ -56,7 +56,7 @@ function LeaveRequestHeaderSection() {
           />
           <div className="flex flex-col p-1">
             <Link
-              to="/leave-calendar"
+              to="/dashboard/leave-calendar"
               className="text-gray-700 hover:text-blue-500"
             >
               <span className="font-medium text-gray-700">Calendar</span>

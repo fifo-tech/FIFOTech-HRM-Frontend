@@ -140,7 +140,7 @@ const AttendanceDailyListSection = () => {
               </div>
             </div>
 
-            <div className="max-h-96 overflow-x-auto overflow-y-auto">
+            <div className="min-h-screen overflow-x-auto overflow-y-auto">
               <table className="max-w-full border-collapse text-sm">
                 <thead className="bg-gray-100">
                   <tr>
@@ -165,8 +165,14 @@ const AttendanceDailyListSection = () => {
                     <th className="border-b border-gray-300 px-4 py-2 text-left">
                       LATE
                     </th>
+                    <th className="border-b border-gray-300 px-4 py-2 text-left">
+                      LATE REASON
+                    </th>
                     <th className="min-w-[45px] border-b border-gray-300 px-4 py-2 text-left">
-                      EARLY LEAVING
+                      EARLY LEAVE
+                    </th>
+                    <th className="min-w-[45px] border-b border-gray-300 px-4 py-2 text-left">
+                      EARLY LEAVE REASON
                     </th>
                     <th className="min-w-[45px] border-b border-gray-300 px-4 py-2 text-left">
                       TOTAL WORK
@@ -210,7 +216,13 @@ const AttendanceDailyListSection = () => {
                       </td>
                       <td className="px-4 py-2">{item.late || "N/A"}</td>
                       <td className="px-4 py-2">
+                        {item.clock_in_reason || "N/A"}
+                      </td>
+                      <td className="px-4 py-2">
                         {item.early_leaving || "N/A"}
+                      </td>
+                      <td className="px-4 py-2">
+                        {item.clock_out_reason || "N/A"}
                       </td>
                       <td className="px-4 py-2">
                         {item.total_work_hour || "N/A"}

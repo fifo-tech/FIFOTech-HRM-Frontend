@@ -13,6 +13,13 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
     emp_id: "",
     dept_id: "",
     designation_id: "",
+    basic_salary: "",
+    role_id: "",
+    contract_date: "",
+    contract_end: "",
+    office_shift: "",
+    role_description: "",
+    leave_categories: "",
     profile_picture: null, // Added for profile picture
   });
 
@@ -20,6 +27,7 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [departments, setDepartments] = useState([]);
   const [designations, setDesignations] = useState([]);
+  const [roles, setRoles] = useState([]);
 
   // Fetch department and designation data
   useEffect(() => {
@@ -67,8 +75,30 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
       }
     };
 
+    const fetchRoles = async () => {
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        const response = await fetch(`${apiUrl}/roles-list`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        if (data.success) {
+          setRoles(data.data);
+        } else {
+          console.error("Failed to fetch Roles:", data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching Roles:", error);
+      }
+    };
+
     fetchDepartments();
     fetchDesignations();
+    fetchRoles();
   }, []);
 
   // Handle change
@@ -154,6 +184,13 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
       emp_id: "",
       dept_id: "",
       designation_id: "",
+      basic_salary: "",
+      role_id: "",
+      contract_date: "",
+      contract_end: "",
+      office_shift: "",
+      role_description: "",
+      leave_categories: "",
       profile_picture: null,
     });
     setErrors([]);
@@ -334,6 +371,116 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
               </option>
             ))}
           </select>
+        </div>
+
+        {/* Basic Salary Section */}
+        <div>
+          <label className="mb-2 block font-medium text-gray-600">
+            Basic Salary <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="basic_salary"
+            value={formData.basic_salary}
+            onChange={handleChange}
+            placeholder="Enter basic Salary"
+            className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:ring focus:ring-blue-300"
+          />
+        </div>
+
+        {/* Role Dropdown */}
+        <div>
+          <label className="mb-2 block font-medium text-gray-600">
+            Role <span className="text-red-500">*</span>
+          </label>
+          <select
+            name="role_id"
+            value={formData.role_id}
+            onChange={handleChange}
+            className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:ring focus:ring-blue-300"
+          >
+            <option value="" disabled>
+              Select a Role
+            </option>
+            {roles.map((role) => (
+              <option key={role.id} value={role.id}>
+                {role.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Contract Date */}
+        <div className="col-span-1">
+          <label className="block font-medium text-gray-700">
+            Contract Date<span className="text-red-500">*</span>
+          </label>
+          <input
+            type="date"
+            name="contract_date"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            value={formData.contract_date || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* Contract End */}
+        <div className="col-span-1">
+          <label className="block font-medium text-gray-700">
+            Contract End
+          </label>
+          <input
+            type="date"
+            name="contract_end"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            value={formData.contract_end || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* Office Shift */}
+        <div className="col-span-1">
+          <label className="block font-medium text-gray-700">
+            Office Shift<span className="text-red-500">*</span>
+          </label>
+          <select
+            name="office_shift"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            value={formData.office_shift || ""}
+            onChange={handleChange}
+          >
+            <option value="">Select office shift</option>
+            <option value="Morning">Morning</option>
+            <option value="Evening">Evening</option>
+          </select>
+        </div>
+
+        {/* Leave Categories */}
+        <div className="col-span-2">
+          <label className="block font-medium text-gray-700">
+            Leave Categories
+          </label>
+          <textarea
+            rows="3"
+            name="leave_categories"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            value={formData.leave_categories || ""}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* Role Description */}
+        <div className="col-span-2">
+          <label className="block font-medium text-gray-700">
+            Role Description
+          </label>
+          <textarea
+            rows="4"
+            name="role_description"
+            className="mt-1 w-full rounded-md border border-gray-300 p-2.5 text-sm text-gray-900 shadow-sm transition-all hover:bg-gray-100 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            value={formData.role_description || ""}
+            onChange={handleChange}
+          />
         </div>
 
         {/* Profile Picture Upload */}

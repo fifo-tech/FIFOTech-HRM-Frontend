@@ -2,11 +2,11 @@ import { faEdit, faTable, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2"; // Import Swal for alerts
+import Swal from "sweetalert2";
 
-const DesignationsListSection = () => {
+const DesignationsListSection = ({ isUpdated }) => {
   const [search, setSearch] = useState("");
-  const [entries, setEntries] = useState(15);
+  const [entries, setEntries] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [designations, setDesignations] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -76,7 +76,7 @@ const DesignationsListSection = () => {
     };
 
     fetchData();
-  }, []);
+  }, [isUpdated]);
 
   // Filter designations based on the search input
   const filteredDesignations = designations.filter(
@@ -163,7 +163,7 @@ const DesignationsListSection = () => {
   };
 
   return (
-    <div className="mx-4 mr-6 mt-6 max-h-screen max-w-3xl rounded-md bg-white p-6">
+    <div className="mx-4 mr-6 mt-6 max-w-3xl rounded-md bg-white p-6">
       {/* Title */}
       <div className="flex items-center space-x-2">
         <FontAwesomeIcon icon={faTable} className="text-gray-700" />
