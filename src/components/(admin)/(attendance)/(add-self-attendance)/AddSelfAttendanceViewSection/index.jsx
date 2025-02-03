@@ -157,7 +157,13 @@ const AddSelfAttendanceViewSection = () => {
                       LATE
                     </th>
                     <th className="border-b border-t px-4 py-2 text-left">
-                      EARLY LEAVING
+                      LATE REASON
+                    </th>
+                    <th className="border-b border-t px-4 py-2 text-left">
+                      EARLY LEAVE
+                    </th>
+                    <th className="border-b border-t px-4 py-2 text-left">
+                      EARLY LEAVE REASON
                     </th>
                     <th className="border-b border-t px-4 py-2 text-left">
                       TOTAL WORK
@@ -186,6 +192,7 @@ const AddSelfAttendanceViewSection = () => {
                               <span className="truncate text-sm text-gray-500">
                                 {item.email || "N/A"}
                               </span>
+                              <span>{item.phone_num || " "}</span>
                             </div>
                           </div>
 
@@ -221,7 +228,13 @@ const AddSelfAttendanceViewSection = () => {
                       </td>
                       <td className="px-4 py-2">{item.late || "N/A"}</td>
                       <td className="px-4 py-2">
+                        {item.clock_in_reason || "N/A"}
+                      </td>
+                      <td className="px-4 py-2">
                         {item.early_leaving || "N/A"}
+                      </td>
+                      <td className="px-4 py-2">
+                        {item.clock_out_reason || "N/A"}
                       </td>
                       <td className="px-4 py-2">
                         {item.total_work_hour || "N/A"}

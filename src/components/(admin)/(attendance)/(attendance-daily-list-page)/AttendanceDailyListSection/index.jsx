@@ -202,6 +202,9 @@ const AttendanceDailyListSection = () => {
                             <span className="truncate text-sm text-gray-500">
                               {item.email || "N/A"}
                             </span>
+                            <span className="truncate text-sm text-gray-500">
+                              {item.phone_num || " "}
+                            </span>
                           </div>
                         </div>
                       </td>

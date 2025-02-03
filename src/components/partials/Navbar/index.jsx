@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // To navigate to the sign-in page
 import { AuthContext } from "../../../providers/AuthProvider";
 
@@ -77,15 +77,11 @@ const Navbar = () => {
           <i className="fa fa-bars"></i>
         </button>
 
-<<<<<<< HEAD
         <img
           src="../../../../public/fav-radius-logo.png"
           alt="logo"
           className="me-2 h-10"
         />
-=======
-        <img src="./assets/fav-radius-logo.png" alt="logo" className="h-10 me-2" />
->>>>>>> fee993422078cac531ac3d930c1af4694f212958
 
         {/* Brand Name */}
         <h1 className="text-lg font-bold text-white">WeTechHub - HRMS</h1>
