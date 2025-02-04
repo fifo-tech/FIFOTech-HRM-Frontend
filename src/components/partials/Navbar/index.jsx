@@ -77,11 +77,7 @@ const Navbar = () => {
           <i className="fa fa-bars"></i>
         </button>
 
-        <img
-          src="../../../../public/fav-radius-logo.png"
-          alt="logo"
-          className="me-2 h-10"
-        />
+        <img src="/fav-radius-logo.png" alt="logo" className="me-2 h-10" />
 
         {/* Brand Name */}
         <h1 className="text-lg font-bold text-white">WeTechHub - HRMS</h1>

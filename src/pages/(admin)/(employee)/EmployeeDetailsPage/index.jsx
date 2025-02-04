@@ -1,4 +1,3 @@
-import EmployeeAccountInformationSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeAccountInformationSection";
 import EmployeeBasicInformationSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeBasicInformationSection";
 import EmployeeChangePasswordSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeChangePasswordSection";
 import EmployeeContractSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeContractSection";
@@ -6,10 +5,8 @@ import EmployeeDocumentsSection from "@/components/(admin)/(employee)/(employee-
 import EmployeePersonalInformationSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeePersonalInformationSection";
 import EmployeeProfilePictureSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeProfilePictureSection";
 import EmployeeSidebar from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeSidebar";
-import EmployeeTimesheetAgendaSection from "@/components/(admin)/(employee)/(employee-details-page)/EmployeeTimesheetAgendaSection";
 import { Tabs, TabsItem } from "@/components/ui/Tabs";
 import {
-  faCalendarAlt,
   faFileContract,
   faFolder,
   faLock,
@@ -79,24 +76,24 @@ const EmployeeDetailsPage = () => {
       icon: faUser,
       element: <EmployeeProfilePictureSection id={id} />,
     },
-    {
-      label: "Account Information",
-      value: "account-information",
-      icon: faFolder,
-      element: <EmployeeAccountInformationSection />,
-    },
+    // {
+    //   label: "Account Information",
+    //   value: "account-information",
+    //   icon: faFolder,
+    //   element: <EmployeeAccountInformationSection />,
+    // },
     {
       label: "Documents",
       value: "documents",
       icon: faFolder,
       element: <EmployeeDocumentsSection id={id} />,
     },
-    {
-      label: "Timesheet Agenda",
-      value: "timesheetagenda",
-      icon: faCalendarAlt,
-      element: <EmployeeTimesheetAgendaSection />,
-    },
+    // {
+    //   label: "Timesheet Agenda",
+    //   value: "timesheetagenda",
+    //   icon: faCalendarAlt,
+    //   element: <EmployeeTimesheetAgendaSection />,
+    // },
     {
       label: "Change Password",
       value: "changepassword",
