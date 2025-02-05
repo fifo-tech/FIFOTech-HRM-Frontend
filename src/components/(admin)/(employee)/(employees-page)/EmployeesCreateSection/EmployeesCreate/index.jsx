@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2"; // Import SweetAlert2
 
-const EmployeesCreate = ({ toggleHideCreateForm }) => {
+const EmployeesCreate = ({ toggleHideCreateForm, setIsUpdated }) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -144,15 +144,19 @@ const EmployeesCreate = ({ toggleHideCreateForm }) => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
+            setIsUpdated((prev) => !prev);
+            setFormData("");
+
             Swal.fire({
               title: "Success!",
               text: "Employee created successfully!",
               icon: "success",
               confirmButtonText: "Ok",
-            }).then(() => {
-              // Reload the page after success
-              window.location.reload();
             });
+            // .then(() => {
+            //   Reload the page after success
+            //   window.location.reload();
+            // })
           } else {
             Swal.fire({
               title: "Error!",

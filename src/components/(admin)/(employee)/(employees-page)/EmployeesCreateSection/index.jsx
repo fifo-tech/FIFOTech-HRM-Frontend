@@ -1,12 +1,14 @@
 import EmployeesCreate from "./EmployeesCreate";
-import ProfilePictureUpload from "./ProfilePictureUpload";
 
-const EmployeesCreateSection = ({ toggleHideCreateForm }) => {
+const EmployeesCreateSection = ({ toggleHideCreateForm, setIsUpdated }) => {
   return (
     <section className="my-8">
       <div className="grid grid-cols-4 gap-8">
         <div className="col-span-4">
-          <EmployeesCreate toggleHideCreateForm={toggleHideCreateForm} />
+          <EmployeesCreate
+            toggleHideCreateForm={toggleHideCreateForm}
+            setIsUpdated={setIsUpdated}
+          />
         </div>
         {/* <div className="col-span-1">
           <ProfilePictureUpload />

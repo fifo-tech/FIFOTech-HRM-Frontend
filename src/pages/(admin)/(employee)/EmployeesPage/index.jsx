@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const EmployeePage = () => {
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
 
   // Toggle the visibility of the form
   const toggleCreateForm = () => {
@@ -21,14 +22,19 @@ const EmployeePage = () => {
       {/* Conditionally render the EmployeesCreateSection if showCreateForm is true */}
 
       {showCreateForm && (
-        <EmployeesCreateSection toggleHideCreateForm={toggleHideCreateForm} />
+        <EmployeesCreateSection
+          toggleHideCreateForm={toggleHideCreateForm}
+          setIsUpdated={setIsUpdated}
+        />
       )}
 
       {/* Pass toggleCreateForm as a prop to the EmployeesListSection */}
-      <EmployeesListSection toggleCreateForm={toggleCreateForm} />
+      <EmployeesListSection
+        toggleCreateForm={toggleCreateForm}
+        isUpdated={isUpdated}
+      />
     </main>
   );
 };
 
 export default EmployeePage;
-

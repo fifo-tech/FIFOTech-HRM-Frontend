@@ -12,7 +12,7 @@ import Swal from "sweetalert2"; // Import SweetAlert2
 import { deleteEmployee } from "../../../../../models/Employee/DeleteEmployee"; // Import API call function
 import { fetchEmployees } from "../../../../../models/Employee/EmployeeList"; // Import API call function
 
-const EmployeesListSection = ({ toggleCreateForm }) => {
+const EmployeesListSection = ({ toggleCreateForm, isUpdated }) => {
   const [employees, setEmployees] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,7 +42,7 @@ const EmployeesListSection = ({ toggleCreateForm }) => {
     };
 
     loadEmployees();
-  }, []);
+  }, [isUpdated]);
 
   const handleViewDetails = (id) => {
     console.log(id);
