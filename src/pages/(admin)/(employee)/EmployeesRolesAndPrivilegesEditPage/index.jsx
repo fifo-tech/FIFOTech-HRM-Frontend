@@ -1,5 +1,5 @@
 import EmployeesPageHeaderSection from "@/components/(admin)/(employee)/(employees-page)/EmployeesPageHeaderSection";
-import EmployeesRolesAndPrivilegesEdit from "@/components/(admin)/(hr)/HrHeaderSection";
+import EmployeesRolesAndPrivilegesEdit from "@/components/(admin)/(employee)/(employees-page)/EmployeesRolesAndPrivilegesEdit";
 
 const EmployeesRolesAndPrivilegesEditPage = () => {
   return (

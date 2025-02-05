@@ -35,6 +35,7 @@ import CreateCareerPostPage from "@/pages/(admin)/(recruitment)/CreateCareerPost
 // authentication pages
 import AddEmployeeAttendancePage from "@/pages/(admin)/(attendance)/AddEmployeeAttendancePage";
 import AddSelfAttendancePage from "@/pages/(admin)/(attendance)/AddSelfAttendancePage";
+import EmployeesRolesAndPrivilegesEditPage from "@/pages/(admin)/(employee)/EmployeesRolesAndPrivilegesEditPage";
 import SigninPage from "@/pages/(authentication)/SigninPage";
 
 export const routes = [
@@ -83,7 +84,7 @@ export const routes = [
           },
           {
             path: "roles/:id/edit",
-            // element: <EmployeesRolesAndPrivilegesEdit />,
+            element: <EmployeesRolesAndPrivilegesEditPage />,
           },
           {
             path: "office-shifts",
