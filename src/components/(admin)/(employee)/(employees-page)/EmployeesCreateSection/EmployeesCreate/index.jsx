@@ -145,8 +145,7 @@ const EmployeesCreate = ({ toggleHideCreateForm, setIsUpdated }) => {
         .then((data) => {
           if (data.success) {
             setIsUpdated((prev) => !prev);
-            setFormData("");
-
+            handleReset();
             Swal.fire({
               title: "Success!",
               text: "Employee created successfully!",
