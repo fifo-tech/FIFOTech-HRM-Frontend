@@ -116,7 +116,7 @@ const EmployeesRolesAndPrivilegesEdit = () => {
         <div className="flex justify-end space-x-4">
           <button
             type="button"
-            onClick={() => navigate("/dashboard/roles-list")}
+            onClick={() => navigate("/dashboard/employee-roles")}
             className="rounded bg-gray-300 px-4 py-2"
           >
             Cancel
